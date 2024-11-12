@@ -17,7 +17,6 @@ pip-delete-this-directory.txt
 
 # Ignore Jupyter Notebook checkpoints and outputs
 .ipynb_checkpoints/
-*.ipynb
 
 # Ignore IDE or editor specific files
 .vscode/
