@@ -1,0 +1,42 @@
+# Ignore root data and models directories
+/data/
+/models/
+
+# Ignore Python bytecode and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore environment directories
+/myenv/
+env/
+.venv/
+venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Ignore Jupyter Notebook checkpoints and outputs
+.ipynb_checkpoints/
+*.ipynb
+
+# Ignore IDE or editor specific files
+.vscode/
+.idea/
+*.swp
+
+# Ignore logs
+*.log
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore cache and temporary files
+*.cache
+*.temp
+*.tmp
+
+# Ignore large or specific file types (optional)
+*.h5
+*.ckpt
+*.pth
