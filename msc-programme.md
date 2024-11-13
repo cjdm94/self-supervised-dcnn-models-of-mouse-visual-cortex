@@ -29,7 +29,7 @@
   
 ### Term 3 (end of T2 until end of August)
 
-- Mon-Fri: Cortexlab
+- **Mon-Fri: Cortexlab**
 
 ## Research Project: Assessment
 
@@ -58,7 +58,7 @@ The supervisor is required to mark the research proposal, the thesis, and to pro
    2. Developmental: 13th Dec
 4. Developmental essay: 2nd Jan
 5. **"Project idea poster" submission: 9th Jan**
-6. **"Project proposal" submission: 24th Jan**
+6. **Research proposal submission: 24th Jan**
 7. Systems essay: 21st Feb
 8. Exam week: 24th-28th Mar
    1. Systems: 25th Mar
