@@ -1,0 +1,39 @@
+> Finally, these results also generally show a hierarchical convergence between brains and deep neural networks, with earlier layers capturing the structure best in the early visual cortex, and later layers capturing the structure in the occipito-temporal cortex. 
+  
+> Unexpectedly, we also found that the untrained models were competitive with the trained models in accounting for responses in EarlyV and partially in pOTC, whereas both IPCL and category-supervised models clearly outperform untrained models in aOTC
+
+> In a nutshell, contrastive methods aim to learn representations where related samples are aligned (positive pairs, e.g. augmentations of the same image), while unrelated samples are separated (negative pairs) (Chen et al., 2020a). Intuitively, this leads to invariance to irrelevant details or transformations (by decreasing the distance between positive pairs), while preserving a sufficient amount of information about the input for solving downstream tasks (by increasing the distance between negative pairs) (Tian et al., 2020).
+
+> The internal representations of early deep artificial neural networks (ANNs) were found to be remarkably similar to the internal neural representations measured experimentally in the primate brain.
+
+> There remains considerable variability in neural and behavioral responses that is not predicted by any ANN, suggesting that no ANN model has yet captured all the relevant mechanisms
+
+> We identify DenseNet-169, CORnet-S (a new shallow recurrent network) and ResNet-101 as the current top three models of the mechanisms underlying primate object recognition (under our current set of benchmarks).
+
+> Neural Predictivity is used to evaluate how well responses X to given images in a source system (e.g., a deep ANN) predict the responses in a target system (e.g., a single neuron’s response in visual area IT). As inputs, this metric requires two assemblies of the form stimuli×neuroid where neuroids can either be neural recordings or model activations. First, source neuroids are mapped to each target neuroid using a linear transformation `y =Xw+ϵ,` where w denotes linear regression weights and ϵ is the noise in the neural recordings. This mapping procedure is performed on multiple train-test splits across stimuli. In each run, the weights are fit to map from source neuroids to a target neuroid using training images, and then using these weights predicted responses y′ are obtained for the held-out images. We used the neuroids from V4 and IT separately to compute these fits. To obtain a neural predictivity score for each neuroid, we compare predicted responses y′ with the measured neuroid responses y by computing the Pearson correlation coefficient r. [Brain-Score paper](https://www.biorxiv.org/content/10.1101/407007v2)
+
+> Previous studies observed that models with higher classification performance tend to better predict neural data(Yaminset al.,2014).
+
+> When these models are trained to optimize specific tasks such as object classification, next image 40 45 50 55 60 65 70 75 prediction, or next word prediction, their hidden representations match those observed in the brain, providing a normative representational-level modeling approach to understanding the brain (Yamins et al., 2014b). 
+
+> Whether they are data or task-driven, accurate functional models of the brain enable large-scale in silico experiments to be performed to systematically characterize neuronal representations and decipher principles that govern information processing in the brain.
+
+> Progress toward understanding object recognition is driven by linking phenomena at different levels of abstraction. “Phenomena” at one level of abstraction (e.g., behavioral success on well-designed benchmark tests) are best explained by “mechanisms” at one level of abstraction below (e.g., a neuronal spiking population code in inferior temporal cortex, IT). Notably, these “mechanisms” are themselves “phenomena” that also require mechanistic explanations at an even lower level of abstraction (e.g., neuronal connectivity, intracellular events). Progress is facilitated by good intuitions about the most useful levels of abstraction as well as measurements of well-chosen phenomena at nearby levels. It then becomes crucial to define alternative hypotheses that link those sets of phenomena and to determine those that explain the most data and generalize outside the specific conditions on which they were tested.
+
+> In sum, each encounter of the same object activates an entirely different retinal response pattern and the task of the visual system is to somehow establish the equivalence of all of these response patterns while, at the same time, not confuse any of them with images of all other possible objects (see Figure 1).
+
+> A geometrical description of the invariance problem from a neuronal population coding perspective has been effective for motivating hypothetical solutions, including the notion that the ventral visual pathway gradually “untangles” information about object identity 
+
+> As a summary of those ideas, consider the response of a population of neurons to a particular view of one object as a response vector in a space whose dimensionality is defined by the number of neurons in the population. When an object undergoes an identity-preserving transformation, such as a shift in position or a change in pose, it produces a different pattern of population activity, which corresponds to a different response vector
+
+> Together, the response vectors corresponding to all possible identity-preserving transformations (e.g., changes in position, scale, pose, etc.) define a low-dimensional surface in this high-dimensional space—an object identity manifold (shown, for the sake of clarity, as a line in Figure 2B)
+
+> ...information is not created as signals propagate through this visual system (which is impossible); rather, information is reformatted in a manner that makes information about object identity more explicit—i.e., available to simple weighted summation decoding schemes.
+
+> Considering how the ventral stream might solve core recognition from this geometrical, population-based, perspective shifts emphasis away from traditional single-neuron response properties, which display considerable heterogeneity in high-level visual areas and are difficult to understand (see section 2). We argue that this perspective is a crucial intermediate level of understanding for the core recognition problem, akin to studying aerodynamics, rather than feathers, to understand flight. 
+
+> Temporary functional disruption of parts of the human ventral stream (using transcranial magnetic stimulation, TMS) can specifically disrupt certain types of object discrimination tasks, such as face discrimination
+
+> Like all cortical neurons, neuronal spiking throughout the ventral pathway is variable in the ms-scale timing of spikes, resulting in rate variability for repeated presentations of a nominally identical visual stimulus. This spike timing variability is consistent with a Poisson-like stochastic spike generation process with an underlying rate determined by each particular image. Despite this variability, one can reliably infer what object, among a set of tested visual objects, was presented from the rates elicited across the IT population
+
+> ...the “output” of the ventral stream is reflexively expressed in neuronal firing rates across a short interval of time (∼50 ms) and is an “explicit” object representation (i.e., object identity is easily decodable), and the rapid production of this representation is consistent with a largely feedforward, nonlinear processing of the visual input 

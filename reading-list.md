@@ -17,3 +17,8 @@
 
 1. [Inferring single-trial neural population dynamics using sequential auto-encoders](https://www.nature.com/articles/s41592-018-0109-9)
 2. [Spontaneous behaviors drive multidimensional, brainwide activity](https://www.science.org/doi/10.1126/science.aav7893)
+
+## AdNNs as a model of visual cortex
+
+1. [A self-supervised domain-general learning framework for human ventral stream representation](https://www.nature.com/articles/s41467-022-28091-4)
+2. 
