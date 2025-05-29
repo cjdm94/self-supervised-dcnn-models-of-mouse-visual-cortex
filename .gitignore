@@ -39,3 +39,15 @@ Thumbs.db
 *.h5
 *.ckpt
 *.pth
+
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+
+# Installer metadata
+*.egg
