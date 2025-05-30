@@ -10,7 +10,7 @@ import torch.nn as nn
 import torch
 
 
-class PreTrainedModel(nn.Module):
+class PreTrainedSimCLRModel(nn.Module):
     def __init__(self, hidden_dim=128, intermediate_layers=['layer1', 'layer2', 'layer3', 'layer4']):
         super().__init__()
 
