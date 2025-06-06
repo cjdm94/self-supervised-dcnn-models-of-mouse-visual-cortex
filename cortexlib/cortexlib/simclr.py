@@ -141,4 +141,4 @@ class PreTrainedSimCLRModel(nn.Module):
         for layer, feature in intermediate_features.items():
             print(f"{layer}: {feature.shape}")  # Check final stored shape
 
-        return {**intermediate_features, 'fc': feats, 'labels': labels}
+        return {**intermediate_features, 'fc': feats}, labels

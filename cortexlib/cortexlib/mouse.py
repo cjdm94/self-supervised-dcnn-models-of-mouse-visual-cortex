@@ -114,7 +114,7 @@ class CortexlabMouse:
         print("Averaged top 500 neural responses shape:",
               neural_responses_mean.shape)  # (1573, 500)
 
-        return neural_responses_mean, most_reliable_neurons
+        return neural_responses_mean, neural_responses, most_reliable_neurons
 
     def plot_null_distribution_for_neuron(self, null_srv_all_neurons, neuron_index=0):
         plt.hist([srv[neuron_index] for srv in null_srv_all_neurons],
