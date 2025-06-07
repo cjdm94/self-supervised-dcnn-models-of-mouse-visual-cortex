@@ -6,10 +6,19 @@ from torchvision.transforms import Normalize, Compose, Resize, CenterCrop
 import torch
 from torch.utils.data import TensorDataset
 from torchvision import utils as torch_utils
+from pathlib import Path
+from cortexlib.file import find_project_root
 
 
 class CortexlabImages:
-    def __init__(self, path_to_data='../../data/selection1866', size=(96, 96)):
+    def __init__(self, path_to_data=None, size=(96, 96)):
+        if path_to_data is None:
+            current_file = Path(__file__)
+            project_root = find_project_root(current_file)
+            path_to_data = project_root / 'data' / 'selection1866'
+        else:
+            path_to_data = Path(path_to_data).resolve()
+
         self.path_to_data = path_to_data
 
         # Resize shortest edge to 96 (cut off the rightmost part of the image)

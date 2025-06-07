@@ -1,10 +1,19 @@
 import numpy as np
 from os import path
 import matplotlib.pyplot as plt
+from pathlib import Path
+from cortexlib.file import find_project_root
 
 
 class CortexlabMouse:
-    def __init__(self, path_to_data='../../data/neural'):
+    def __init__(self, path_to_data=None):
+        if path_to_data is None:
+            current_file = Path(__file__)
+            project_root = find_project_root(current_file)
+            path_to_data = project_root / 'data' / 'neural'
+        else:
+            path_to_data = Path(path_to_data).resolve()
+
         self.path_to_data = path_to_data
         self.neural_responses = None
         self.stimulus_ids = None

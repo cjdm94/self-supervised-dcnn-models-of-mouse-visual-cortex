@@ -8,6 +8,8 @@ import torchvision
 from torch.utils.data import DataLoader
 import torch.nn as nn
 import torch
+from pathlib import Path
+from cortexlib.file import find_project_root
 
 
 class PreTrainedSimCLRModel(nn.Module):
@@ -39,11 +41,13 @@ class PreTrainedSimCLRModel(nn.Module):
         Load pretrained SimCLR weights
         """
         base_url = "https://raw.githubusercontent.com/phlippe/saved_models/main/tutorial17/"
-        models_dir = "../../models"
+        current_file = Path(__file__)
+        project_root = find_project_root(current_file)
+        models_dir = project_root / "models"
         pretrained_simclr_filename = "SimCLR.ckpt"
-        pretrained_simclr_path = os.path.join(
-            models_dir, pretrained_simclr_filename)
-        os.makedirs(models_dir, exist_ok=True)
+        pretrained_simclr_path = models_dir / pretrained_simclr_filename
+
+        models_dir.mkdir(parents=True, exist_ok=True)
 
         # Check whether the pretrained model file already exists locally. If not, try downloading it
         file_url = base_url + pretrained_simclr_filename
