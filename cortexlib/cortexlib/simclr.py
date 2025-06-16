@@ -11,6 +11,7 @@ import torch
 from pathlib import Path
 from cortexlib.utils.file import find_project_root
 import warnings
+import numpy as np
 
 
 class PreTrainedSimCLRModel(nn.Module):
@@ -36,6 +37,11 @@ class PreTrainedSimCLRModel(nn.Module):
 
         self.intermediate_layer_features = {}
         self.set_intermediate_layers_to_capture(intermediate_layers)
+
+        # Set global seeds for full determinism
+        torch.manual_seed(42)
+        torch.cuda.manual_seed_all(42)
+        np.random.seed(42)
 
     def load_pretrained(self):
         """
