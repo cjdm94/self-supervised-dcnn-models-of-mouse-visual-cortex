@@ -32,8 +32,7 @@ class CortexlabImages:
         # e.g. we have 1866 images in the set, but the neural response data for the mouse
         # only uses 1573 of them because some ~300 images didn't have two repeats, so were disposed
         # therefore we filter the full set here so that we only use the relevant 1573
-        stim_ids = mouse_image_ids.astype(int)
-        # stim_ids = np.sort(mouse_image_ids.astype(int))
+        stim_ids = np.sort(mouse_image_ids.astype(int))
         tensors, labels = [], []
 
         for stim_id in stim_ids:
