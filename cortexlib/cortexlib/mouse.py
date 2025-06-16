@@ -8,7 +8,7 @@ from cortexlib.utils.random import GLOBAL_SEED
 
 
 class CortexlabMouse:
-    def __init__(self, mouse_id=None, path_to_data=None, seed=GLOBAL_SEED):
+    def __init__(self, seed=GLOBAL_SEED, mouse_id=None, path_to_data=None):
         # Set global seeds for full determinism
         np.random.seed(seed)
         random.seed(seed)
