@@ -7,7 +7,7 @@ import torch
 from torch.utils.data import TensorDataset
 from torchvision import utils as torch_utils
 from pathlib import Path
-from cortexlib.file import find_project_root
+from cortexlib.utils.file import find_project_root
 
 
 class CortexlabImages:

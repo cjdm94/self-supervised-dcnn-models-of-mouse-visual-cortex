@@ -2,7 +2,7 @@ import numpy as np
 from os import path
 import matplotlib.pyplot as plt
 from pathlib import Path
-from cortexlib.file import find_project_root
+from cortexlib.utils.file import find_project_root
 
 
 class CortexlabMouse:
@@ -23,8 +23,6 @@ class CortexlabMouse:
         # imresps shape = (1573, 2, 15363)
         # responses in imresps shape = (2, 15363)
         num_stimuli = self.neural_responses.shape[0]  # 1573
-        num_repeats = self.neural_responses.shape[1]  # 2
-        num_neurons = self.neural_responses.shape[2]  # 15363
 
         null_srv_all_neurons = []  # shape (n_shuffles, num_neurons)
 
@@ -46,10 +44,6 @@ class CortexlabMouse:
             null_srv_all_neurons.append(fraction_of_stimulus_variance)
 
         null_srv_all_neurons = np.array(null_srv_all_neurons)
-        null_srv_all_neurons.shape  # (100, 15363)
-
-        print(null_srv_all_neurons[0])
-        print(null_srv_all_neurons[33])
 
         return null_srv_all_neurons
 
@@ -67,14 +61,8 @@ class CortexlabMouse:
         split_B = np.array(split_B)  # Shape: (n_stimuli, n_neurons)
 
         # Compute SRV for real data
-        real_srv_all_neurons, stim_to_noise_ratio = self._compute_signal_related_variance(
+        real_srv_all_neurons, _ = self._compute_signal_related_variance(
             split_A, split_B)
-
-        print(real_srv_all_neurons)
-        print(stim_to_noise_ratio)
-
-        # Should be (15363,)
-        print("Real SRV shape:", real_srv_all_neurons.shape)
 
         return real_srv_all_neurons
 
@@ -85,15 +73,10 @@ class CortexlabMouse:
         # [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], the threshold would be 0.9
         top_nth_percentile_null = np.percentile(
             null_srv_all_neurons, percentile_threshold, axis=0)
-        # [0.03651716 0.03126347 0.03325775 ... 0.02738261 0.03546677 0.0333109 ]
-        print(top_nth_percentile_null)
 
         # Get indices of reliable neurons
         reliable_neuron_indices = np.where(
             real_srv_all_neurons >= top_nth_percentile_null)[0]
-
-        print(f"Number of reliable neurons: {len(reliable_neuron_indices)}")
-        print(f"Indices of reliable neurons: {reliable_neuron_indices}")
 
         return reliable_neuron_indices
 
@@ -109,20 +92,10 @@ class CortexlabMouse:
         reliable_srv_scores = real_srv_all_neurons[reliable_neuron_indices]
         sorted_indices = np.argsort(reliable_srv_scores)[::-1]
         most_reliable_neurons = reliable_neuron_indices[sorted_indices[:num_neurons]]
-        highest_srv_scores = real_srv_all_neurons[most_reliable_neurons]
         neural_responses = self.neural_responses[:, :, most_reliable_neurons]
         neural_responses_mean = neural_responses.mean(axis=1)
 
         assert most_reliable_neurons.shape[0] == num_neurons, "Mismatch in neuron selection!"
-        print("Dimensionality of neural responses:",
-              neural_responses_mean.shape)
-        print("Top 500 reliable neuron indices:", most_reliable_neurons[:10])
-        print("Corresponding SRV scores:", highest_srv_scores[:10])
-        print("Top 500 neural responses shape:",
-              neural_responses.shape)  # (1573, 2, 500)
-        print("Averaged top 500 neural responses shape:",
-              neural_responses_mean.shape)  # (1573, 500)
-
         return neural_responses_mean, neural_responses, most_reliable_neurons
 
     def plot_null_distribution_for_neuron(self, null_srv_all_neurons, neuron_index=0):
@@ -162,9 +135,6 @@ class CortexlabMouse:
         self.stimulus_ids = np.load(
             path.join(self.path_to_data, 'stimids.npy'))
 
-        print(f"Loaded imresps with shape: {self.neural_responses.shape}")
-        print(f"Loaded stimids with shape: {self.stimulus_ids.shape}")
-
     def _compute_signal_related_variance(self, resp_a, resp_b, mean_center=True):
         """
         compute the fraction of signal-related variance for each neuron,
@@ -184,7 +154,7 @@ class CortexlabMouse:
             # if the stimulus is multi-dimensional, flatten across all stimuli
             resp_a = resp_a.reshape(-1, resp_a.shape[-1])
             resp_b = resp_b.reshape(-1, resp_b.shape[-1])
-        ns, nc = resp_a.shape
+        ns, _ = resp_a.shape
         if mean_center:
             # mean-center the activity of each cell
             resp_a = resp_a - resp_a.mean(axis=0)

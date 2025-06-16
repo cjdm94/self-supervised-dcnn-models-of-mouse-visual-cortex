@@ -9,15 +9,16 @@ from torch.utils.data import DataLoader
 import torch.nn as nn
 import torch
 from pathlib import Path
-from cortexlib.file import find_project_root
+from cortexlib.utils.file import find_project_root
+import warnings
 
 
 class PreTrainedSimCLRModel(nn.Module):
     def __init__(self, hidden_dim=128, intermediate_layers=['layer1', 'layer2', 'layer3', 'layer4']):
         super().__init__()
 
-        # Base ResNet18 backbone (pretrained=False, because we load custom weights later, from the SimCLR checkpoint file)
-        self.convnet = torchvision.models.resnet18(pretrained=False)
+        # Base ResNet18 backbone (weights=None, because we load custom weights later, from the SimCLR checkpoint file)
+        self.convnet = torchvision.models.resnet18(weights=None)
 
         # This is the projection head, only needed during training. For downstream tasks it is disposed of
         # and the final linear layer output is used (Chen et al., 2020)
@@ -60,9 +61,12 @@ class PreTrainedSimCLRModel(nn.Module):
 
         print(f"Already downloaded pretrained model: {file_url}")
 
-        # Load pretrained model
-        checkpoint = torch.load(pretrained_simclr_path,
-                                map_location=self.device)
+        # Load pretrained model (ignore warning about future deprecation of `torch.load` with `weights_only=True`)
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", category=FutureWarning)
+            checkpoint = torch.load(pretrained_simclr_path,
+                                    map_location=self.device)
+
         self.load_state_dict(checkpoint['state_dict'])
         self.to(self.device)
         self.eval()
@@ -138,11 +142,5 @@ class PreTrainedSimCLRModel(nn.Module):
         labels = torch.cat(labels, dim=0)
         intermediate_features = {layer: torch.cat(
             intermediate_features[layer], dim=0) for layer in self.intermediate_layers_to_capture}
-
-        # Debugging log after concatenation
-        print("✅ Feature extraction complete. Final feature shapes:")
-        print(f"Final layer: {feats.shape}")
-        for layer, feature in intermediate_features.items():
-            print(f"{layer}: {feature.shape}")  # Check final stored shape
 
         return {**intermediate_features, 'fc': feats}, labels
