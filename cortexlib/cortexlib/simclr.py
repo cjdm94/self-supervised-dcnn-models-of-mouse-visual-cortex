@@ -12,16 +12,19 @@ from pathlib import Path
 from cortexlib.utils.file import find_project_root
 import warnings
 import numpy as np
+import random
+from cortexlib.utils.random import GLOBAL_SEED
 
 
 class PreTrainedSimCLRModel(nn.Module):
-    def __init__(self, hidden_dim=128, intermediate_layers=['layer1', 'layer2', 'layer3', 'layer4']):
+    def __init__(self, hidden_dim=128, seed=GLOBAL_SEED, intermediate_layers=['layer1', 'layer2', 'layer3', 'layer4']):
         super().__init__()
 
         # Set global seeds for full determinism
-        torch.manual_seed(42)
-        torch.cuda.manual_seed_all(42)
-        np.random.seed(42)
+        torch.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)
+        np.random.seed(seed)
+        random.seed(seed)
 
         # Base ResNet18 backbone (weights=None, because we load custom weights later, from the SimCLR checkpoint file)
         self.convnet = torchvision.models.resnet18(weights=None)

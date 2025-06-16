@@ -3,6 +3,7 @@ from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.model_selection import train_test_split
 import numpy as np
 from sklearn.decomposition import PCA
+from cortexlib.utils.random import GLOBAL_SEED
 
 
 class NeuralResponsePredictor:
@@ -15,9 +16,10 @@ class NeuralResponsePredictor:
     The neural_responses should be a 3D tensor with shape (samples, trials, neurons).
     """
 
-    def __init__(self, reduce_image_representation_to_n_pcs=None, neural_data_pc_index=None):
+    def __init__(self, reduce_image_representation_to_n_pcs=None, neural_data_pc_index=None, seed=GLOBAL_SEED):
         self.reduce_image_representation_to_n_pcs = reduce_image_representation_to_n_pcs
         self.neural_data_pc_index = neural_data_pc_index
+        self.seed = seed
 
     @staticmethod
     def _prepare_input_data(images_representation, neural_responses):
@@ -34,8 +36,7 @@ class NeuralResponsePredictor:
             'Y': Y
         }
 
-    @staticmethod
-    def _get_train_test_split(images_representation, trial_averaged_responses):
+    def _get_train_test_split(self, images_representation, trial_averaged_responses):
         """
         Prepares the data for regression by splitting it into training and test sets.
 
@@ -61,7 +62,7 @@ class NeuralResponsePredictor:
         all_indexes = np.arange(num_samples)
 
         train_indexes, test_indexes = train_test_split(
-            all_indexes, test_size=0.2, random_state=42
+            all_indexes, test_size=0.2, random_state=self.seed
         )
 
         x_train, x_test = X[train_indexes], X[test_indexes]

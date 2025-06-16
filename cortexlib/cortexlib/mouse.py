@@ -4,10 +4,11 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 from cortexlib.utils.file import find_project_root
 import random
+from cortexlib.utils.random import GLOBAL_SEED
 
 
 class CortexlabMouse:
-    def __init__(self, mouse_id=None, path_to_data=None, seed=42):
+    def __init__(self, mouse_id=None, path_to_data=None, seed=GLOBAL_SEED):
         # Set global seeds for full determinism
         np.random.seed(seed)
         random.seed(seed)
