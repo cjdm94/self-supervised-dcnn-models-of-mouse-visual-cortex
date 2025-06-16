@@ -1,4 +1,4 @@
-simclr_colors = {
+simclr_colours = {
     'layer1': '#66C2A5',
     'layer2': '#3288BD',
     'layer3': '#5E4FA2',
@@ -6,7 +6,7 @@ simclr_colors = {
     'fc': '#E41A1C',
 }
 
-vgg_colors = {
+vgg_colours = {
     'conv1_1': '#FDBBA1',
     'conv2_1': '#FB9A06',
     'conv3_1': '#E6550D',
