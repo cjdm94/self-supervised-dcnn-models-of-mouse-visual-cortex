@@ -6,7 +6,9 @@ from cortexlib.utils.file import find_project_root
 
 
 class CortexlabMouse:
-    def __init__(self, path_to_data=None):
+    def __init__(self, mouse_id=None, path_to_data=None):
+        self.id = mouse_id  # TODO: remove path_to_data argument, use mouse_id to find data
+
         if path_to_data is None:
             current_file = Path(__file__)
             project_root = find_project_root(current_file)
@@ -16,7 +18,7 @@ class CortexlabMouse:
 
         self.path_to_data = path_to_data
         self.neural_responses = None
-        self.stimulus_ids = None
+        self.image_ids = None
         self._load_data()
 
     def compute_null_all_neurons(self, n_shuffles=100):
@@ -132,7 +134,7 @@ class CortexlabMouse:
         """
         self.neural_responses = np.load(
             path.join(self.path_to_data, 'imresps.npy'))
-        self.stimulus_ids = np.load(
+        self.image_ids = np.load(
             path.join(self.path_to_data, 'stimids.npy'))
 
     def _compute_signal_related_variance(self, resp_a, resp_b, mean_center=True):

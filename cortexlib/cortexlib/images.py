@@ -44,6 +44,19 @@ class CortexlabImages:
         dataset = TensorDataset(torch.stack(tensors), torch.tensor(labels))
         return dataset
 
+    def _load_mat_image(self, stim_id):
+        filepath = os.path.join(self.path_to_data, f'img{stim_id}.mat')
+        data = loadmat(filepath)
+        # Take leftmost part of the image - each "image" is a trio of images
+        img = data['img'][:, :500]
+        return np.stack([img]*3, axis=-1)  # Convert to RGB
+
+    def _preprocess_image(self, img_np):
+        tensor = torch.tensor(img_np, dtype=torch.float32).permute(2, 0, 1)
+        tensor = (tensor - tensor.min()) / (tensor.max() - tensor.min())
+        tensor = torch.clamp(tensor, 0.0, 1.0)
+        return self.transform(tensor)
+
     def show_sample(self, dataset, n=12):
         images, _ = dataset.tensors
         grid = torch_utils.make_grid(
@@ -63,16 +76,3 @@ class CortexlabImages:
         plt.title(f"Raw Image {stim_id}")
         plt.axis('off')
         plt.show()
-
-    def _load_mat_image(self, stim_id):
-        filepath = os.path.join(self.path_to_data, f'img{stim_id}.mat')
-        data = loadmat(filepath)
-        # Take leftmost part of the image - each "image" is a trio of images
-        img = data['img'][:, :500]
-        return np.stack([img]*3, axis=-1)  # Convert to RGB
-
-    def _preprocess_image(self, img_np):
-        tensor = torch.tensor(img_np, dtype=torch.float32).permute(2, 0, 1)
-        tensor = (tensor - tensor.min()) / (tensor.max() - tensor.min())
-        tensor = torch.clamp(tensor, 0.0, 1.0)
-        return self.transform(tensor)

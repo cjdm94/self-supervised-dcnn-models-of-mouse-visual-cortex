@@ -90,7 +90,7 @@ class NeuralResponsePredictor:
                 - y_train: 1D tensor of shape (num_train_images,); the selected principal component from the training subset.
                 - y_test: 1D tensor of shape (num_test_images,); the selected principal component from the test subset.        
         """
-        pca = PCA(n_components=pc_index+1)
+        pca = PCA(n_components=pc_index+1, svd_solver='full')
 
         # fitting (learning the principal components) should only happen on the training data to prevent data leakage.
         # Then, the transformation (applying the learned components) is done on both the training and test data
@@ -119,7 +119,7 @@ class NeuralResponsePredictor:
                 - x_train: 2D tensor of shape (num_train_images, n_pcs); the reduced representation for the training subset.
                 - x_test: 2D tensor of shape (num_test_images, n_pcs); the reduced representation for the test subset.
         """
-        pca = PCA(n_components=n_pcs)
+        pca = PCA(n_components=n_pcs, svd_solver='full')
 
         # fitting (learning the principal components) should only happen on the training data, to prevent data leakage.
         # Then, the transformation (applying the learned components) is done on both the training and test data
