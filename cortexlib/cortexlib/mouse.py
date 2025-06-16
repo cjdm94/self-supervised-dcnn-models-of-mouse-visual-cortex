@@ -3,10 +3,15 @@ from os import path
 import matplotlib.pyplot as plt
 from pathlib import Path
 from cortexlib.utils.file import find_project_root
+import random
 
 
 class CortexlabMouse:
-    def __init__(self, mouse_id=None, path_to_data=None):
+    def __init__(self, mouse_id=None, path_to_data=None, seed=42):
+        # Set global seeds for full determinism
+        np.random.seed(seed)
+        random.seed(seed)
+
         self.id = mouse_id  # TODO: remove path_to_data argument, use mouse_id to find data
 
         if path_to_data is None:
@@ -19,6 +24,7 @@ class CortexlabMouse:
         self.path_to_data = path_to_data
         self.neural_responses = None
         self.image_ids = None
+
         self._load_data()
 
     def compute_null_all_neurons(self, n_shuffles=100):

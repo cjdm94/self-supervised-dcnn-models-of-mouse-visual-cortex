@@ -18,6 +18,11 @@ class PreTrainedSimCLRModel(nn.Module):
     def __init__(self, hidden_dim=128, intermediate_layers=['layer1', 'layer2', 'layer3', 'layer4']):
         super().__init__()
 
+        # Set global seeds for full determinism
+        torch.manual_seed(42)
+        torch.cuda.manual_seed_all(42)
+        np.random.seed(42)
+
         # Base ResNet18 backbone (weights=None, because we load custom weights later, from the SimCLR checkpoint file)
         self.convnet = torchvision.models.resnet18(weights=None)
 
@@ -37,11 +42,6 @@ class PreTrainedSimCLRModel(nn.Module):
 
         self.intermediate_layer_features = {}
         self.set_intermediate_layers_to_capture(intermediate_layers)
-
-        # Set global seeds for full determinism
-        torch.manual_seed(42)
-        torch.cuda.manual_seed_all(42)
-        np.random.seed(42)
 
     def load_pretrained(self):
         """
