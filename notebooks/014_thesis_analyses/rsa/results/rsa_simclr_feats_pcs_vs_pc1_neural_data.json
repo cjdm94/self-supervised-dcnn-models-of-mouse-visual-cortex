@@ -7,42 +7,42 @@
   {
     "layer": "layer1",
     "n_pcs": 10,
-    "spearman_correlation": 0.09831597699827051
+    "spearman_correlation": 0.09831588530990117
   },
   {
     "layer": "layer1",
     "n_pcs": 20,
-    "spearman_correlation": 0.10076058421809055
+    "spearman_correlation": 0.10076056867133006
   },
   {
     "layer": "layer1",
     "n_pcs": 50,
-    "spearman_correlation": 0.10337043924263423
+    "spearman_correlation": 0.10337028747829378
   },
   {
     "layer": "layer1",
     "n_pcs": 100,
-    "spearman_correlation": 0.09894785486478168
+    "spearman_correlation": 0.09894781057088757
   },
   {
     "layer": "layer1",
     "n_pcs": 200,
-    "spearman_correlation": 0.0938429280884443
+    "spearman_correlation": 0.09384281779457776
   },
   {
     "layer": "layer1",
     "n_pcs": 300,
-    "spearman_correlation": 0.09106996521106242
+    "spearman_correlation": 0.09106992663343651
   },
   {
     "layer": "layer1",
     "n_pcs": 400,
-    "spearman_correlation": 0.0898105980127824
+    "spearman_correlation": 0.08981064660890667
   },
   {
     "layer": "layer1",
     "n_pcs": 500,
-    "spearman_correlation": 0.08943294813517118
+    "spearman_correlation": 0.08943296145562557
   },
   {
     "layer": "layer2",
@@ -52,42 +52,42 @@
   {
     "layer": "layer2",
     "n_pcs": 10,
-    "spearman_correlation": 0.12384554505193719
+    "spearman_correlation": 0.12384553074666145
   },
   {
     "layer": "layer2",
     "n_pcs": 20,
-    "spearman_correlation": 0.12849613504051954
+    "spearman_correlation": 0.1284961334614967
   },
   {
     "layer": "layer2",
     "n_pcs": 50,
-    "spearman_correlation": 0.1252490061507341
+    "spearman_correlation": 0.12524902606328414
   },
   {
     "layer": "layer2",
     "n_pcs": 100,
-    "spearman_correlation": 0.1204191727246007
+    "spearman_correlation": 0.12041918549589936
   },
   {
     "layer": "layer2",
     "n_pcs": 200,
-    "spearman_correlation": 0.11740918358358346
+    "spearman_correlation": 0.1174092420489143
   },
   {
     "layer": "layer2",
     "n_pcs": 300,
-    "spearman_correlation": 0.11627169509036435
+    "spearman_correlation": 0.1162717235836046
   },
   {
     "layer": "layer2",
     "n_pcs": 400,
-    "spearman_correlation": 0.11576995907136278
+    "spearman_correlation": 0.11576993253723028
   },
   {
     "layer": "layer2",
     "n_pcs": 500,
-    "spearman_correlation": 0.11595289361454857
+    "spearman_correlation": 0.11595287319342805
   },
   {
     "layer": "layer3",
@@ -97,42 +97,42 @@
   {
     "layer": "layer3",
     "n_pcs": 10,
-    "spearman_correlation": 0.13931848385345938
+    "spearman_correlation": 0.1393184993625398
   },
   {
     "layer": "layer3",
     "n_pcs": 20,
-    "spearman_correlation": 0.12825713475014758
+    "spearman_correlation": 0.1282571444444476
   },
   {
     "layer": "layer3",
     "n_pcs": 50,
-    "spearman_correlation": 0.121674994442484
+    "spearman_correlation": 0.12167488090265906
   },
   {
     "layer": "layer3",
     "n_pcs": 100,
-    "spearman_correlation": 0.11806199667363758
+    "spearman_correlation": 0.11806198645587457
   },
   {
     "layer": "layer3",
     "n_pcs": 200,
-    "spearman_correlation": 0.1168032534618251
+    "spearman_correlation": 0.11680324532742918
   },
   {
     "layer": "layer3",
     "n_pcs": 300,
-    "spearman_correlation": 0.11653089527400112
+    "spearman_correlation": 0.11653082606828186
   },
   {
     "layer": "layer3",
     "n_pcs": 400,
-    "spearman_correlation": 0.11648072760283867
+    "spearman_correlation": 0.11648072765143136
   },
   {
     "layer": "layer3",
     "n_pcs": 500,
-    "spearman_correlation": 0.11651976039441451
+    "spearman_correlation": 0.1165197288109788
   },
   {
     "layer": "layer4",
@@ -142,42 +142,42 @@
   {
     "layer": "layer4",
     "n_pcs": 10,
-    "spearman_correlation": 0.08874298591921255
+    "spearman_correlation": 0.0887429536388954
   },
   {
     "layer": "layer4",
     "n_pcs": 20,
-    "spearman_correlation": 0.08362519996336491
+    "spearman_correlation": 0.08362524049527133
   },
   {
     "layer": "layer4",
     "n_pcs": 50,
-    "spearman_correlation": 0.0817412816830377
+    "spearman_correlation": 0.08174128468224083
   },
   {
     "layer": "layer4",
     "n_pcs": 100,
-    "spearman_correlation": 0.08205723323962748
+    "spearman_correlation": 0.08205723341906859
   },
   {
     "layer": "layer4",
     "n_pcs": 200,
-    "spearman_correlation": 0.08244094009545444
+    "spearman_correlation": 0.08244091687558895
   },
   {
     "layer": "layer4",
     "n_pcs": 300,
-    "spearman_correlation": 0.08268122028096966
+    "spearman_correlation": 0.08268127070191506
   },
   {
     "layer": "layer4",
     "n_pcs": 400,
-    "spearman_correlation": 0.08281716968923912
+    "spearman_correlation": 0.08281715563574706
   },
   {
     "layer": "layer4",
     "n_pcs": 500,
-    "spearman_correlation": 0.08288905765964699
+    "spearman_correlation": 0.08288908639508528
   },
   {
     "layer": "fc",
@@ -187,41 +187,41 @@
   {
     "layer": "fc",
     "n_pcs": 10,
-    "spearman_correlation": 0.10829301196454066
+    "spearman_correlation": 0.1082929585801441
   },
   {
     "layer": "fc",
     "n_pcs": 20,
-    "spearman_correlation": 0.10162891151798523
+    "spearman_correlation": 0.10162892781632336
   },
   {
     "layer": "fc",
     "n_pcs": 50,
-    "spearman_correlation": 0.09882522676301662
+    "spearman_correlation": 0.09882522354993102
   },
   {
     "layer": "fc",
     "n_pcs": 100,
-    "spearman_correlation": 0.09833293554822448
+    "spearman_correlation": 0.09833295961366258
   },
   {
     "layer": "fc",
     "n_pcs": 200,
-    "spearman_correlation": 0.09808122957040173
+    "spearman_correlation": 0.09808125904759805
   },
   {
     "layer": "fc",
     "n_pcs": 300,
-    "spearman_correlation": 0.09808188542727474
+    "spearman_correlation": 0.09808187811224096
   },
   {
     "layer": "fc",
     "n_pcs": 400,
-    "spearman_correlation": 0.09803970149570009
+    "spearman_correlation": 0.09803971236840939
   },
   {
     "layer": "fc",
     "n_pcs": 500,
-    "spearman_correlation": 0.09800011718085562
+    "spearman_correlation": 0.09800011517762895
   }
 ]
