@@ -7,42 +7,42 @@
   {
     "layer": "layer1",
     "n_pcs": 10,
-    "spearman_correlation": 0.18258342197699098
+    "spearman_correlation": 0.1825833873695437
   },
   {
     "layer": "layer1",
     "n_pcs": 20,
-    "spearman_correlation": 0.18878783320147463
+    "spearman_correlation": 0.18878780429253428
   },
   {
     "layer": "layer1",
     "n_pcs": 50,
-    "spearman_correlation": 0.18244370109071284
+    "spearman_correlation": 0.1824437353693902
   },
   {
     "layer": "layer1",
     "n_pcs": 100,
-    "spearman_correlation": 0.17470097177710198
+    "spearman_correlation": 0.1747009664465005
   },
   {
     "layer": "layer1",
     "n_pcs": 200,
-    "spearman_correlation": 0.1677438335996314
+    "spearman_correlation": 0.16774387217697193
   },
   {
     "layer": "layer1",
     "n_pcs": 300,
-    "spearman_correlation": 0.1645349512537001
+    "spearman_correlation": 0.16453496969606982
   },
   {
     "layer": "layer1",
     "n_pcs": 400,
-    "spearman_correlation": 0.16318361740257856
+    "spearman_correlation": 0.16318357717830206
   },
   {
     "layer": "layer1",
     "n_pcs": 500,
-    "spearman_correlation": 0.16259451187981794
+    "spearman_correlation": 0.16259442012299422
   },
   {
     "layer": "layer2",
@@ -52,42 +52,42 @@
   {
     "layer": "layer2",
     "n_pcs": 10,
-    "spearman_correlation": 0.18684735067456476
+    "spearman_correlation": 0.18684735092983612
   },
   {
     "layer": "layer2",
     "n_pcs": 20,
-    "spearman_correlation": 0.19592222664501185
+    "spearman_correlation": 0.1959222807181312
   },
   {
     "layer": "layer2",
     "n_pcs": 50,
-    "spearman_correlation": 0.19793991799779748
+    "spearman_correlation": 0.19793986671398778
   },
   {
     "layer": "layer2",
     "n_pcs": 100,
-    "spearman_correlation": 0.19337825598520278
+    "spearman_correlation": 0.19337819161384712
   },
   {
     "layer": "layer2",
     "n_pcs": 200,
-    "spearman_correlation": 0.189338163396682
+    "spearman_correlation": 0.18933818085173676
   },
   {
     "layer": "layer2",
     "n_pcs": 300,
-    "spearman_correlation": 0.18838557020405305
+    "spearman_correlation": 0.18838553917657763
   },
   {
     "layer": "layer2",
     "n_pcs": 400,
-    "spearman_correlation": 0.18818854502034268
+    "spearman_correlation": 0.1881885114813485
   },
   {
     "layer": "layer2",
     "n_pcs": 500,
-    "spearman_correlation": 0.18839790749008356
+    "spearman_correlation": 0.18839789553102834
   },
   {
     "layer": "layer3",
@@ -97,42 +97,42 @@
   {
     "layer": "layer3",
     "n_pcs": 10,
-    "spearman_correlation": 0.1890787334117421
+    "spearman_correlation": 0.189078737402228
   },
   {
     "layer": "layer3",
     "n_pcs": 20,
-    "spearman_correlation": 0.1900590516305804
+    "spearman_correlation": 0.19005907452092313
   },
   {
     "layer": "layer3",
     "n_pcs": 50,
-    "spearman_correlation": 0.19219150380683347
+    "spearman_correlation": 0.19219154332774901
   },
   {
     "layer": "layer3",
     "n_pcs": 100,
-    "spearman_correlation": 0.19137231870416974
+    "spearman_correlation": 0.19137226835916044
   },
   {
     "layer": "layer3",
     "n_pcs": 200,
-    "spearman_correlation": 0.19059696129211773
+    "spearman_correlation": 0.1905970377903496
   },
   {
     "layer": "layer3",
     "n_pcs": 300,
-    "spearman_correlation": 0.19035492557568084
+    "spearman_correlation": 0.19035492903954654
   },
   {
     "layer": "layer3",
     "n_pcs": 400,
-    "spearman_correlation": 0.1902829831946448
+    "spearman_correlation": 0.1902781493518727
   },
   {
     "layer": "layer3",
     "n_pcs": 500,
-    "spearman_correlation": 0.19039037392199654
+    "spearman_correlation": 0.19039039674664995
   },
   {
     "layer": "layer4",
@@ -142,42 +142,42 @@
   {
     "layer": "layer4",
     "n_pcs": 10,
-    "spearman_correlation": 0.142925617740113
+    "spearman_correlation": 0.1429255620077049
   },
   {
     "layer": "layer4",
     "n_pcs": 20,
-    "spearman_correlation": 0.14348647045179688
+    "spearman_correlation": 0.14348640987921196
   },
   {
     "layer": "layer4",
     "n_pcs": 50,
-    "spearman_correlation": 0.14385429326839802
+    "spearman_correlation": 0.1438542485145525
   },
   {
     "layer": "layer4",
     "n_pcs": 100,
-    "spearman_correlation": 0.1443135607473412
+    "spearman_correlation": 0.14431354990942286
   },
   {
     "layer": "layer4",
     "n_pcs": 200,
-    "spearman_correlation": 0.14452294897223456
+    "spearman_correlation": 0.1445229328951673
   },
   {
     "layer": "layer4",
     "n_pcs": 300,
-    "spearman_correlation": 0.14462592851177417
+    "spearman_correlation": 0.14462590927382196
   },
   {
     "layer": "layer4",
     "n_pcs": 400,
-    "spearman_correlation": 0.14463015131321197
+    "spearman_correlation": 0.14463019939748994
   },
   {
     "layer": "layer4",
     "n_pcs": 500,
-    "spearman_correlation": 0.1446927591112887
+    "spearman_correlation": 0.14469276285817168
   },
   {
     "layer": "fc",
@@ -187,41 +187,41 @@
   {
     "layer": "fc",
     "n_pcs": 10,
-    "spearman_correlation": 0.1460661933808658
+    "spearman_correlation": 0.14606629328382567
   },
   {
     "layer": "fc",
     "n_pcs": 20,
-    "spearman_correlation": 0.14857100208751767
+    "spearman_correlation": 0.1485710055515284
   },
   {
     "layer": "fc",
     "n_pcs": 50,
-    "spearman_correlation": 0.1519414060462963
+    "spearman_correlation": 0.15194140008743148
   },
   {
     "layer": "fc",
     "n_pcs": 100,
-    "spearman_correlation": 0.15305736638126402
+    "spearman_correlation": 0.15305739742390734
   },
   {
     "layer": "fc",
     "n_pcs": 200,
-    "spearman_correlation": 0.15381226451635524
+    "spearman_correlation": 0.15381224058763737
   },
   {
     "layer": "fc",
     "n_pcs": 300,
-    "spearman_correlation": 0.1540802898837156
+    "spearman_correlation": 0.15408030551928442
   },
   {
     "layer": "fc",
     "n_pcs": 400,
-    "spearman_correlation": 0.1541913088817013
+    "spearman_correlation": 0.1541912932883875
   },
   {
     "layer": "fc",
     "n_pcs": 500,
-    "spearman_correlation": 0.1542538059587016
+    "spearman_correlation": 0.1542537775645515
   }
 ]
