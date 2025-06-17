@@ -51,7 +51,7 @@ class RSA:
             return np.nan
         return np.corrcoef(r1, r2)[0, 1]
 
-    def compute_similarity(self, images_feats):
+    def compute_similarity_with_neural_data(self, images_feats):
         rdm = self._compute_rdm(images_feats)
         vec_feats = self._vectorise_rdm(rdm)
 
