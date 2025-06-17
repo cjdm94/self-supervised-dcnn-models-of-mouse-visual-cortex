@@ -39,6 +39,7 @@ Thumbs.db
 *.h5
 *.ckpt
 *.pth
+*.pt
 
 # Byte-compiled / cache files
 __pycache__/
