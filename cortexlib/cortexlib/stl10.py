@@ -11,7 +11,7 @@ import numpy as np
 
 
 class STL10FewShotDataset:
-    def __init__(self, n_per_class: int = 100, image_size: int = 96, seed: int = GLOBAL_SEED, data_root=None):
+    def __init__(self, n_per_class: int = 100, image_size: tuple = (96, 96), seed: int = GLOBAL_SEED, data_root=None):
         # Set global seeds for full determinism
         np.random.seed(seed)
         random.seed(seed)

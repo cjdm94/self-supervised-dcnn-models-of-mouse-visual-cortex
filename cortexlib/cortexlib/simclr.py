@@ -21,6 +21,8 @@ class PreTrainedSimCLRModel(nn.Module):
     def __init__(self, hidden_dim=128, seed=GLOBAL_SEED, intermediate_layers=['layer1', 'layer2', 'layer3', 'layer4']):
         super().__init__()
 
+        self.training_images_resolution = (96, 96)
+
         # Set global seeds for full determinism
         torch.manual_seed(seed)
         torch.cuda.manual_seed_all(seed)
@@ -48,6 +50,13 @@ class PreTrainedSimCLRModel(nn.Module):
 
         self.intermediate_layer_features = {}
         self.set_intermediate_layers_to_capture(intermediate_layers)
+
+    def get_training_images_resolution(self):
+        """
+        We use this pretrained SimCLR model https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/tutorial17/SimCLR.html.
+        It is trained on STL10, which has images of size 96x96, so for feature extraction, images should be resized to this resolution
+        """
+        return self.training_images_resolution
 
     def load_pretrained(self):
         """
