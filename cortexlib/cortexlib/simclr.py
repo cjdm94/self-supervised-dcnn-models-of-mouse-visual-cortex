@@ -3,7 +3,6 @@ from urllib.error import HTTPError
 import urllib.request
 from torch.utils.data import Dataset
 from typing import Dict
-from tqdm.notebook import tqdm
 import torchvision
 from torch.utils.data import DataLoader
 import torch.nn as nn
@@ -14,6 +13,8 @@ import warnings
 import numpy as np
 import random
 from cortexlib.utils.random import GLOBAL_SEED
+from cortexlib.utils.logging import Logger
+from tqdm.notebook import tqdm
 
 
 class PreTrainedSimCLRModel(nn.Module):
@@ -25,6 +26,8 @@ class PreTrainedSimCLRModel(nn.Module):
         torch.cuda.manual_seed_all(seed)
         np.random.seed(seed)
         random.seed(seed)
+
+        self.logger = Logger()
 
         # Base ResNet18 backbone (weights=None, because we load custom weights later, from the SimCLR checkpoint file)
         self.convnet = torchvision.models.resnet18(weights=None)
@@ -62,13 +65,14 @@ class PreTrainedSimCLRModel(nn.Module):
         # Check whether the pretrained model file already exists locally. If not, try downloading it
         file_url = base_url + pretrained_simclr_filename
         if not os.path.isfile(pretrained_simclr_path):
-            print(f"Downloading pretrained SimCLR model {file_url}...")
+            self.logger.progress("Downloading pretrained SimCLR model...")
             try:
                 urllib.request.urlretrieve(file_url, pretrained_simclr_path)
             except HTTPError as e:
-                print("Something went wrong. Please try to download the file from the GDrive folder, or contact the author with the full output including the following error:\n", e)
+                self.logger.error(
+                    "Something went wrong. Please try to download the file from the GDrive folder, or contact the author with the full output including the following error:\n", exc_info=True)
 
-        print(f"Already downloaded pretrained model: {file_url}")
+        self.logger.info("Already downloaded pretrained SimCLR model")
 
         # Load pretrained model (ignore warning about future deprecation of `torch.load` with `weights_only=True`)
         with warnings.catch_warnings():
@@ -88,7 +92,8 @@ class PreTrainedSimCLRModel(nn.Module):
         top_level_block_layers = [name for name,
                                   _ in self.convnet.named_children()]
         if not all(layer in top_level_block_layers for layer in layers):
-            print('You have specified convnet layers that are not top-level blocks - make sure your layer names are valid')
+            self.logger.warning(
+                "You have specified convnet layers that are not top-level blocks - make sure your layer names are valid")
 
         self.intermediate_layers_to_capture = layers
         intermediate_layer_features = {}
