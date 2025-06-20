@@ -4,7 +4,6 @@ import json
 import pandas as pd
 from enum import Enum
 import torch
-import numpy as np
 
 
 class Model(Enum):

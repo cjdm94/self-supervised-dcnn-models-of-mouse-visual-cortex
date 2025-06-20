@@ -21,7 +21,14 @@ class PreTrainedSimCLRModel(nn.Module):
     def __init__(self, hidden_dim=128, seed=GLOBAL_SEED, intermediate_layers=['layer1', 'layer2', 'layer3', 'layer4']):
         super().__init__()
 
-        self.training_images_resolution = (96, 96)
+        # STL10 training settings
+        chans = 3
+        self.training_images_size = (96, 96)
+        self.training_images_channels = chans  # RGB images
+        self.training_images_normalise_mean = [0.5] * chans
+        self.training_images_normalise_std = [0.5] * chans
+        # Whether to rescale each image to [0, 1] range before normalisation
+        self.training_images_rescale_per_image = True
 
         # Set global seeds for full determinism
         torch.manual_seed(seed)
@@ -51,12 +58,19 @@ class PreTrainedSimCLRModel(nn.Module):
         self.intermediate_layer_features = {}
         self.set_intermediate_layers_to_capture(intermediate_layers)
 
-    def get_training_images_resolution(self):
+    def get_image_settings(self):
         """
-        We use this pretrained SimCLR model https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/tutorial17/SimCLR.html.
-        It is trained on STL10, which has images of size 96x96, so for feature extraction, images should be resized to this resolution
+        Returns the settings for the training images used in the SimCLR model.
+        The model was trained on the STL10 dataset, which has images of size 96x96, RGB channels, and normalised to [0, 1] range.
+        https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/tutorial17/SimCLR.html
         """
-        return self.training_images_resolution
+        return {
+            'size': self.training_images_size,
+            'channels': self.training_images_channels,
+            'mean': self.training_images_normalise_mean,
+            'std': self.training_images_normalise_std,
+            'rescale_per_image': self.training_images_rescale_per_image
+        }
 
     def load_pretrained(self):
         """

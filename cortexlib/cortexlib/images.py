@@ -11,10 +11,7 @@ from cortexlib.utils.file import find_project_root
 
 
 class CortexlabImages:
-    def __init__(self, path_to_data=None, size=(96, 96), channels=3):
-        assert channels in [1, 3], "Only 1 or 3 channels supported."
-        self.channels = channels
-
+    def __init__(self, path_to_data=None, size=(96, 96), channels=3, rescale_per_image=True, normalise_mean=None, normalise_std=None):
         if path_to_data is None:
             current_file = Path(__file__)
             project_root = find_project_root(current_file)
@@ -24,10 +21,19 @@ class CortexlabImages:
 
         self.path_to_data = path_to_data
 
+        assert channels in [1, 3], "Only 1 or 3 channels supported."
+        self.channels = channels
+        self.rescale_per_image = rescale_per_image
+
+        if normalise_mean is None:
+            normalise_mean = [0.5] * channels
+        if normalise_std is None:
+            normalise_std = [0.5] * channels
+
         self.transform = Compose([
             Resize(size[0]),
             CenterCrop(size),
-            Normalize(mean=[0.5] * channels, std=[0.5] * channels),
+            Normalize(mean=normalise_mean, std=normalise_std),
         ])
 
     def load_images_shown_to_mouse(self, mouse_image_ids):
@@ -54,8 +60,11 @@ class CortexlabImages:
 
     def _preprocess_image(self, img_np):
         tensor = torch.tensor(img_np, dtype=torch.float32).permute(2, 0, 1)
-        tensor = (tensor - tensor.min()) / (tensor.max() - tensor.min())
-        tensor = torch.clamp(tensor, 0.0, 1.0)
+        if self.rescale_per_image:
+            tensor = (tensor - tensor.min()) / (tensor.max() - tensor.min())
+            tensor = torch.clamp(tensor, 0.0, 1.0)
+        else:
+            tensor /= 255.0  # assumes input is in [0, 255] or scales similarly
         return self.transform(tensor)
 
     def show_sample(self, dataset, n=12):
