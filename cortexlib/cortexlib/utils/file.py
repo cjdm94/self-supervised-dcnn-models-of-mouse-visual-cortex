@@ -1,6 +1,16 @@
+from cortexlib.utils.logging import Logger
 from pathlib import Path
 import json
 import pandas as pd
+from enum import Enum
+import torch
+import numpy as np
+
+
+class Model(Enum):
+    GABOR = "gabor"
+    SIMCLR = "simclr"
+    VGG19 = "vgg19"
 
 
 def find_project_root(current_file: Path, marker='.git'):
@@ -44,3 +54,45 @@ def read_json_file_as_dataframe(filepath: str):
     with open(file=filepath, mode='r', encoding='utf-8') as f:
         data = json.load(f)
         return pd.DataFrame(data)
+
+
+def save_model_features(model: Model, mouse_id: str, features, labels):
+    logger = Logger()
+
+    model_name = model.value
+    cwd = Path.cwd()
+    parent_dir = cwd.parent
+    features_dir = parent_dir / "_model_features"
+    features_dir.mkdir(exist_ok=True)
+
+    filename = f"{model_name}_features_mouse_{mouse_id}.pt"
+    filepath = features_dir / filename
+
+    if filepath.exists():
+        logger.info(f"Skipping save, file already exists at {filepath}")
+    else:
+        logger.info(f"Saving model features to {filepath}")
+        torch.save({'features': features, 'labels': labels}, filepath)
+        logger.success("Model features saved")
+
+
+def save_filtered_neural_data(mouse_id, neural_responses, neural_responses_mean):
+    logger = Logger()
+
+    cwd = Path.cwd()
+    parent_dir = cwd.parent
+    features_dir = parent_dir / "_neural_data"
+    features_dir.mkdir(exist_ok=True)
+
+    filename = f"neural_data_mouse_{mouse_id}.pt"
+    filepath = features_dir / filename
+
+    if filepath.exists():
+        logger.info(f"Skipping save, file already exists at {filepath}")
+    else:
+        logger.info(f"Saving neural data to {filepath}")
+        torch.save({
+            'neural_responses': torch.from_numpy(neural_responses),
+            'neural_responses_mean': torch.from_numpy(neural_responses_mean),
+        }, filepath)
+        logger.success("Neural data saved")

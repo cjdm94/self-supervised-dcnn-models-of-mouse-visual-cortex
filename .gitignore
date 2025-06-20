@@ -2,6 +2,10 @@
 /data/
 /models/
 
+# Ignore data files from analysis pipeline
+_model_features
+_neural_data
+
 # Ignore Python bytecode and compiled files
 __pycache__/
 *.py[cod]
