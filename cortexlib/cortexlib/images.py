@@ -11,7 +11,10 @@ from cortexlib.utils.file import find_project_root
 
 
 class CortexlabImages:
-    def __init__(self, path_to_data=None, size=(96, 96)):
+    def __init__(self, path_to_data=None, size=(96, 96), channels=3):
+        assert channels in [1, 3], "Only 1 or 3 channels supported."
+        self.channels = channels
+
         if path_to_data is None:
             current_file = Path(__file__)
             project_root = find_project_root(current_file)
@@ -21,17 +24,13 @@ class CortexlabImages:
 
         self.path_to_data = path_to_data
 
-        # Resize shortest edge to 96 (cut off the rightmost part of the image)
         self.transform = Compose([
             Resize(size[0]),
             CenterCrop(size),
-            Normalize(mean=[0.5]*3, std=[0.5]*3),
+            Normalize(mean=[0.5] * channels, std=[0.5] * channels),
         ])
 
     def load_images_shown_to_mouse(self, mouse_image_ids):
-        # e.g. we have 1866 images in the set, but the neural response data for the mouse
-        # only uses 1573 of them because some ~300 images didn't have two repeats, so were disposed
-        # therefore we filter the full set here so that we only use the relevant 1573
         stim_ids = np.sort(mouse_image_ids.astype(int))
         tensors, labels = [], []
 
@@ -47,9 +46,11 @@ class CortexlabImages:
     def _load_mat_image(self, stim_id):
         filepath = os.path.join(self.path_to_data, f'img{stim_id}.mat')
         data = loadmat(filepath)
-        # Take leftmost part of the image - each "image" is a trio of images
         img = data['img'][:, :500]
-        return np.stack([img]*3, axis=-1)  # Convert to RGB
+        if self.channels == 3:
+            return np.stack([img] * 3, axis=-1)  # shape: H x W x 3
+        else:
+            return img[:, :, None]  # shape: H x W x 1
 
     def _preprocess_image(self, img_np):
         tensor = torch.tensor(img_np, dtype=torch.float32).permute(2, 0, 1)
@@ -64,7 +65,10 @@ class CortexlabImages:
         grid = grid.permute(1, 2, 0).numpy()
         plt.figure(figsize=(10, 5))
         plt.title('Processed images: sample')
-        plt.imshow(grid)
+        if self.channels == 1:
+            plt.imshow(grid[:, :, 0], cmap='gray')
+        else:
+            plt.imshow(grid)
         plt.axis('off')
         plt.show()
 

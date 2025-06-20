@@ -1,3 +1,9 @@
+gabor_filter_colours = {
+    'gabor_small': '#FEE0B6',
+    'gabor_medium': '#FCAE91',
+    'gabor_large': '#FB6A4A',
+}
+
 simclr_colours = {
     'layer1': '#66C2A5',
     'layer2': '#3288BD',
