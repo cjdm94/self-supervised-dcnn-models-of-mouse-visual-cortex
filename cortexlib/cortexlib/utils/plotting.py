@@ -12,10 +12,10 @@ simclr_colours = {
     'fc': '#E41A1C',
 }
 
-vgg_colours = {
-    'conv1_1': '#FDBBA1',
-    'conv2_1': '#FB9A06',
-    'conv3_1': '#E6550D',
-    'conv4_1': '#A63603',
-    'conv5_1': '#7F2704',
+vgg19_colours = {
+    'conv2_2': '#FDBBA1',
+    'conv3_4': '#FB9A06',
+    'conv4_4': '#E6550D',
+    'conv5_4': '#A63603',
+    'fc2': '#7F2704',
 }

@@ -1,4 +1,4 @@
-from sklearn.linear_model import RidgeCV
+from sklearn.linear_model import Ridge, RidgeCV
 from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.model_selection import train_test_split
 import numpy as np
@@ -16,34 +16,66 @@ class NeuralResponsePredictor:
     The neural_responses should be a 3D tensor with shape (samples, trials, neurons).
     """
 
-    def __init__(self, reduce_image_representation_to_n_pcs=None, neural_data_pc_index=None, seed=GLOBAL_SEED):
+    def __init__(self, train_idx, test_idx, reduce_image_representation_to_n_pcs=None, neural_data_pc_index=None):
+        self.train_idx = train_idx
+        self.test_idx = test_idx
         self.reduce_image_representation_to_n_pcs = reduce_image_representation_to_n_pcs
         self.neural_data_pc_index = neural_data_pc_index
-        self.seed = seed
 
     @staticmethod
-    def _prepare_input_data(images_representation, neural_responses):
-        # Flatten the images_representation to 2D
-        X = images_representation
-        if X.ndim > 2:
-            X = X.reshape(X.shape[0], -1)
+    def get_train_test_indexes(num_images):
+        """
+        Generates train and test indices for the given number of images.
 
-        # Average across trials, shape: (num_images, num_neurons)
-        Y = neural_responses.mean(axis=1)
+        FEV = 1 - (MSE - noise_var) / explainable_var
+        MSE is computed on test predictions (test_pred vs. y_test)
+        Explainable variance is total variance (in y_test) minus noise variance
+        Thus noise variance must be computed using *only the test images*
+        So, split into train/test while keeping the indexes, so that they can be passed to FEV computer later
+        """
+        all_indices = np.arange(num_images)
+        train_idx, test_idx = train_test_split(
+            all_indices, test_size=0.2, random_state=GLOBAL_SEED)
 
         return {
-            'X': X,
-            'Y': Y
+            'train_idx': train_idx,
+            'test_idx': test_idx
         }
 
-    def _get_train_test_split(self, images_representation, trial_averaged_responses):
+    @staticmethod
+    def _get_best_alpha(images_representation, trial_averaged_responses, train_idx):
+        """
+        Tunes and returns the best Ridge regression alpha using a reference image representation and split.
+
+        Args:
+            images_representation: 2D tensor (num_images, features). Should be flattened: num_features = channels x H x W.
+            neural_responses: 2D tensor of shape (num_images, num_neurons). Should be averaged across trials for each neuron.
+            train_idx: 1D array of indices for training samples.
+        Returns:
+            The best alpha (regularisation strength) found using RidgeCV.
+        """
+        X = images_representation
+        Y = trial_averaged_responses
+
+        x_train = X[train_idx]
+        y_train = Y[train_idx]
+
+        alphas = np.logspace(-6, 6, 13)
+        ridge = RidgeCV(alphas=alphas, cv=5)
+        ridge.fit(x_train, y_train)
+
+        return ridge.alpha_
+
+    @staticmethod
+    def _get_train_test_split(images_representation, trial_averaged_responses, train_idx, test_idx):
         """
         Prepares the data for regression by splitting it into training and test sets.
 
         Args:
-            images_representation: 2D or 4D tensor of shape (num_images, num_features) or (num_images, channels, height, width).
+            images_representation: 2D tensor of shape (num_images, num_features). Should be flattened: num_features = channels x H x W. 
             trial_averaged_responses: 2D tensor of shape (num_images, num_neurons), where each image has a response averaged across trials.
-
+            train_idx: 1D array of indices for training samples.
+            test_idx: 1D array of indices for test samples.
         Returns:
             A dictionary containing:
                 - x_train: Training features (2D tensor).
@@ -52,28 +84,15 @@ class NeuralResponsePredictor:
                 - y_test: Test labels - prediction targets (2D tensor).
         """
         X, Y = images_representation, trial_averaged_responses
-
-        # FEV = 1 - (MSE - noise_var) / explainable_var
-        # MSE is computed on test predictions (test_pred vs. y_test)
-        # Explainable variance is total variance (in y_test) minus noise variance
-        # Thus noise variance must be computed using *only the test images*
-        # So, split into train/test while keeping the indexes, so that they can be passed to FEV computer later
-        num_samples = X.shape[0]
-        all_indexes = np.arange(num_samples)
-
-        train_indexes, test_indexes = train_test_split(
-            all_indexes, test_size=0.2, random_state=self.seed
-        )
-
-        x_train, x_test = X[train_indexes], X[test_indexes]
-        y_train, y_test = Y[train_indexes], Y[test_indexes]
+        x_train, x_test = X[train_idx], X[test_idx]
+        y_train, y_test = Y[train_idx], Y[test_idx]
 
         return {
             'x_train': x_train,
             'x_test': x_test,
             'y_train': y_train,
             'y_test': y_test,
-            'test_indexes': test_indexes
+            'test_idx': test_idx
         }
 
     @staticmethod
@@ -91,7 +110,8 @@ class NeuralResponsePredictor:
                 - y_train: 1D tensor of shape (num_train_images,); the selected principal component from the training subset.
                 - y_test: 1D tensor of shape (num_test_images,); the selected principal component from the test subset.        
         """
-        pca = PCA(n_components=pc_index+1, svd_solver='full')
+        pca = PCA(n_components=pc_index+1, svd_solver='randomized',
+                  random_state=GLOBAL_SEED)
 
         # fitting (learning the principal components) should only happen on the training data to prevent data leakage.
         # Then, the transformation (applying the learned components) is done on both the training and test data
@@ -120,7 +140,8 @@ class NeuralResponsePredictor:
                 - x_train: 2D tensor of shape (num_train_images, n_pcs); the reduced representation for the training subset.
                 - x_test: 2D tensor of shape (num_test_images, n_pcs); the reduced representation for the test subset.
         """
-        pca = PCA(n_components=n_pcs, svd_solver='full')
+        pca = PCA(n_components=n_pcs, svd_solver='randomized',
+                  random_state=GLOBAL_SEED)
 
         # fitting (learning the principal components) should only happen on the training data, to prevent data leakage.
         # Then, the transformation (applying the learned components) is done on both the training and test data
@@ -208,47 +229,13 @@ class NeuralResponsePredictor:
             'mean_fev_filtered': np.mean(fev_filtered)
         }
 
-    def compute_r_squared(self, images_representation, neural_responses):
-        """
-        Computes R-squared values for the given images representation and neural responses.
-
-        Args:
-            images_representation: 2D or 4D tensor of shape (num_images, num_features) or (num_images, channels, height, width).
-            neural_responses: 3D tensor of shape (num_images, num_trials, num_neurons), where each image has multiple trials (e.g., 2).
-
-        Returns:
-            A dictionary containing:
-                - test_pred: Predicted neural responses for the test subset.
-                - train_pred: Predicted neural responses for the training subset.
-                - test_r2: R-squared value for the test subset.
-                - train_r2: R-squared value for the training subset.
-        """
-        d = self._prepare_input_data(
-            images_representation, neural_responses)
-
-        splits = self._get_train_test_split(d['X'], d['Y'])
-
-        x_train, x_test = splits['x_train'], splits['x_test']
-        if self.reduce_image_representation_to_n_pcs is not None:
-            n_pcs = self.reduce_image_representation_to_n_pcs
-            pca = self._apply_pca_to_image_data(x_train, x_test, n_pcs)
-            x_train, x_test = pca['x_train'], pca['x_test']
-
-        y_train, y_test = splits['y_train'], splits['y_test']
-        if self.neural_data_pc_index is not None:
-            pc_index = self.neural_data_pc_index
-            pca = self._apply_pca_to_neural_data(y_train, y_test, pc_index)
-            y_train, y_test = pca['y_train'], pca['y_test']
-
-        return self._fit_regression_model(x_train, x_test, y_train, y_test)
-
     def compute_fev(self, images_representation, neural_responses):
         """
         Computes the Fraction of Explained Variance (FEV) for the given images representation and neural responses.
 
         Args:
             images_representation: 2D or 4D tensor of shape (num_images, num_features) or (num_images, channels, height, width).
-            neural_responses: 3D tensor of shape (num_images, num_trials, num_neurons), where each image has multiple trials (e.g., 2).
+            neural_responses: 3D tensor of shape (num_images, num_trials, num_neurons), where each image has multiple trials (e.g., 2). Do not pass trial-averaged responses here, as FEV is computed on the test subset of neural responses.
 
         Returns:
             A dictionary containing:
@@ -258,28 +245,37 @@ class NeuralResponsePredictor:
                 - mean_fev_filtered: Mean filtered FEV across selected neurons.
                 - test_r2: R-squared value for the test subset.
         """
-        d = self._prepare_input_data(
-            images_representation, neural_responses)
+        # These are computed once and passed in during instantiation
+        # because they can be reused across multiple calls to compute_fev (e.g. per model layer's images representation)
+        train_idx = self.train_idx
+        test_idx = self.test_idx
 
-        splits = self._get_train_test_split(d['X'], d['Y'])
+        if images_representation.ndim > 2:
+            images_representation = images_representation.reshape(
+                images_representation.shape[0], -1)
 
-        x_train, x_test = splits['x_train'], splits['x_test']
+        trial_averaged_responses = np.mean(neural_responses, axis=1)
+        split = self._get_train_test_split(
+            images_representation, trial_averaged_responses, train_idx, test_idx)
+
+        x_train, x_test = split['x_train'], split['x_test']
         if self.reduce_image_representation_to_n_pcs is not None:
             n_pcs = self.reduce_image_representation_to_n_pcs
             pca = self._apply_pca_to_image_data(x_train, x_test, n_pcs)
             x_train, x_test = pca['x_train'], pca['x_test']
 
-        y_train, y_test = splits['y_train'], splits['y_test']
+        y_train, y_test = split['y_train'], split['y_test']
         if self.neural_data_pc_index is not None:
             pc_index = self.neural_data_pc_index
             pca = self._apply_pca_to_neural_data(y_train, y_test, pc_index)
             y_train, y_test = pca['y_train'], pca['y_test']
 
-        model = self._fit_regression_model(x_train, x_test, y_train, y_test)
+        model = self._fit_regression_model(
+            x_train, x_test, y_train, y_test)
 
         # use the test indexes: fev cares *only about neural responses to the test images*
         # used for the regression model, from which y_test and test_pred were derived
-        neural_responses = neural_responses[splits['test_indexes'], :, :]
+        neural_responses = neural_responses[test_idx, :, :]
 
         fev = self._compute_fev(y_test, model['test_pred'], neural_responses)
         return {
