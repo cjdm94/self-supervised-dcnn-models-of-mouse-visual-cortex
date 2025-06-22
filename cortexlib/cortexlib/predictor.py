@@ -256,6 +256,7 @@ class NeuralResponsePredictor:
                 - mean_fev: Mean FEV across all neurons.
                 - fev_filtered: Filtered FEV values for neurons with explainable variance above a threshold.
                 - mean_fev_filtered: Mean filtered FEV across selected neurons.
+                - test_r2: R-squared value for the test subset.
         """
         d = self._prepare_input_data(
             images_representation, neural_responses)
@@ -280,4 +281,8 @@ class NeuralResponsePredictor:
         # used for the regression model, from which y_test and test_pred were derived
         neural_responses = neural_responses[splits['test_indexes'], :, :]
 
-        return self._compute_fev(y_test, model['test_pred'], neural_responses)
+        fev = self._compute_fev(y_test, model['test_pred'], neural_responses)
+        return {
+            **fev,
+            'test_r2': model['test_r2'],
+        }
