@@ -52,6 +52,9 @@ def read_json_file_as_dataframe(filepath: str):
     """
     with open(file=filepath, mode='r', encoding='utf-8') as f:
         data = json.load(f)
+        if isinstance(data, dict) and all(not isinstance(v, (list, dict)) for v in data.values()):
+            # Convert dict of scalars to list of dicts (rows)
+            return pd.DataFrame([{'layer': k, 'value': v} for k, v in data.items()])
         return pd.DataFrame(data)
 
 
