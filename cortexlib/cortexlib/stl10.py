@@ -11,7 +11,7 @@ import numpy as np
 
 
 class STL10FewShotDataset:
-    def __init__(self, n_per_class: int = 100, image_size: tuple = (96, 96), seed: int = GLOBAL_SEED, data_root=None):
+    def __init__(self, n_per_class: int = 100, size: tuple = (96, 96), channels=3, normalise_mean=None, normalise_std=None, seed: int = GLOBAL_SEED, data_root=None):
         # Set global seeds for full determinism
         np.random.seed(seed)
         random.seed(seed)
@@ -27,12 +27,22 @@ class STL10FewShotDataset:
         self.class_names_file = f'{self.data_root}/stl10_binary/{STL10.class_names_file}'
 
         self.n_per_class = n_per_class
-        self.image_size = image_size
         self.seed = seed
 
+        assert channels in [1, 3], "Only 1 or 3 channels supported."
+        self.channels = channels
+        self.size = size
+
+        if normalise_mean is None:
+            normalise_mean = [0.5] * channels
+        if normalise_std is None:
+            normalise_std = [0.5] * channels
+
         self.transform = transforms.Compose([
-            transforms.Resize(self.image_size),
-            transforms.ToTensor()
+            transforms.Resize(self.size),
+            transforms.ToTensor(),
+            transforms.CenterCrop(self.size[0]),
+            transforms.Normalize(mean=normalise_mean, std=normalise_std),
         ])
 
         self._load_datasets()
