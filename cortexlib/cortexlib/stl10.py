@@ -81,10 +81,3 @@ class STL10FewShotDataset:
 
     def get_class_names(self) -> List[str]:
         return self.class_names
-
-    def stats(self) -> None:
-        print("Shape of images:", self.images.shape)
-        print("Shape of labels:", self.labels.shape)
-        print("Unique labels:", self.labels.unique())
-        print("Number of images:", len(self.dataset))
-        print("Class names:", self.class_names)

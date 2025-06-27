@@ -1,9 +1,10 @@
-from cortexlib.utils.logging import Logger
 from pathlib import Path
+from cortexlib.utils.logging import Logger
 import json
 import pandas as pd
 from enum import Enum
 import torch
+import warnings
 
 
 class Model(Enum):
@@ -78,6 +79,40 @@ def save_model_features(model: Model, mouse_id: str, features, labels):
         logger.success("Model features saved")
 
 
+def load_model_features(model: Model, mouse_id: str):
+    """
+    Loads saved model features for a given model and mouse_id.
+
+    Parameters:
+    - model (Model): enum or object with `.value` as the model name (e.g. 'simclr')
+    - mouse_id (str): e.g. 'm03_d4'
+    - base_dir (Path, optional): directory containing '_model_features'. Defaults to parent of cwd.
+
+    Returns:
+    - dict with keys 'features' and 'labels'
+
+    Raises:
+    - FileNotFoundError if the file does not exist
+    """
+    logger = Logger()
+
+    model_name = model.value
+    cwd = Path.cwd()
+    parent_dir = cwd.parent
+    features_dir = parent_dir / "_model_features"
+
+    filename = f"{model_name}_features_mouse_{mouse_id}.pt"
+    filepath = features_dir / filename
+
+    if not filepath.exists():
+        raise FileNotFoundError(f"Model features not found at {filepath}")
+
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", category=FutureWarning)
+        logger.info(f"Loading model features from {filepath}")
+        return torch.load(filepath)
+
+
 def save_filtered_neural_data(mouse_id, neural_responses, neural_responses_mean):
     logger = Logger()
 
@@ -98,3 +133,44 @@ def save_filtered_neural_data(mouse_id, neural_responses, neural_responses_mean)
             'neural_responses_mean': torch.from_numpy(neural_responses_mean),
         }, filepath)
         logger.success("Neural data saved")
+
+
+def load_filtered_neural_data(mouse_id: str):
+    """
+    Loads neural data for the given mouse_id from a .pt file.
+
+    Parameters:
+    - mouse_id (str): e.g. 'm03_d4'
+    - base_dir (Path): optional path to _neural_data directory
+
+    Returns:
+    - Loaded PyTorch object
+    """
+    logger = Logger()
+
+    cwd = Path.cwd()
+    parent_dir = cwd.parent
+    features_dir = parent_dir / "_neural_data"
+    filename = f"neural_data_mouse_{mouse_id}.pt"
+    filepath = features_dir / filename
+
+    if not filepath.exists():
+        raise FileNotFoundError(
+            f"Filtered neural data not found at {filepath}")
+
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", category=FutureWarning)
+        logger.info(f"Loading filtered neural data from {filepath}")
+        return torch.load(filepath)
+
+
+def get_mouse_id():
+    """
+    Returns the mouse ID (e.g. 'm03_d4') by searching parent directories.
+    Assumes the directory is named like 'mouse_<id>'.
+    """
+    current_path = Path().resolve()
+    for parent in current_path.parents:
+        if parent.name.startswith('mouse_'):
+            return parent.name.removeprefix('mouse_')
+    return None  # If no matching directory is found
