@@ -5,28 +5,50 @@ from pathlib import Path
 from cortexlib.utils.file import find_project_root
 import random
 from cortexlib.utils.random import GLOBAL_SEED
+from cortexlib.utils.logging import Logger
 
 
 class CortexlabMouse:
-    def __init__(self, seed=GLOBAL_SEED, mouse_id=None, path_to_data=None):
+    def __init__(self, mouse_id: str, seed=GLOBAL_SEED, path_to_data=None):
         # Set global seeds for full determinism
         np.random.seed(seed)
         random.seed(seed)
 
-        self.id = mouse_id  # TODO: remove path_to_data argument, use mouse_id to find data
+        self.logger = Logger()
+
+        self.id = mouse_id
 
         if path_to_data is None:
             current_file = Path(__file__)
             project_root = find_project_root(current_file)
-            path_to_data = project_root / 'data' / 'neural'
+            path_to_data = project_root / 'data' / 'mouse' / self.id
         else:
             path_to_data = Path(path_to_data).resolve()
 
         self.path_to_data = path_to_data
+
+        if not path.exists(self.path_to_data):
+            msg = f"Data for mouse {self.id} does not exist. Please provide a valid mouse_id."
+            self.logger.error(msg)
+            raise FileNotFoundError(msg)
+
         self.neural_responses = None
         self.image_ids = None
 
         self._load_data()
+
+    def _load_data(self):
+        """
+        Load neural response data and stimulus IDs from the specified path.
+
+        imresps.npy is of shape (1573, 2, 15363), where 1573 is number of images, 2 repeats each, and 15363 neurons recorded
+        stimids.npy has the image id (matching the image dataset ~selection1866~) for each stimulus number,
+        so of you want to see what image was presented on imresps[502] you would check stim_ids[502]
+        """
+        self.neural_responses = np.load(
+            path.join(self.path_to_data, 'imresps.npy'))
+        self.image_ids = np.load(
+            path.join(self.path_to_data, 'stimids.npy'))
 
     def compute_null_all_neurons(self, n_shuffles=100):
         # imresps shape = (1573, 2, 15363)
@@ -130,19 +152,6 @@ class CortexlabMouse:
         plt.ylabel("Number of Neurons")
         plt.title("SRV Distribution for Reliable Neurons")
         plt.show()
-
-    def _load_data(self):
-        """
-        Load neural response data and stimulus IDs from the specified path.
-
-        imresps.npy is of shape (1573, 2, 15363), where 1573 is number of images, 2 repeats each, and 15363 neurons recorded
-        stimids.npy has the image id (matching the image dataset ~selection1866~) for each stimulus number,
-        so of you want to see what image was presented on imresps[502] you would check stim_ids[502]
-        """
-        self.neural_responses = np.load(
-            path.join(self.path_to_data, 'imresps.npy'))
-        self.image_ids = np.load(
-            path.join(self.path_to_data, 'stimids.npy'))
 
     def _compute_signal_related_variance(self, resp_a, resp_b, mean_center=True):
         """
