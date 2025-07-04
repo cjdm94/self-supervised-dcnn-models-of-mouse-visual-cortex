@@ -30,6 +30,8 @@ class CortexlabImages:
         if normalise_std is None:
             normalise_std = [0.5] * channels
 
+        # TODO: the natural images are not square, so we should use a different crop
+        # TODO: ResNet18 expects 224x224 images - we should resize to that size, but check first if the STL10 images (96x96) were upscaled during training
         self.transform = Compose([
             Resize(size[0]),
             CenterCrop(size),
