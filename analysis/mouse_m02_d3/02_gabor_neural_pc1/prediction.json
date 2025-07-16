@@ -1,0 +1,110 @@
+[
+  {
+    "filter": "gabor_small",
+    "n_pcs": null,
+    "test_r2": -0.004744474314601899,
+    "mean_fev": 0.0
+  },
+  {
+    "filter": "gabor_small",
+    "n_pcs": 1,
+    "test_r2": -0.004744527636891371,
+    "mean_fev": 0.0
+  },
+  {
+    "filter": "gabor_small",
+    "n_pcs": 2,
+    "test_r2": -0.004744430376780739,
+    "mean_fev": 0.0
+  },
+  {
+    "filter": "gabor_small",
+    "n_pcs": 5,
+    "test_r2": -0.004744474201932691,
+    "mean_fev": 0.0
+  },
+  {
+    "filter": "gabor_small",
+    "n_pcs": 10,
+    "test_r2": -0.004744474319908987,
+    "mean_fev": 0.0
+  },
+  {
+    "filter": "gabor_small",
+    "n_pcs": 16,
+    "test_r2": -0.004744474314567704,
+    "mean_fev": 0.0
+  },
+  {
+    "filter": "gabor_medium",
+    "n_pcs": null,
+    "test_r2": -0.0041045250998441585,
+    "mean_fev": 0.0
+  },
+  {
+    "filter": "gabor_medium",
+    "n_pcs": 1,
+    "test_r2": -0.004104527591677343,
+    "mean_fev": 0.0
+  },
+  {
+    "filter": "gabor_medium",
+    "n_pcs": 2,
+    "test_r2": -0.004104523760700918,
+    "mean_fev": 0.0
+  },
+  {
+    "filter": "gabor_medium",
+    "n_pcs": 5,
+    "test_r2": -0.004104525104555501,
+    "mean_fev": 0.0
+  },
+  {
+    "filter": "gabor_medium",
+    "n_pcs": 10,
+    "test_r2": -0.0041045250998990035,
+    "mean_fev": 0.0
+  },
+  {
+    "filter": "gabor_medium",
+    "n_pcs": 16,
+    "test_r2": -0.0041045250998441585,
+    "mean_fev": 0.0
+  },
+  {
+    "filter": "gabor_large",
+    "n_pcs": null,
+    "test_r2": -0.004376680657335763,
+    "mean_fev": 0.0
+  },
+  {
+    "filter": "gabor_large",
+    "n_pcs": 1,
+    "test_r2": -0.004376838408727712,
+    "mean_fev": 0.0
+  },
+  {
+    "filter": "gabor_large",
+    "n_pcs": 2,
+    "test_r2": -0.0043766692518822925,
+    "mean_fev": 0.0
+  },
+  {
+    "filter": "gabor_large",
+    "n_pcs": 5,
+    "test_r2": -0.004376679658415927,
+    "mean_fev": 0.0
+  },
+  {
+    "filter": "gabor_large",
+    "n_pcs": 10,
+    "test_r2": -0.004376680657262488,
+    "mean_fev": 0.0
+  },
+  {
+    "filter": "gabor_large",
+    "n_pcs": 16,
+    "test_r2": -0.004376680657335763,
+    "mean_fev": 0.0
+  }
+]
