@@ -1,0 +1,127 @@
+[
+  {
+    "layer": "conv2_2",
+    "n_pcs": null,
+    "spearman_correlation": 0.11363286024889455
+  },
+  {
+    "layer": "conv2_2",
+    "n_pcs": 10,
+    "spearman_correlation": 0.18350102901226487
+  },
+  {
+    "layer": "conv2_2",
+    "n_pcs": 20,
+    "spearman_correlation": 0.17979216145008242
+  },
+  {
+    "layer": "conv2_2",
+    "n_pcs": 50,
+    "spearman_correlation": 0.177492309331239
+  },
+  {
+    "layer": "conv2_2",
+    "n_pcs": 100,
+    "spearman_correlation": 0.17667147781598985
+  },
+  {
+    "layer": "conv3_4",
+    "n_pcs": null,
+    "spearman_correlation": 0.12573219657510865
+  },
+  {
+    "layer": "conv3_4",
+    "n_pcs": 10,
+    "spearman_correlation": 0.19544449714789533
+  },
+  {
+    "layer": "conv3_4",
+    "n_pcs": 20,
+    "spearman_correlation": 0.19710997761058124
+  },
+  {
+    "layer": "conv3_4",
+    "n_pcs": 50,
+    "spearman_correlation": 0.1982280096989737
+  },
+  {
+    "layer": "conv3_4",
+    "n_pcs": 100,
+    "spearman_correlation": 0.19851621902715816
+  },
+  {
+    "layer": "conv4_4",
+    "n_pcs": null,
+    "spearman_correlation": 0.07045621112615714
+  },
+  {
+    "layer": "conv4_4",
+    "n_pcs": 10,
+    "spearman_correlation": 0.15253339432043567
+  },
+  {
+    "layer": "conv4_4",
+    "n_pcs": 20,
+    "spearman_correlation": 0.1568467886433722
+  },
+  {
+    "layer": "conv4_4",
+    "n_pcs": 50,
+    "spearman_correlation": 0.15951069858983866
+  },
+  {
+    "layer": "conv4_4",
+    "n_pcs": 100,
+    "spearman_correlation": 0.1601266836387732
+  },
+  {
+    "layer": "conv5_4",
+    "n_pcs": null,
+    "spearman_correlation": 0.07180110047485433
+  },
+  {
+    "layer": "conv5_4",
+    "n_pcs": 10,
+    "spearman_correlation": 0.12464087206793895
+  },
+  {
+    "layer": "conv5_4",
+    "n_pcs": 20,
+    "spearman_correlation": 0.1236965781706276
+  },
+  {
+    "layer": "conv5_4",
+    "n_pcs": 50,
+    "spearman_correlation": 0.1228040548018542
+  },
+  {
+    "layer": "conv5_4",
+    "n_pcs": 100,
+    "spearman_correlation": 0.12242711008422875
+  },
+  {
+    "layer": "fc2",
+    "n_pcs": null,
+    "spearman_correlation": 0.054842883178431896
+  },
+  {
+    "layer": "fc2",
+    "n_pcs": 10,
+    "spearman_correlation": 0.08718335731567488
+  },
+  {
+    "layer": "fc2",
+    "n_pcs": 20,
+    "spearman_correlation": 0.0917689077636846
+  },
+  {
+    "layer": "fc2",
+    "n_pcs": 50,
+    "spearman_correlation": 0.09278344172703032
+  },
+  {
+    "layer": "fc2",
+    "n_pcs": 100,
+    "spearman_correlation": 0.09259480907090112
+  }
+]
