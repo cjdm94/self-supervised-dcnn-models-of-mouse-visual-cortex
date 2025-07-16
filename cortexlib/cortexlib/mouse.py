@@ -46,9 +46,9 @@ class CortexlabMouse:
         so of you want to see what image was presented on imresps[502] you would check stim_ids[502]
         """
         self.neural_responses = np.load(
-            path.join(self.path_to_data, 'imresps.npy'))
+            path.join(self.path_to_data, 'resps.npy'))
         self.image_ids = np.load(
-            path.join(self.path_to_data, 'stimids.npy'))
+            path.join(self.path_to_data, 'stims.npy'))
 
     def compute_null_all_neurons(self, n_shuffles=100):
         # imresps shape = (1573, 2, 15363)
