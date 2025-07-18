@@ -58,5 +58,5 @@ def aggregate_results():
     logger.info(
         f"Saving aggregated results for mouse {mouse_id}, model-target {model_target}")
 
-    with open(f"./{model_target}_{mouse_id}.json", "w") as f:
+    with open(f"../results/{model_target}_{mouse_id}.json", "w") as f:
         json.dump(flat_data, f, indent=2)
