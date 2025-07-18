@@ -1,7 +1,102 @@
-{
-  "conv2_2": -0.08748399466276169,
-  "conv3_4": -0.061713166534900665,
-  "conv4_4": 0.006109914742410183,
-  "conv5_4": 0.2640319764614105,
-  "fc2": 0.4613341689109802
-}
+[
+  {
+    "layer": "conv2_2",
+    "n_pcs": 10,
+    "silhouette_score": -0.0988902598619461
+  },
+  {
+    "layer": "conv3_4",
+    "n_pcs": 10,
+    "silhouette_score": -0.07128842175006866
+  },
+  {
+    "layer": "conv4_4",
+    "n_pcs": 10,
+    "silhouette_score": 0.0019547424744814634
+  },
+  {
+    "layer": "conv5_4",
+    "n_pcs": 10,
+    "silhouette_score": 0.2696234881877899
+  },
+  {
+    "layer": "fc2",
+    "n_pcs": 10,
+    "silhouette_score": 0.477962464094162
+  },
+  {
+    "layer": "conv2_2",
+    "n_pcs": 20,
+    "silhouette_score": -0.09379729628562927
+  },
+  {
+    "layer": "conv3_4",
+    "n_pcs": 20,
+    "silhouette_score": -0.06312814354896545
+  },
+  {
+    "layer": "conv4_4",
+    "n_pcs": 20,
+    "silhouette_score": 0.004296985454857349
+  },
+  {
+    "layer": "conv5_4",
+    "n_pcs": 20,
+    "silhouette_score": 0.297035813331604
+  },
+  {
+    "layer": "fc2",
+    "n_pcs": 20,
+    "silhouette_score": 0.48192480206489563
+  },
+  {
+    "layer": "conv2_2",
+    "n_pcs": 50,
+    "silhouette_score": -0.08748399466276169
+  },
+  {
+    "layer": "conv3_4",
+    "n_pcs": 50,
+    "silhouette_score": -0.061713166534900665
+  },
+  {
+    "layer": "conv4_4",
+    "n_pcs": 50,
+    "silhouette_score": 0.006109914742410183
+  },
+  {
+    "layer": "conv5_4",
+    "n_pcs": 50,
+    "silhouette_score": 0.2640319764614105
+  },
+  {
+    "layer": "fc2",
+    "n_pcs": 50,
+    "silhouette_score": 0.4613341689109802
+  },
+  {
+    "layer": "conv2_2",
+    "n_pcs": 100,
+    "silhouette_score": -0.09053029119968414
+  },
+  {
+    "layer": "conv3_4",
+    "n_pcs": 100,
+    "silhouette_score": -0.05563629791140556
+  },
+  {
+    "layer": "conv4_4",
+    "n_pcs": 100,
+    "silhouette_score": 0.00031335497624240816
+  },
+  {
+    "layer": "conv5_4",
+    "n_pcs": 100,
+    "silhouette_score": 0.25209230184555054
+  },
+  {
+    "layer": "fc2",
+    "n_pcs": 100,
+    "silhouette_score": 0.4470196068286896
+  }
+]

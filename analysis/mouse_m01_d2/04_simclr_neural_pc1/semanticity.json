@@ -1,7 +1,202 @@
-{
-  "layer1": -0.08925949037075043,
-  "layer2": -0.09069712460041046,
-  "layer3": -0.01950656622648239,
-  "layer4": 0.0857759341597557,
-  "fc": 0.10178162902593613
-}
+[
+  {
+    "layer": "layer1",
+    "n_pcs": 10,
+    "silhouette_score": -0.08865493535995483
+  },
+  {
+    "layer": "layer2",
+    "n_pcs": 10,
+    "silhouette_score": -0.09583937376737595
+  },
+  {
+    "layer": "layer3",
+    "n_pcs": 10,
+    "silhouette_score": -0.015531366690993309
+  },
+  {
+    "layer": "layer4",
+    "n_pcs": 10,
+    "silhouette_score": 0.05873095989227295
+  },
+  {
+    "layer": "fc",
+    "n_pcs": 10,
+    "silhouette_score": 0.09163860231637955
+  },
+  {
+    "layer": "layer1",
+    "n_pcs": 20,
+    "silhouette_score": -0.11313194036483765
+  },
+  {
+    "layer": "layer2",
+    "n_pcs": 20,
+    "silhouette_score": -0.0897640511393547
+  },
+  {
+    "layer": "layer3",
+    "n_pcs": 20,
+    "silhouette_score": -0.027598541229963303
+  },
+  {
+    "layer": "layer4",
+    "n_pcs": 20,
+    "silhouette_score": 0.08457498252391815
+  },
+  {
+    "layer": "fc",
+    "n_pcs": 20,
+    "silhouette_score": 0.09216383099555969
+  },
+  {
+    "layer": "layer1",
+    "n_pcs": 50,
+    "silhouette_score": -0.08925949037075043
+  },
+  {
+    "layer": "layer2",
+    "n_pcs": 50,
+    "silhouette_score": -0.09069712460041046
+  },
+  {
+    "layer": "layer3",
+    "n_pcs": 50,
+    "silhouette_score": -0.01950656622648239
+  },
+  {
+    "layer": "layer4",
+    "n_pcs": 50,
+    "silhouette_score": 0.0857759341597557
+  },
+  {
+    "layer": "fc",
+    "n_pcs": 50,
+    "silhouette_score": 0.10178162902593613
+  },
+  {
+    "layer": "layer1",
+    "n_pcs": 100,
+    "silhouette_score": -0.11403750628232956
+  },
+  {
+    "layer": "layer2",
+    "n_pcs": 100,
+    "silhouette_score": -0.08025248348712921
+  },
+  {
+    "layer": "layer3",
+    "n_pcs": 100,
+    "silhouette_score": -0.005444775335490704
+  },
+  {
+    "layer": "layer4",
+    "n_pcs": 100,
+    "silhouette_score": 0.08508287370204926
+  },
+  {
+    "layer": "fc",
+    "n_pcs": 100,
+    "silhouette_score": 0.1075638085603714
+  },
+  {
+    "layer": "layer1",
+    "n_pcs": 200,
+    "silhouette_score": -0.1033262237906456
+  },
+  {
+    "layer": "layer2",
+    "n_pcs": 200,
+    "silhouette_score": -0.10277742147445679
+  },
+  {
+    "layer": "layer3",
+    "n_pcs": 200,
+    "silhouette_score": -0.014199456200003624
+  },
+  {
+    "layer": "layer4",
+    "n_pcs": 200,
+    "silhouette_score": 0.07673218846321106
+  },
+  {
+    "layer": "fc",
+    "n_pcs": 200,
+    "silhouette_score": 0.10693003237247467
+  },
+  {
+    "layer": "layer1",
+    "n_pcs": 300,
+    "silhouette_score": -0.10415249317884445
+  },
+  {
+    "layer": "layer2",
+    "n_pcs": 300,
+    "silhouette_score": -0.0996318981051445
+  },
+  {
+    "layer": "layer3",
+    "n_pcs": 300,
+    "silhouette_score": -0.005826603155583143
+  },
+  {
+    "layer": "layer4",
+    "n_pcs": 300,
+    "silhouette_score": 0.06986062973737717
+  },
+  {
+    "layer": "fc",
+    "n_pcs": 300,
+    "silhouette_score": 0.10509234666824341
+  },
+  {
+    "layer": "layer1",
+    "n_pcs": 400,
+    "silhouette_score": -0.10399238765239716
+  },
+  {
+    "layer": "layer2",
+    "n_pcs": 400,
+    "silhouette_score": -0.1095338687300682
+  },
+  {
+    "layer": "layer3",
+    "n_pcs": 400,
+    "silhouette_score": -0.01962418295443058
+  },
+  {
+    "layer": "layer4",
+    "n_pcs": 400,
+    "silhouette_score": 0.06691601872444153
+  },
+  {
+    "layer": "fc",
+    "n_pcs": 400,
+    "silhouette_score": 0.11040840297937393
+  },
+  {
+    "layer": "layer1",
+    "n_pcs": 500,
+    "silhouette_score": -0.10959597676992416
+  },
+  {
+    "layer": "layer2",
+    "n_pcs": 500,
+    "silhouette_score": -0.1298547387123108
+  },
+  {
+    "layer": "layer3",
+    "n_pcs": 500,
+    "silhouette_score": -0.01776280254125595
+  },
+  {
+    "layer": "layer4",
+    "n_pcs": 500,
+    "silhouette_score": 0.07357413321733475
+  },
+  {
+    "layer": "fc",
+    "n_pcs": 500,
+    "silhouette_score": 0.08403642475605011
+  }
+]

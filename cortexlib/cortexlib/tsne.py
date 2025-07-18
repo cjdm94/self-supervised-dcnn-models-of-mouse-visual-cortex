@@ -7,6 +7,7 @@ from sklearn.metrics import silhouette_score
 from cortexlib.utils.random import GLOBAL_SEED
 
 
+# TODO: it would be better to have a method compute feats and scores for a single layer - then the caller can loop over layers
 class TSNEVisualizer:
     @staticmethod
     def compute_tsne(images_feats, n_pca_components=100, perplexity=30):
