@@ -1,0 +1,92 @@
+[
+  [
+    {
+      "axis": "Power-law \u03b1",
+      "value": 0.0
+    },
+    {
+      "axis": "Mean FEV",
+      "value": 1.0
+    },
+    {
+      "axis": "RSA",
+      "value": 0.6778846153846154
+    },
+    {
+      "axis": "Semanticity",
+      "value": 0.0
+    }
+  ],
+  [
+    {
+      "axis": "Power-law \u03b1",
+      "value": 0.3083403538331937
+    },
+    {
+      "axis": "Mean FEV",
+      "value": 0.9035294117647061
+    },
+    {
+      "axis": "RSA",
+      "value": 0.9999999999999998
+    },
+    {
+      "axis": "Semanticity",
+      "value": 0.0650557620817844
+    }
+  ],
+  [
+    {
+      "axis": "Power-law \u03b1",
+      "value": 0.5770850884582983
+    },
+    {
+      "axis": "Mean FEV",
+      "value": 0.7129411764705882
+    },
+    {
+      "axis": "RSA",
+      "value": 0.6394230769230769
+    },
+    {
+      "axis": "Semanticity",
+      "value": 0.16914498141263942
+    }
+  ],
+  [
+    {
+      "axis": "Power-law \u03b1",
+      "value": 1.0000000000000004
+    },
+    {
+      "axis": "Mean FEV",
+      "value": 0.1011764705882352
+    },
+    {
+      "axis": "RSA",
+      "value": 0.13942307692307665
+    },
+    {
+      "axis": "Semanticity",
+      "value": 0.637546468401487
+    }
+  ],
+  [
+    {
+      "axis": "Power-law \u03b1",
+      "value": 0.4860994102780123
+    },
+    {
+      "axis": "Mean FEV",
+      "value": 0.0
+    },
+    {
+      "axis": "RSA",
+      "value": 0.0
+    },
+    {
+      "axis": "Semanticity",
+      "value": 1.0
+    }
+  ]
+]
