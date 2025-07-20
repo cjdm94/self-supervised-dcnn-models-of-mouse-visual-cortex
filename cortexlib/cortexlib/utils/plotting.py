@@ -1,21 +1,21 @@
 gabor_filter_colours = {
-    'gabor_small': '#FEE0B6',
-    'gabor_medium': '#FCAE91',
-    'gabor_large': '#FB6A4A',
+    'gabor_small': '#d7b5d8',
+    'gabor_medium': '#df65b0',
+    'gabor_large': '#dd1c77',
 }
 
 simclr_colours = {
-    'layer1': '#66C2A5',
-    'layer2': '#3288BD',
-    'layer3': '#5E4FA2',
-    'layer4': '#984EA3',
-    'fc': '#E41A1C',
+    'layer1': '#f1eef6',
+    'layer2': '#bdc9e1',
+    'layer3': '#74a9cf',
+    'layer4': '#2b8cbe',
+    'fc': '#045a8d',
 }
 
 vgg19_colours = {
-    'conv2_2': '#FDBBA1',
-    'conv3_4': '#FB9A06',
-    'conv4_4': '#E6550D',
-    'conv5_4': '#A63603',
-    'fc2': '#7F2704',
+    'conv2_2': '#fef0d9',
+    'conv3_4': '#fdcc8a',
+    'conv4_4': '#fc8d59',
+    'conv5_4': '#e34a33',
+    'fc2': '#b30000',
 }
