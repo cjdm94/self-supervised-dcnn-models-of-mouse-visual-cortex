@@ -1,7 +1,7 @@
 gabor_filter_colours = {
-    'gabor_small': '#d7b5d8',
-    'gabor_medium': '#df65b0',
-    'gabor_large': '#dd1c77',
+    'gabor_small': '#cccccc',
+    'gabor_medium': '#969696',
+    'gabor_large': '#636363',
 }
 
 simclr_colours = {
