@@ -60,3 +60,54 @@ def aggregate_results():
 
     with open(f"../results/{model_target}_{mouse_id}.json", "w") as f:
         json.dump(flat_data, f, indent=2)
+
+
+def aggregate_results_gabor():
+    logger = Logger()
+
+    with open("./prediction.json") as f:
+        fev_data = json.load(f)
+
+    fev_df = pd.DataFrame(fev_data)
+
+    # Rename 'filter' to 'layer'
+    fev_df.rename(columns={"filter": "layer"}, inplace=True)
+
+    # Add missing columns with None
+    expected_columns = [
+        "alpha", "alpha_no_pc1", "mean_fev", "test_r2",
+        "spearman_correlation", "silhouette_score"
+    ]
+    for col in expected_columns:
+        if col not in fev_df.columns:
+            fev_df[col] = None
+
+    # Round numeric values
+    round_dict = {
+        "alpha": 3,
+        "alpha_no_pc1": 3,
+        "mean_fev": 3,
+        "test_r2": 3,
+        "spearman_correlation": 3,
+        "silhouette_score": 3,
+    }
+    fev_df = fev_df.round(
+        {k: v for k, v in round_dict.items() if k in fev_df.columns})
+
+    # Replace NaN with None
+    fev_df = fev_df.astype(object).where(pd.notnull(fev_df), None)
+
+    # Add identifiers
+    mouse_id = futils.get_mouse_id()
+    fev_df.insert(0, "mouse_id", mouse_id)
+
+    model_target = futils.get_model_target()
+    fev_df.insert(0, "model_target", model_target)
+
+    flat_data = fev_df.to_dict(orient="records")
+
+    logger.info(
+        f"Saving aggregated results for mouse {mouse_id}, model-target {model_target}")
+
+    with open(f"../results/{model_target}_{mouse_id}.json", "w") as f:
+        json.dump(flat_data, f, indent=2)

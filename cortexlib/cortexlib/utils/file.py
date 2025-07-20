@@ -181,6 +181,6 @@ def get_model_target() -> str:
     Extracts the model target (e.g. 'simclr_neural') from the current file path.
     """
     parent_dir = Path().resolve().name
-    if "_" in parent_dir and any(model in parent_dir for model in ["simclr", "vgg19"]):
+    if "_" in parent_dir and any(model in parent_dir for model in ["simclr", "vgg19", "gabor"]):
         return parent_dir.split("_", 1)[1]  # e.g., "simclr_neural" → "neural"
     return None
