@@ -84,13 +84,13 @@ def plot_mean_fev(avg_metrics, individual_metrics, remove_gabor=False):
         )
 
     # Axis and legend
-    plt.ylabel('Mean FEV')
-    plt.xlabel('Model layer')
+    plt.xlabel("Model layer", labelpad=10)
+    plt.ylabel("Mean FEV", labelpad=10)
     plt.xticks(rotation=45, ha='right')
     plt.legend(
         handles=[Patch(facecolor=color, label=model.capitalize())
-                 for model, color in model_colour.items() if model != "gabor"],
+                 for model, color in model_colour.items()],
         title="Model"
     )
     plt.tight_layout()
-    plt.show()
+    return plt

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Radar Chart</title>
   <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   <style>
     body { font-family: sans-serif; padding: 100px }
     .radarArea { fill-opacity: 0.3; }
@@ -18,6 +19,7 @@
 </head>
 <body>
   <div id="radarChart"></div>
+  <button onclick="downloadPNG()">Download SVG</button>
   <script>
     /////////////////////////////////////////////////////////
     /////////////// The Radar Chart Function ////////////////
@@ -320,8 +322,14 @@
     //   roundStrokes: true,
     //   color: d3.scale.category10()
     // };
-
-    // RadarChart("#radarChart", data, options);
+    function downloadPNG() {
+      html2canvas(document.querySelector("#radarChart")).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'radar_chart.png';
+        link.href = canvas.toDataURL();
+        link.click();
+      });
+    }
   </script>
 </body>
 </html>
