@@ -2,11 +2,11 @@
   [
     {
       "axis": "Predictivity",
-      "value": 0.0
+      "value": 0.6130841121495327
     },
     {
       "axis": "RSA",
-      "value": 0.6180555555555545
+      "value": 0.9140624999999999
     },
     {
       "axis": "Semanticity",
@@ -24,21 +24,21 @@
     },
     {
       "axis": "RSA",
-      "value": 0.916666666666667
+      "value": 0.98125
     },
     {
       "axis": "Semanticity",
-      "value": 0.1531531531531532
+      "value": 0.0
     },
     {
       "axis": "Dimensionality",
-      "value": 0.83152259486695
+      "value": 0.906631762652705
     }
   ],
   [
     {
       "axis": "Predictivity",
-      "value": 0.8550724637681157
+      "value": 0.9439252336448598
     },
     {
       "axis": "RSA",
@@ -46,39 +46,39 @@
     },
     {
       "axis": "Semanticity",
-      "value": 0.4909909909909911
-    },
-    {
-      "axis": "Dimensionality",
-      "value": 0.088962368131003
-    }
-  ],
-  [
-    {
-      "axis": "Predictivity",
-      "value": 0.27053140096618344
-    },
-    {
-      "axis": "RSA",
       "value": 0.0
     },
     {
-      "axis": "Semanticity",
-      "value": 0.8963963963963966
-    },
-    {
       "axis": "Dimensionality",
-      "value": 0.08471106912297277
+      "value": 0.4951134380453752
     }
   ],
   [
     {
       "axis": "Predictivity",
-      "value": 0.1690821256038646
+      "value": 0.7177570093457943
     },
     {
       "axis": "RSA",
-      "value": 0.1875
+      "value": 0.7749999999999999
+    },
+    {
+      "axis": "Semanticity",
+      "value": 0.7870370370370371
+    },
+    {
+      "axis": "Dimensionality",
+      "value": 0.49275741710296683
+    }
+  ],
+  [
+    {
+      "axis": "Predictivity",
+      "value": 0.6785046728971962
+    },
+    {
+      "axis": "RSA",
+      "value": 0.8171875
     },
     {
       "axis": "Semanticity",
@@ -86,7 +86,7 @@
     },
     {
       "axis": "Dimensionality",
-      "value": 0.0
+      "value": 0.4458115183246073
     }
   ]
 ]
