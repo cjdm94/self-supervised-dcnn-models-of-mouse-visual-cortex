@@ -55,7 +55,7 @@
       var allAxis = (data[0].map(function(i, j){ return i.axis; })),
           total = allAxis.length,
           radius = Math.min(cfg.w/2, cfg.h/2),
-          Format = d3.format('%'),
+          Format = d3.format('.1f'),
           angleSlice = Math.PI * 2 / total;
 
       console.log("Axis labels:", allAxis);
@@ -98,8 +98,14 @@
          .data(d3.range(1,(cfg.levels+1)).reverse())
          .enter().append("text")
          .attr("class", "axisLabel")
-         .attr("x", 4)
-         .attr("y", function(d){return -d*radius/cfg.levels;})
+        //  .attr("x", 4)
+        //  .attr("y", function(d){return -d*radius/cfg.levels;})
+          .attr("x", function(d) {
+            return (d * radius / cfg.levels) * Math.cos(5 * Math.PI / 4);  // 225°
+          })
+          .attr("y", function(d) {
+            return (d * radius / cfg.levels) * Math.sin(5 * Math.PI / 4);
+          })
          .attr("dy", "0.4em")
          .style("font-size", "10px")
          .attr("fill", "#737373")
