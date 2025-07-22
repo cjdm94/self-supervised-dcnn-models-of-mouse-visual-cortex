@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Radar Chart</title>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body>
+  <button onclick="downloadAllSVGs()">Download SVGs</button>
+  <div id="radar_simclr_neural"></div>
+  <div id="radar_simclr_neural_pc1"></div>
+  <div id="radar_vgg19_neural"></div>
+  <div id="radar_vgg19_neural_pc1"></div>
+  <script>
+    function RadarChart(id, data, options) {
+      var cfg = {
+        w: 400, // Increased width to accommodate legend
+        h: 400,
+        margin: {top: 50, right: 20, bottom: 50, left: 120},
+        levels: 5,
+        maxValue: 0,
+        labelFactor: 1.25,
+        wrapWidth: 60,
+        opacityArea: 0.35,
+        dotRadius: 4,
+        opacityCircles: 0.1,
+        strokeWidth: 2,
+        roundStrokes: true,
+        color: d3.scale.category10()
+      };
+
+      if ('undefined' !== typeof options) {
+        for (var i in options) {
+          if ('undefined' !== typeof options[i]) { cfg[i] = options[i]; }
+        }
+      }
+
+      var maxValue = Math.max(cfg.maxValue, d3.max(data, i => d3.max(i.map(o => o.value))));
+      var allAxis = data[0].map(i => i.axis),
+          total = allAxis.length,
+          radius = Math.min(cfg.w/2, cfg.h/2),
+          Format = d3.format('.1f'),
+          angleSlice = Math.PI * 2 / total;
+
+      var rScale = d3.scale.linear().range([0, radius]).domain([0, maxValue]);
+      d3.select(id).select("svg").remove();
+
+      var svg = d3.select(id).append("svg")
+          .attr("width", cfg.w + cfg.margin.left + cfg.margin.right + 200)
+          .attr("height", cfg.h + cfg.margin.top + cfg.margin.bottom)
+          .attr("viewBox", `0 0 ${cfg.w + cfg.margin.left + cfg.margin.right + 200} ${cfg.h + cfg.margin.top + cfg.margin.bottom}`)
+          .attr("preserveAspectRatio", "xMidYMid meet");
+
+      // Embed CSS styles
+      svg.append("defs").append("style").attr("type", "text/css").text(`
+        .radarArea { fill-opacity: 0.3; }
+        .radarStroke { fill: none; stroke-width: 2px; }
+        .radarCircle { fill-opacity: 0.8; }
+        .axisLabel, .legend { font-family: sans-serif; font-size: 14px; fill: #737373; }
+        .tooltip { font-family: sans-serif; font-size: 12px; fill: black; }
+        .gridCircle { fill: #CDCDCD; stroke: #CDCDCD; fill-opacity: 0.1; }
+        .line { stroke: white; stroke-width: 2px; }
+      `);
+
+      var g = svg.append("g")
+          .attr("transform", "translate(" + (cfg.w/2 + cfg.margin.left) + "," + (cfg.h/2 + cfg.margin.top) + ")");
+
+      var filter = g.append('defs').append('filter').attr('id','glow');
+      filter.append('feGaussianBlur').attr('stdDeviation','2.5').attr('result','coloredBlur');
+      var feMerge = filter.append('feMerge');
+      feMerge.append('feMergeNode').attr('in','coloredBlur');
+      feMerge.append('feMergeNode').attr('in','SourceGraphic');
+
+      var axisGrid = g.append("g");
+
+      axisGrid.selectAll("circle")
+        .data(d3.range(1,(cfg.levels+1)).reverse())
+        .enter()
+        .append("circle")
+        .attr("class", "gridCircle")
+        .attr("r", d => radius/cfg.levels*d)
+        .style("fill", "#CDCDCD")
+        .style("stroke", "#CDCDCD")
+        .style("fill-opacity", cfg.opacityCircles)
+        .style("filter" , "url(#glow)");
+
+      axisGrid.selectAll("text")
+        .data(d3.range(1,(cfg.levels+1)).reverse())
+        .enter().append("text")
+        .attr("x", d => (d * radius / cfg.levels) * Math.cos(5 * Math.PI / 4))
+        .attr("y", d => (d * radius / cfg.levels) * Math.sin(5 * Math.PI / 4))
+        .attr("dy", "0.4em")
+        .attr("font-family", "sans-serif")
+        .attr("font-size", "10px")
+        .attr("fill", "#737373")
+        .text(d => Format(maxValue * d/cfg.levels));
+
+      var axis = axisGrid.selectAll("g")
+        .data(allAxis)
+        .enter()
+        .append("g");
+
+      axis.append("line")
+        .attr("class", "line")
+        .attr("x1", 0).attr("y1", 0)
+        .attr("x2", (d, i) => rScale(maxValue*1.1) * Math.cos(angleSlice*i - Math.PI/2))
+        .attr("y2", (d, i) => rScale(maxValue*1.1) * Math.sin(angleSlice*i - Math.PI/2))
+        .style("stroke", "white")
+        .style("stroke-width", "2px");
+
+      axis.append("text")
+        .attr("class", "axisLabel")
+        .attr("text-anchor", "middle")
+        .attr("dy", "0.35em")
+        .attr("x", function(d, i) {
+          var x = rScale(maxValue * cfg.labelFactor) * Math.cos(angleSlice*i - Math.PI/2);
+          if (d === "Dimensionality") return x - 20;
+          if (d === "RSA") return x - 15;
+          return x;
+        })
+        .attr("y", function(d, i) {
+          var y = rScale(maxValue * cfg.labelFactor) * Math.sin(angleSlice*i - Math.PI/2);
+          if (d === "Semanticity") return y - 40;
+          if (d === "Dimensionality") return y - 18;
+          return y;
+        })
+        .text(d => d)
+        .attr("font-family", "sans-serif")
+        .attr("font-size", "14px")
+        // .attr("font-weight", "bold")
+        .attr("fill", "#737373")
+        .call(wrap, cfg.wrapWidth);
+
+      var radarLine = d3.svg.line.radial()
+        .interpolate("cardinal-closed")
+        .radius(d => rScale(d.value))
+        .angle((d,i) => i*angleSlice);
+
+      var blobWrapper = g.selectAll(".radarWrapper")
+        .data(data)
+        .enter().append("g");
+
+      blobWrapper
+        .append("path")
+        .attr("class", "radarArea")
+        .attr("d", d => radarLine(d))
+        .style("fill", (d,i) => cfg.color(i))
+        .style("fill-opacity", cfg.opacityArea)
+        .on('mouseover', function (d,i){
+          d3.selectAll(".radarArea").transition().duration(200).style("fill-opacity", 0.1);
+          d3.select(this).transition().duration(200).style("fill-opacity", 0.7);
+        })
+        .on('mouseout', function(){
+          d3.selectAll(".radarArea").transition().duration(200).style("fill-opacity", cfg.opacityArea);
+        });
+
+      blobWrapper
+        .append("path")
+        .attr("class", "radarStroke")
+        .attr("d", d => radarLine(d))
+        .style("stroke-width", cfg.strokeWidth + "px")
+        .style("stroke", (d,i) => cfg.color(i))
+        .style("fill", "none")
+        .style("filter" , "url(#glow)");
+
+      blobWrapper.selectAll(".radarCircle")
+        .data(function(d,i) { return d; })
+        .enter().append("circle")
+        .attr("class", "radarCircle")
+        .attr("r", cfg.dotRadius)
+        .attr("cx", (d,i) => rScale(d.value) * Math.cos(angleSlice*i - Math.PI/2))
+        .attr("cy", (d,i) => rScale(d.value) * Math.sin(angleSlice*i - Math.PI/2))
+        .style("fill", (d,i,j) => cfg.color(j))
+        .style("fill-opacity", 0.8);
+
+      var tooltip = g.append("text")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
+      function wrap(text, width) {
+        text.each(function() {
+          var text = d3.select(this),
+              words = text.text().split(/\s+/).reverse(),
+              word,
+              line = [],
+              lineNumber = 0,
+              lineHeight = 1.4,
+              y = text.attr("y"),
+              x = text.attr("x"),
+              dy = parseFloat(text.attr("dy")),
+              tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
+
+          while (word = words.pop()) {
+            line.push(word);
+            tspan.text(line.join(" "));
+            if (tspan.node().getComputedTextLength() > width) {
+              line.pop();
+              tspan.text(line.join(" "));
+              line = [word];
+              tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+            }
+          }
+        });
+      }
+    }
+
+    const chartConfigs = [
+      {id: "#radar_simclr_neural", experimentName: "simclr_neural", dataPath: "simclr_neural_data.json", labelPath: "simclr_neural_labels.json"},
+      {id: "#radar_simclr_neural_pc1", experimentName: "simclr_neural_pc1", dataPath: "simclr_neural_pc1_data.json", labelPath: "simclr_neural_pc1_labels.json"},
+      {id: "#radar_vgg19_neural", experimentName: "vgg19_neural", dataPath: "vgg19_neural_data.json", labelPath: "vgg19_neural_labels.json"},
+      {id: "#radar_vgg19_neural_pc1", experimentName: "vgg19_neural_pc1", dataPath: "vgg19_neural_pc1_data.json", labelPath: "vgg19_neural_pc1_labels.json"}
+    ];
+
+    chartConfigs.forEach(({id, dataPath, labelPath}) => {
+      d3.json(dataPath, function(error, data) {
+        if (error) throw error;
+
+        const epsilon = 0.003;
+        data = data.map(layer =>
+          layer.map(d => ({
+            axis: d.axis,
+            value: d.value === 0 ? epsilon : d.value
+          }))
+        );
+
+        d3.json(labelPath, function(error2, labels) {
+          if (error2) throw error2;
+
+          const color = d3.scale.category10();
+          const options = {
+            w: 400,
+            h: 400,
+            maxValue: 1.0,
+            levels: 5,
+            roundStrokes: true,
+            color: color
+          };
+
+          RadarChart(id, data, options);
+
+          const legendSvg = d3.select(id).select("svg");
+          const legend = legendSvg.append("g")
+            .attr("class", "legend")
+            .attr("transform", "translate(560, 50)");
+
+          legend.selectAll("circle")
+            .data(labels)
+            .enter()
+            .append("circle")
+            .attr("cx", 9)
+            .attr("cy", (d, i) => i * 25 + 9)
+            .attr("r", 9)
+            .style("fill", (d, i) => color(i))
+            .style("fill-opacity", 0.35)
+            .style("stroke", (d, i) => color(i))
+            .style("stroke-width", "2px");
+
+          legend.selectAll("text")
+            .data(labels)
+            .enter()
+            .append("text")
+            .attr("x", 25)
+            .attr("y", (d, i) => i * 25 + 13)
+            .text(d => d)
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "14px")
+            .attr("fill", "#737373");
+        });
+      });
+    });
+
+    function downloadAllSVGs() {
+      chartConfigs.forEach(cfg => {
+        const svgElement = document.querySelector(`${cfg.id} svg`);
+        if (!svgElement) {
+          console.warn(`No SVG found for ${cfg.experimentName}`);
+          return;
+        }
+
+        const serializer = new XMLSerializer();
+        let svgString = serializer.serializeToString(svgElement);
+
+        // Add XML declaration
+        svgString = '<?xml version="1.0" encoding="UTF-8"?>\n' + svgString;
+
+        const blob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.download = `${cfg.experimentName}_radar.svg`;
+        link.href = url;
+        document.body.appendChild(link); // ensure it's in the DOM
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      });
+    }
+  </script>
+</body>
+</html>
