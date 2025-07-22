@@ -6,7 +6,7 @@
   <script src="https://d3js.org/d3.v3.min.js"></script>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   <style>
-    body { font-family: sans-serif; padding: 100px }
+    body { font-family: sans-serif; padding: 200px }
     .radarArea { fill-opacity: 0.3; }
     .radarStroke { fill: none; stroke-width: 2px; }
     .radarCircle { fill-opacity: 0.8; }
@@ -18,8 +18,8 @@
   </style>
 </head>
 <body>
-  <div id="radarChart"></div>
   <button onclick="downloadPNG()">Download SVG</button>
+  <div id="radarChart"></div>
   <script>
     /////////////////////////////////////////////////////////
     /////////////// The Radar Chart Function ////////////////
@@ -115,10 +115,23 @@
       axis.append("text")
         .attr("class", "legend")
         .style("font-size", "14px")
+        .style("font-weight", "bold")
         .attr("text-anchor", "middle")
         .attr("dy", "0.35em")
-        .attr("x", function(d, i){ return rScale(maxValue * cfg.labelFactor) * Math.cos(angleSlice*i - Math.PI/2); })
-        .attr("y", function(d, i){ return rScale(maxValue * cfg.labelFactor) * Math.sin(angleSlice*i - Math.PI/2); })
+        // .attr("x", function(d, i){ return rScale(maxValue * cfg.labelFactor) * Math.cos(angleSlice*i - Math.PI/2); })
+        // .attr("y", function(d, i){ return rScale(maxValue * cfg.labelFactor) * Math.sin(angleSlice*i - Math.PI/2); })
+        .attr("x", function(d, i) {
+          var x = rScale(maxValue * cfg.labelFactor) * Math.cos(angleSlice*i - Math.PI/2);
+          if (d === "Dimensionality") return x - 20;  // move slightly left
+          if (d === "RSA") return x - 15;  // move slightly left
+          return x;
+        })
+        .attr("y", function(d, i) {
+          var y = rScale(maxValue * cfg.labelFactor) * Math.sin(angleSlice*i - Math.PI/2);
+          if (d === "Semanticity") return y - 40;        // move up more
+          if (d === "Dimensionality") return y - 18;      // move up slightly
+          return y;
+        })
         .text(function(d){return d})
         .call(wrap, cfg.wrapWidth);
 

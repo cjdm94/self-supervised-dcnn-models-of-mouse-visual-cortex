@@ -1,30 +1,8 @@
 [
   [
     {
-      "axis": "Power-law \u03b1",
-      "value": 0
-    },
-    {
-      "axis": "Mean FEV",
-      "value": 0.1690821256038646
-    },
-    {
-      "axis": "RSA",
-      "value": 0.1875
-    },
-    {
-      "axis": "Semanticity",
-      "value": 1.0
-    }
-  ],
-  [
-    {
-      "axis": "Power-law \u03b1",
-      "value": 1.0
-    },
-    {
-      "axis": "Mean FEV",
-      "value": 0
+      "axis": "Predictivity",
+      "value": 0.0
     },
     {
       "axis": "RSA",
@@ -32,16 +10,16 @@
     },
     {
       "axis": "Semanticity",
-      "value": 0
+      "value": 0.0
+    },
+    {
+      "axis": "Dimensionality",
+      "value": 1.0
     }
   ],
   [
     {
-      "axis": "Power-law \u03b1",
-      "value": 0.83152259486695
-    },
-    {
-      "axis": "Mean FEV",
+      "axis": "Predictivity",
       "value": 1.0
     },
     {
@@ -51,15 +29,15 @@
     {
       "axis": "Semanticity",
       "value": 0.1531531531531532
+    },
+    {
+      "axis": "Dimensionality",
+      "value": 0.83152259486695
     }
   ],
   [
     {
-      "axis": "Power-law \u03b1",
-      "value": 0.088962368131003
-    },
-    {
-      "axis": "Mean FEV",
+      "axis": "Predictivity",
       "value": 0.8550724637681157
     },
     {
@@ -69,24 +47,46 @@
     {
       "axis": "Semanticity",
       "value": 0.4909909909909911
+    },
+    {
+      "axis": "Dimensionality",
+      "value": 0.088962368131003
     }
   ],
   [
     {
-      "axis": "Power-law \u03b1",
-      "value": 0.08471106912297277
-    },
-    {
-      "axis": "Mean FEV",
+      "axis": "Predictivity",
       "value": 0.27053140096618344
     },
     {
       "axis": "RSA",
-      "value": 0
+      "value": 0.0
     },
     {
       "axis": "Semanticity",
       "value": 0.8963963963963966
+    },
+    {
+      "axis": "Dimensionality",
+      "value": 0.08471106912297277
+    }
+  ],
+  [
+    {
+      "axis": "Predictivity",
+      "value": 0.1690821256038646
+    },
+    {
+      "axis": "RSA",
+      "value": 0.1875
+    },
+    {
+      "axis": "Semanticity",
+      "value": 1.0
+    },
+    {
+      "axis": "Dimensionality",
+      "value": 0.0
     }
   ]
 ]
