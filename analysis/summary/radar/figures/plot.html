@@ -15,11 +15,19 @@
     .gridCircle { fill: #CDCDCD; stroke: #CDCDCD; fill-opacity: 0.1; }
     .line { stroke: white; stroke-width: 2px; }
     svg { overflow: visible; }
+    #radarChart1, #radarChart2, #radarChart3, #radarChart4 {
+      display: inline-block;
+      margin: 100px;
+      vertical-align: top;
+    }
   </style>
 </head>
 <body>
   <button onclick="downloadPNG()">Download SVG</button>
-  <div id="radarChart"></div>
+  <div id="radarChart1"></div>
+  <div id="radarChart2"style="padding-top: 100px"></div>
+  <div id="radarChart3"style="padding-top: 100px"></div>
+  <div id="radarChart4"style="padding-top: 100px"></div>
   <script>
     /////////////////////////////////////////////////////////
     /////////////// The Radar Chart Function ////////////////
@@ -241,100 +249,72 @@
       }
     }
 
-    d3.json("data.json", function(error, data) {
-      if (error) throw error;
+      const chartConfigs = [
+        {id: "#radarChart1", dataPath: "simclr_neural_data.json", labelPath: "simclr_neural_labels.json"},
+        {id: "#radarChart2", dataPath: "simclr_neural_pc1_data.json", labelPath: "simclr_neural_pc1_labels.json"},
+        {id: "#radarChart3", dataPath: "vgg19_neural_data.json", labelPath: "vgg19_neural_labels.json"},
+        {id: "#radarChart4", dataPath: "vgg19_neural_pc1_data.json", labelPath: "vgg19_neural_pc1_labels.json"}
+      ];
 
-      console.log("DATA:");
-      data.forEach((layer, i) => {
-        console.log(`Layer ${i}:`);
-        layer.forEach(point => {
-          console.log(`  ${point.axis}: ${point.value}`);
+      chartConfigs.forEach(({id, dataPath, labelPath}) => {
+        d3.json(dataPath, function(error, data) {
+          if (error) throw error;
+
+          // Small epsilon to prevent broken lines for zeros
+          const epsilon = 0.003;
+          data = data.map(layer =>
+            layer.map(d => ({
+              axis: d.axis,
+              value: d.value === 0 ? epsilon : d.value
+            }))
+          );
+
+          d3.json(labelPath, function(error2, labels) {
+            if (error2) throw error2;
+
+            const color = d3.scale.category10();
+            const options = {
+              w: 400,
+              h: 400,
+              maxValue: 1.0,
+              levels: 5,
+              roundStrokes: true,
+              color: color
+            };
+
+            RadarChart(id, data, options);
+
+            // Legend
+            const legendSvg = d3.select(id).select("svg");
+            const legend = legendSvg.append("g")
+              .attr("class", "legend")
+              .attr("transform", "translate(420, 0)");
+
+            legend.selectAll("circle")
+              .data(labels)
+              .enter()
+              .append("circle")
+              .attr("cx", 9)
+              .attr("cy", (d, i) => i * 25 + 9)
+              .attr("r", 9)
+              .style("fill", (d, i) => color(i))
+              .style("fill-opacity", 0.35)
+              .style("stroke", (d, i) => color(i))
+              .style("stroke-width", "2px");
+
+            legend.selectAll("text")
+              .data(labels)
+              .enter()
+              .append("text")
+              .attr("x", 25)
+              .attr("y", (d, i) => i * 25 + 13)
+              .text(d => d)
+              .style("font-size", "14px")
+              .attr("fill", "#737373");
+          });
         });
       });
 
-      d3.json("labels.json", function(error2, labels) {
-        if (error2) throw error2;
-
-        const color = d3.scale.category10();
-
-        var options = {
-          w: 500,
-          h: 500,
-          maxValue: 1.0,
-          levels: 5,
-          roundStrokes: true,
-          color: color
-        };
-
-        // Ensure if layer has >1 zero value, a line is drawn between them
-        const epsilon = 0.003
-        data = data.map(layer =>
-          layer.map(d => ({
-            axis: d.axis,
-            value: d.value === 0 ? epsilon : d.value
-          }))
-        );
-
-        RadarChart("#radarChart", data, options);
-
-        // Use labels directly for legend
-        const legendSvg = d3.select("#radarChart").select("svg");
-
-        const legend = legendSvg.append("g")
-          .attr("class", "legend")
-          // .attr("transform", "translate(30, 30)");
-          .attr("transform", "translate(520, 0)")
-
-        legend.selectAll("circle")
-          .data(labels)
-          .enter()
-          .append("circle")
-          .attr("cx", 9)
-          .attr("cy", (d, i) => i * 25 + 9)
-          .attr("r", 9)
-          .style("fill", (d, i) => color(i))
-          .style("fill-opacity", 0.35)
-          .style("stroke", (d, i) => color(i))
-          .style("stroke-width", "2px");
-
-        legend.selectAll("text")
-          .data(labels)
-          .enter()
-          .append("text")
-          .attr("x", 25)
-          .attr("y", (d, i) => i * 25 + 13)
-          .text(d => d)
-          .style("font-size", "14px")
-          .attr("fill", "#737373");
-      });
-    });
-
-
-    // var data = [
-    //   [
-    //     {axis:"Accuracy", value:0.8},
-    //     {axis:"Precision", value:0.7},
-    //     {axis:"Recall", value:0.65},
-    //     {axis:"F1 Score", value:0.72},
-    //     {axis:"AUC", value:0.85}
-    //   ],
-    //   [
-    //     {axis:"Accuracy", value:0.6},
-    //     {axis:"Precision", value:0.65},
-    //     {axis:"Recall", value:0.7},
-    //     {axis:"F1 Score", value:0.68},
-    //     {axis:"AUC", value:0.75}
-    //   ]
-    // ];
-
-    // var options = {
-    //   w: 500,
-    //   h: 500,
-    //   maxValue: 1.0,
-    //   levels: 5,
-    //   roundStrokes: true,
-    //   color: d3.scale.category10()
-    // };
     function downloadPNG() {
       html2canvas(document.querySelector("#radarChart")).then(canvas => {
         const link = document.createElement('a');
