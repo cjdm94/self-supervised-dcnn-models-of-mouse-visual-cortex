@@ -24,6 +24,8 @@ vgg19_colours = {
     'fc2': '#b30000',
 }
 
+neural_colour = "#068235"
+
 
 def plot_mean_fev(avg_metrics, individual_metrics, remove_gabor=False):
     """
