@@ -184,3 +184,16 @@ def get_model_target() -> str:
     if "_" in parent_dir and any(model in parent_dir for model in ["simclr", "vgg19", "gabor"]):
         return parent_dir.split("_", 1)[1]  # e.g., "simclr_neural" → "neural"
     return None
+
+
+def get_model() -> str:
+    """
+    Extracts the model (e.g. 'simclr') from the current file path.
+    """
+    parent_dir = Path().resolve().name
+    models = ["simclr", "vgg19", "gabor"]
+    for model in models:
+        if model in parent_dir and "_" in parent_dir:
+            return model
+    raise FileNotFoundError(
+        f"Getting model from filepath: filepath {parent_dir} does not contain any of {models}")
