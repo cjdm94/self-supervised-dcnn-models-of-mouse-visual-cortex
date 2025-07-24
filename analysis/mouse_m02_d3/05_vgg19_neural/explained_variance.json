@@ -3,6 +3,8 @@
     "mouse_id": "m02_d3",
     "model": "vgg19",
     "layer": "conv2_2",
+    "original_dimensions": 128,
+    "subsampled_dimensions": 128,
     "num_principal_components_80pc_ev": 2,
     "num_principal_components_90pc_ev": 3,
     "cumulative_ev": [
@@ -140,6 +142,8 @@
     "mouse_id": "m02_d3",
     "model": "vgg19",
     "layer": "conv3_4",
+    "original_dimensions": 256,
+    "subsampled_dimensions": 128,
     "num_principal_components_80pc_ev": 3,
     "num_principal_components_90pc_ev": 5,
     "cumulative_ev": [
@@ -277,6 +281,8 @@
     "mouse_id": "m02_d3",
     "model": "vgg19",
     "layer": "conv4_4",
+    "original_dimensions": 512,
+    "subsampled_dimensions": 128,
     "num_principal_components_80pc_ev": 4,
     "num_principal_components_90pc_ev": 9,
     "cumulative_ev": [
@@ -414,6 +420,8 @@
     "mouse_id": "m02_d3",
     "model": "vgg19",
     "layer": "conv5_4",
+    "original_dimensions": 512,
+    "subsampled_dimensions": 128,
     "num_principal_components_80pc_ev": 2,
     "num_principal_components_90pc_ev": 5,
     "cumulative_ev": [
@@ -551,6 +559,8 @@
     "mouse_id": "m02_d3",
     "model": "vgg19",
     "layer": "fc2",
+    "original_dimensions": 4096,
+    "subsampled_dimensions": 128,
     "num_principal_components_80pc_ev": 7,
     "num_principal_components_90pc_ev": 13,
     "cumulative_ev": [

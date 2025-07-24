@@ -3,6 +3,8 @@
     "mouse_id": "m03_d4",
     "model": "simclr",
     "layer": "layer1",
+    "original_dimensions": 64,
+    "subsampled_dimensions": 500,
     "num_principal_components_80pc_ev": 215,
     "num_principal_components_90pc_ev": 294,
     "cumulative_ev": [
@@ -512,6 +514,8 @@
     "mouse_id": "m03_d4",
     "model": "simclr",
     "layer": "layer2",
+    "original_dimensions": 128,
+    "subsampled_dimensions": 500,
     "num_principal_components_80pc_ev": 153,
     "num_principal_components_90pc_ev": 236,
     "cumulative_ev": [
@@ -1021,6 +1025,8 @@
     "mouse_id": "m03_d4",
     "model": "simclr",
     "layer": "layer3",
+    "original_dimensions": 256,
+    "subsampled_dimensions": 500,
     "num_principal_components_80pc_ev": 109,
     "num_principal_components_90pc_ev": 184,
     "cumulative_ev": [
@@ -1530,6 +1536,8 @@
     "mouse_id": "m03_d4",
     "model": "simclr",
     "layer": "layer4",
+    "original_dimensions": 512,
+    "subsampled_dimensions": 500,
     "num_principal_components_80pc_ev": 103,
     "num_principal_components_90pc_ev": 182,
     "cumulative_ev": [
@@ -2039,6 +2047,8 @@
     "mouse_id": "m03_d4",
     "model": "simclr",
     "layer": "fc",
+    "original_dimensions": 512,
+    "subsampled_dimensions": 500,
     "num_principal_components_80pc_ev": 52,
     "num_principal_components_90pc_ev": 117,
     "cumulative_ev": [
