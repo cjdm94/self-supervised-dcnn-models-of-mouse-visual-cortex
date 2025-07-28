@@ -48,7 +48,7 @@ class CortexlabMouse:
         self.neural_responses = np.load(
             path.join(self.path_to_data, 'resps.npy'))
         self.image_ids = np.load(
-            path.join(self.path_to_data, 'stims.npy'))
+            path.join(self.path_to_data, 'stims.npy')).astype(int)
 
     def compute_null_all_neurons(self, n_shuffles=100):
         # imresps shape = (1573, 2, 15363)

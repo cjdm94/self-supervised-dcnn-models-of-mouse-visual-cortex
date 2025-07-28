@@ -8,6 +8,7 @@ from torch.utils.data import TensorDataset
 from torchvision import utils as torch_utils
 from pathlib import Path
 from cortexlib.utils.file import find_project_root
+import json
 
 
 class CortexlabImages:
@@ -15,7 +16,7 @@ class CortexlabImages:
         if path_to_data is None:
             current_file = Path(__file__)
             project_root = find_project_root(current_file)
-            path_to_data = project_root / 'data' / 'selection1866'
+            path_to_data = project_root / 'data' / 'cortexlab_images'
         else:
             path_to_data = Path(path_to_data).resolve()
 
@@ -38,6 +39,15 @@ class CortexlabImages:
             Normalize(mean=normalise_mean, std=normalise_std),
         ])
 
+    def load_class_labels(self, mouse_image_ids):
+        filepath = os.path.join(
+            self.path_to_data, 'labels.json')
+
+        with open(filepath, 'r') as f:
+            labels = json.load(f)
+
+        return [labels[str(int(stim_id))] for stim_id in mouse_image_ids]
+
     def load_images_shown_to_mouse(self, mouse_image_ids):
         stim_ids = np.sort(mouse_image_ids.astype(int))
         tensors, labels = [], []
@@ -52,7 +62,8 @@ class CortexlabImages:
         return dataset
 
     def _load_mat_image(self, stim_id):
-        filepath = os.path.join(self.path_to_data, f'img{stim_id}.mat')
+        filepath = os.path.join(
+            self.path_to_data, 'images', f'img{stim_id}.mat')
         data = loadmat(filepath)
         img = data['img'][:, :500]
         if self.channels == 3:

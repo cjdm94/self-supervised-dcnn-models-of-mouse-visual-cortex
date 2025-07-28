@@ -1,5 +1,9 @@
 # Ignore root data and models directories
-/data/
+/data/*
+!/data/cortexlab_images/
+/data/cortexlab_images/*
+!/data/cortexlab_images/labels.json
+
 /models/
 
 # Ignore data files from analysis pipeline
