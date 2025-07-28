@@ -79,3 +79,24 @@ class TSNEVisualizer:
         plt.tight_layout(rect=[0, 0, 0.91, 0.95])
         plt.suptitle("t-SNE on Model Layers", fontsize=16)
         plt.show()
+
+    @staticmethod
+    def plot_cluster_single_layer(tsne_feats, class_labels, layer_name="Layer", palette='tab10'):
+        plt.figure(figsize=(7, 5))
+        ax = sns.scatterplot(
+            x=tsne_feats[:, 0],
+            y=tsne_feats[:, 1],
+            hue=class_labels,
+            palette=palette,
+            s=30
+        )
+        ax.set_title(f"t-SNE for {layer_name}")
+        ax.set_xticks([])
+        ax.set_yticks([])
+
+        # Move legend outside plot
+        ax.legend(title='Class', bbox_to_anchor=(1.05, 1),
+                  loc='upper left', borderaxespad=0.)
+
+        plt.tight_layout(rect=[0, 0, 0.85, 1])  # Leave space for legend
+        plt.show()
