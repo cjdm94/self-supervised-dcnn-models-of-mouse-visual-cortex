@@ -1,100 +1,140 @@
 [
   {
+    "mouse_id": "m01_d2",
+    "model": "simclr",
     "layer": "layer1",
     "n_pcs": 10,
     "silhouette_score": -0.09625677764415741
   },
   {
+    "mouse_id": "m01_d2",
+    "model": "simclr",
     "layer": "layer2",
     "n_pcs": 10,
     "silhouette_score": -0.06794530898332596
   },
   {
+    "mouse_id": "m01_d2",
+    "model": "simclr",
     "layer": "layer3",
     "n_pcs": 10,
     "silhouette_score": -0.09526216983795166
   },
   {
+    "mouse_id": "m01_d2",
+    "model": "simclr",
     "layer": "layer4",
     "n_pcs": 10,
     "silhouette_score": -0.08577378839254379
   },
   {
+    "mouse_id": "m01_d2",
+    "model": "simclr",
     "layer": "fc",
     "n_pcs": 10,
     "silhouette_score": -0.07678724080324173
   },
   {
+    "mouse_id": "m01_d2",
+    "model": "simclr",
     "layer": "layer1",
     "n_pcs": 20,
     "silhouette_score": -0.09490453451871872
   },
   {
+    "mouse_id": "m01_d2",
+    "model": "simclr",
     "layer": "layer2",
     "n_pcs": 20,
     "silhouette_score": -0.07618863880634308
   },
   {
+    "mouse_id": "m01_d2",
+    "model": "simclr",
     "layer": "layer3",
     "n_pcs": 20,
     "silhouette_score": -0.08239789307117462
   },
   {
+    "mouse_id": "m01_d2",
+    "model": "simclr",
     "layer": "layer4",
     "n_pcs": 20,
     "silhouette_score": -0.06622342765331268
   },
   {
+    "mouse_id": "m01_d2",
+    "model": "simclr",
     "layer": "fc",
     "n_pcs": 20,
     "silhouette_score": -0.0708414688706398
   },
   {
+    "mouse_id": "m01_d2",
+    "model": "simclr",
     "layer": "layer1",
     "n_pcs": 50,
     "silhouette_score": -0.09618092328310013
   },
   {
+    "mouse_id": "m01_d2",
+    "model": "simclr",
     "layer": "layer2",
     "n_pcs": 50,
     "silhouette_score": -0.0730978474020958
   },
   {
+    "mouse_id": "m01_d2",
+    "model": "simclr",
     "layer": "layer3",
     "n_pcs": 50,
     "silhouette_score": -0.07099010050296783
   },
   {
+    "mouse_id": "m01_d2",
+    "model": "simclr",
     "layer": "layer4",
     "n_pcs": 50,
     "silhouette_score": -0.08692750334739685
   },
   {
+    "mouse_id": "m01_d2",
+    "model": "simclr",
     "layer": "fc",
     "n_pcs": 50,
     "silhouette_score": -0.06552965939044952
   },
   {
+    "mouse_id": "m01_d2",
+    "model": "simclr",
     "layer": "layer1",
     "n_pcs": 100,
     "silhouette_score": -0.0970311239361763
   },
   {
+    "mouse_id": "m01_d2",
+    "model": "simclr",
     "layer": "layer2",
     "n_pcs": 100,
     "silhouette_score": -0.0760597512125969
   },
   {
+    "mouse_id": "m01_d2",
+    "model": "simclr",
     "layer": "layer3",
     "n_pcs": 100,
     "silhouette_score": -0.08127322793006897
   },
   {
+    "mouse_id": "m01_d2",
+    "model": "simclr",
     "layer": "layer4",
     "n_pcs": 100,
     "silhouette_score": -0.07062390446662903
   },
   {
+    "mouse_id": "m01_d2",
+    "model": "simclr",
     "layer": "fc",
     "n_pcs": 100,
     "silhouette_score": -0.06475584954023361
