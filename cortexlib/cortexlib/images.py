@@ -102,3 +102,27 @@ class CortexlabImages:
         plt.title(f"Raw Image {stim_id}")
         plt.axis('off')
         plt.show()
+
+
+class CortexlabRawImages:
+    def __init__(self, path_to_data=None, channels=1):
+        if path_to_data is None:
+            current_file = Path(__file__)
+            project_root = find_project_root(current_file)
+            path_to_data = project_root / 'data' / 'cortexlab_images'
+        else:
+            path_to_data = Path(path_to_data).resolve()
+
+        self.path_to_data = path_to_data
+        self.channels = channels
+
+    def load_mat_image(self, stim_id):
+        filepath = os.path.join(
+            self.path_to_data, 'images', f'img{stim_id}.mat')
+        data = loadmat(filepath)
+        img = data['img'][:, :500]
+        print('RAW IMAge SHAEP:', img.shape)
+        if self.channels == 3:
+            return np.stack([img] * 3, axis=-1)  # H x W x 3
+        else:
+            return img[:, :, None]  # H x W x 1
