@@ -139,3 +139,69 @@ class PreTrainedVGG19Model:
         labels = torch.cat(labels, dim=0)
 
         return feature_maps, labels
+
+    def _get_layer(self, layer_name):
+        section, idx = VGG19_LAYER_INDEX[layer_name]
+        return getattr(self.model, section)[idx] if section == "features" else getattr(self.model, section)[idx]
+
+    def capture_single_forward(self, img_tensor, target_layer):
+        activations = {}
+
+        def hook_fn(module, input, output):
+            activations[target_layer] = output
+
+        layer = self._get_layer(target_layer)
+        handle = layer.register_forward_hook(hook_fn)
+
+        x = img_tensor.to(self.device)
+        x = x.repeat(1, 3, 1, 1)
+
+        feats = self.model.features(x)
+        pooled = self.model.avgpool(feats)
+        flat = torch.flatten(pooled, 1)
+        _ = self.model.classifier(flat)
+
+        handle.remove()
+
+        out = activations[target_layer]
+
+        # 🔧 Match training: apply avgpool if 4D feature map
+        if out.ndim == 4:
+            out = torch.nn.functional.adaptive_avg_pool2d(out, (1, 1))
+            out = out.view(out.size(0), -1)
+
+        else:
+            out = out.view(out.size(0), -1)
+
+        return out
+
+    @staticmethod
+    def l2_penalty(img, lam=0.0001):
+        l2_penalty = lam * torch.sum(img ** 2)
+        return l2_penalty
+
+    def generate_synthetic_image(self, layer_name, ridge_model, iterations=200, lr=0.05, l2_lam=1e-3):
+        ridge_weights = torch.tensor(
+            ridge_model.coef_, dtype=torch.float32, device=self.device).unsqueeze(0)
+        synthetic_image = torch.randn(
+            1, 1, 224, 224, device=self.device, requires_grad=True)
+        optimizer = torch.optim.Adam([synthetic_image], lr=lr)
+
+        for _ in range(iterations):
+            optimizer.zero_grad()
+
+            # Do NOT repeat here
+            feats = self.capture_single_forward(synthetic_image, layer_name)
+            feats = feats.view(1, -1)
+
+            score = torch.matmul(feats, ridge_weights.t()).squeeze()
+            loss = -score + (self.l2_penalty(synthetic_image,
+                             l2_lam) if l2_lam is not None else 0)
+
+            loss.backward()
+            optimizer.step()
+            synthetic_image.data.clamp_(0, 1)
+
+        img_np = synthetic_image.detach().cpu().squeeze().numpy()
+        img_np = (img_np - img_np.min()) / (img_np.max() - img_np.min())
+        return img_np

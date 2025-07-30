@@ -121,7 +121,6 @@ class CortexlabRawImages:
             self.path_to_data, 'images', f'img{stim_id}.mat')
         data = loadmat(filepath)
         img = data['img'][:, :500]
-        print('RAW IMAge SHAEP:', img.shape)
         if self.channels == 3:
             return np.stack([img] * 3, axis=-1)  # H x W x 3
         else:
