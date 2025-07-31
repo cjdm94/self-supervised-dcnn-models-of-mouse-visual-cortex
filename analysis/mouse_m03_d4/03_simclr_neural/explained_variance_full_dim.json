@@ -4,7 +4,7 @@
     "model": "simclr",
     "layer": "layer1",
     "original_dimensions": 64,
-    "num_principal_components_70pc_ev": null,
+    "num_principal_components_68pc_ev": 491,
     "num_principal_components_80pc_ev": null,
     "num_principal_components_90pc_ev": null,
     "cumulative_ev": [
@@ -515,7 +515,7 @@
     "model": "simclr",
     "layer": "layer2",
     "original_dimensions": 128,
-    "num_principal_components_70pc_ev": 385,
+    "num_principal_components_68pc_ev": 354,
     "num_principal_components_80pc_ev": null,
     "num_principal_components_90pc_ev": null,
     "cumulative_ev": [
@@ -1026,7 +1026,7 @@
     "model": "simclr",
     "layer": "layer3",
     "original_dimensions": 256,
-    "num_principal_components_70pc_ev": 228,
+    "num_principal_components_68pc_ev": 206,
     "num_principal_components_80pc_ev": 388,
     "num_principal_components_90pc_ev": null,
     "cumulative_ev": [
@@ -1537,7 +1537,7 @@
     "model": "simclr",
     "layer": "layer4",
     "original_dimensions": 512,
-    "num_principal_components_70pc_ev": 126,
+    "num_principal_components_68pc_ev": 111,
     "num_principal_components_80pc_ev": 245,
     "num_principal_components_90pc_ev": null,
     "cumulative_ev": [
@@ -2048,7 +2048,7 @@
     "model": "simclr",
     "layer": "fc",
     "original_dimensions": 512,
-    "num_principal_components_70pc_ev": 31,
+    "num_principal_components_68pc_ev": 28,
     "num_principal_components_80pc_ev": 52,
     "num_principal_components_90pc_ev": 119,
     "cumulative_ev": [

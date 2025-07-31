@@ -6,6 +6,7 @@
   "subsampled_dimensions": 500,
   "subsamples": [
     {
+      "num_principal_components_68pc_ev": 82,
       "num_principal_components_80pc_ev": 130,
       "num_principal_components_90pc_ev": 197,
       "cumulative_ev": [

@@ -4,7 +4,7 @@
     "model": "vgg19",
     "layer": "conv2_2",
     "original_dimensions": 128,
-    "num_principal_components_70pc_ev": 2,
+    "num_principal_components_68pc_ev": 2,
     "num_principal_components_80pc_ev": 2,
     "num_principal_components_90pc_ev": 3,
     "cumulative_ev": [
@@ -143,7 +143,7 @@
     "model": "vgg19",
     "layer": "conv3_4",
     "original_dimensions": 256,
-    "num_principal_components_70pc_ev": 1,
+    "num_principal_components_68pc_ev": 1,
     "num_principal_components_80pc_ev": 1,
     "num_principal_components_90pc_ev": 3,
     "cumulative_ev": [
@@ -282,7 +282,7 @@
     "model": "vgg19",
     "layer": "conv4_4",
     "original_dimensions": 512,
-    "num_principal_components_70pc_ev": 2,
+    "num_principal_components_68pc_ev": 1,
     "num_principal_components_80pc_ev": 3,
     "num_principal_components_90pc_ev": 8,
     "cumulative_ev": [
@@ -421,7 +421,7 @@
     "model": "vgg19",
     "layer": "conv5_4",
     "original_dimensions": 512,
-    "num_principal_components_70pc_ev": 5,
+    "num_principal_components_68pc_ev": 4,
     "num_principal_components_80pc_ev": 10,
     "num_principal_components_90pc_ev": 25,
     "cumulative_ev": [
@@ -560,7 +560,7 @@
     "model": "vgg19",
     "layer": "fc2",
     "original_dimensions": 4096,
-    "num_principal_components_70pc_ev": 8,
+    "num_principal_components_68pc_ev": 7,
     "num_principal_components_80pc_ev": 16,
     "num_principal_components_90pc_ev": 37,
     "cumulative_ev": [

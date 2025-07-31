@@ -3,7 +3,7 @@
   "model": "neural",
   "layer": "neural",
   "original_dimensions": 500,
-  "num_principal_components_70pc_ev": 147,
+  "num_principal_components_68pc_ev": 137,
   "num_principal_components_80pc_ev": 209,
   "num_principal_components_90pc_ev": 300,
   "cumulative_ev": [
