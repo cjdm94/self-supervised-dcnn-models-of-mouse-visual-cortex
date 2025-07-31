@@ -3,10 +3,11 @@
     "mouse_id": "m01_d2",
     "model": "simclr",
     "layer": "layer1",
-    "original_dimensions": 1380,
+    "original_dimensions": 64,
     "subsampled_dimensions": 500,
     "subsamples": [
       {
+        "num_principal_components_70pc_ev": 160,
         "num_principal_components_80pc_ev": 210,
         "num_principal_components_90pc_ev": 288,
         "cumulative_ev": [
@@ -513,6 +514,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 160,
         "num_principal_components_80pc_ev": 210,
         "num_principal_components_90pc_ev": 288,
         "cumulative_ev": [
@@ -1019,6 +1021,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 160,
         "num_principal_components_80pc_ev": 210,
         "num_principal_components_90pc_ev": 288,
         "cumulative_ev": [
@@ -1525,6 +1528,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 160,
         "num_principal_components_80pc_ev": 210,
         "num_principal_components_90pc_ev": 288,
         "cumulative_ev": [
@@ -2031,6 +2035,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 160,
         "num_principal_components_80pc_ev": 210,
         "num_principal_components_90pc_ev": 288,
         "cumulative_ev": [
@@ -2537,6 +2542,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 160,
         "num_principal_components_80pc_ev": 210,
         "num_principal_components_90pc_ev": 288,
         "cumulative_ev": [
@@ -3043,6 +3049,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 160,
         "num_principal_components_80pc_ev": 210,
         "num_principal_components_90pc_ev": 288,
         "cumulative_ev": [
@@ -3549,6 +3556,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 160,
         "num_principal_components_80pc_ev": 210,
         "num_principal_components_90pc_ev": 288,
         "cumulative_ev": [
@@ -4055,6 +4063,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 160,
         "num_principal_components_80pc_ev": 210,
         "num_principal_components_90pc_ev": 288,
         "cumulative_ev": [
@@ -4561,6 +4570,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 160,
         "num_principal_components_80pc_ev": 210,
         "num_principal_components_90pc_ev": 288,
         "cumulative_ev": [
@@ -5067,6 +5077,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 160,
         "num_principal_components_80pc_ev": 210,
         "num_principal_components_90pc_ev": 288,
         "cumulative_ev": [
@@ -5573,6 +5584,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 160,
         "num_principal_components_80pc_ev": 210,
         "num_principal_components_90pc_ev": 288,
         "cumulative_ev": [
@@ -6079,6 +6091,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 160,
         "num_principal_components_80pc_ev": 210,
         "num_principal_components_90pc_ev": 288,
         "cumulative_ev": [
@@ -6585,6 +6598,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 160,
         "num_principal_components_80pc_ev": 210,
         "num_principal_components_90pc_ev": 288,
         "cumulative_ev": [
@@ -7091,6 +7105,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 160,
         "num_principal_components_80pc_ev": 210,
         "num_principal_components_90pc_ev": 288,
         "cumulative_ev": [
@@ -7597,6 +7612,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 160,
         "num_principal_components_80pc_ev": 210,
         "num_principal_components_90pc_ev": 288,
         "cumulative_ev": [
@@ -8103,6 +8119,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 160,
         "num_principal_components_80pc_ev": 210,
         "num_principal_components_90pc_ev": 288,
         "cumulative_ev": [
@@ -8609,6 +8626,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 160,
         "num_principal_components_80pc_ev": 210,
         "num_principal_components_90pc_ev": 288,
         "cumulative_ev": [
@@ -9115,6 +9133,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 160,
         "num_principal_components_80pc_ev": 210,
         "num_principal_components_90pc_ev": 288,
         "cumulative_ev": [
@@ -9621,6 +9640,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 160,
         "num_principal_components_80pc_ev": 210,
         "num_principal_components_90pc_ev": 288,
         "cumulative_ev": [
@@ -10132,10 +10152,11 @@
     "mouse_id": "m01_d2",
     "model": "simclr",
     "layer": "layer2",
-    "original_dimensions": 1380,
+    "original_dimensions": 128,
     "subsampled_dimensions": 500,
     "subsamples": [
       {
+        "num_principal_components_70pc_ev": 103,
         "num_principal_components_80pc_ev": 151,
         "num_principal_components_90pc_ev": 232,
         "cumulative_ev": [
@@ -10642,6 +10663,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 103,
         "num_principal_components_80pc_ev": 151,
         "num_principal_components_90pc_ev": 232,
         "cumulative_ev": [
@@ -11148,6 +11170,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 103,
         "num_principal_components_80pc_ev": 151,
         "num_principal_components_90pc_ev": 232,
         "cumulative_ev": [
@@ -11654,6 +11677,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 103,
         "num_principal_components_80pc_ev": 151,
         "num_principal_components_90pc_ev": 232,
         "cumulative_ev": [
@@ -12160,6 +12184,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 103,
         "num_principal_components_80pc_ev": 151,
         "num_principal_components_90pc_ev": 232,
         "cumulative_ev": [
@@ -12666,6 +12691,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 103,
         "num_principal_components_80pc_ev": 151,
         "num_principal_components_90pc_ev": 232,
         "cumulative_ev": [
@@ -13172,6 +13198,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 103,
         "num_principal_components_80pc_ev": 151,
         "num_principal_components_90pc_ev": 232,
         "cumulative_ev": [
@@ -13678,6 +13705,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 103,
         "num_principal_components_80pc_ev": 151,
         "num_principal_components_90pc_ev": 232,
         "cumulative_ev": [
@@ -14184,6 +14212,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 103,
         "num_principal_components_80pc_ev": 151,
         "num_principal_components_90pc_ev": 232,
         "cumulative_ev": [
@@ -14690,6 +14719,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 103,
         "num_principal_components_80pc_ev": 151,
         "num_principal_components_90pc_ev": 232,
         "cumulative_ev": [
@@ -15196,6 +15226,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 103,
         "num_principal_components_80pc_ev": 151,
         "num_principal_components_90pc_ev": 232,
         "cumulative_ev": [
@@ -15702,6 +15733,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 103,
         "num_principal_components_80pc_ev": 151,
         "num_principal_components_90pc_ev": 232,
         "cumulative_ev": [
@@ -16208,6 +16240,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 103,
         "num_principal_components_80pc_ev": 151,
         "num_principal_components_90pc_ev": 232,
         "cumulative_ev": [
@@ -16714,6 +16747,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 103,
         "num_principal_components_80pc_ev": 151,
         "num_principal_components_90pc_ev": 232,
         "cumulative_ev": [
@@ -17220,6 +17254,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 103,
         "num_principal_components_80pc_ev": 151,
         "num_principal_components_90pc_ev": 232,
         "cumulative_ev": [
@@ -17726,6 +17761,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 103,
         "num_principal_components_80pc_ev": 151,
         "num_principal_components_90pc_ev": 232,
         "cumulative_ev": [
@@ -18232,6 +18268,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 103,
         "num_principal_components_80pc_ev": 151,
         "num_principal_components_90pc_ev": 232,
         "cumulative_ev": [
@@ -18738,6 +18775,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 103,
         "num_principal_components_80pc_ev": 151,
         "num_principal_components_90pc_ev": 232,
         "cumulative_ev": [
@@ -19244,6 +19282,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 103,
         "num_principal_components_80pc_ev": 151,
         "num_principal_components_90pc_ev": 232,
         "cumulative_ev": [
@@ -19750,6 +19789,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 103,
         "num_principal_components_80pc_ev": 151,
         "num_principal_components_90pc_ev": 232,
         "cumulative_ev": [
@@ -20261,10 +20301,11 @@
     "mouse_id": "m01_d2",
     "model": "simclr",
     "layer": "layer3",
-    "original_dimensions": 1380,
+    "original_dimensions": 256,
     "subsampled_dimensions": 500,
     "subsamples": [
       {
+        "num_principal_components_70pc_ev": 70,
         "num_principal_components_80pc_ev": 109,
         "num_principal_components_90pc_ev": 183,
         "cumulative_ev": [
@@ -20771,6 +20812,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 70,
         "num_principal_components_80pc_ev": 109,
         "num_principal_components_90pc_ev": 183,
         "cumulative_ev": [
@@ -21277,6 +21319,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 70,
         "num_principal_components_80pc_ev": 109,
         "num_principal_components_90pc_ev": 183,
         "cumulative_ev": [
@@ -21783,6 +21826,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 70,
         "num_principal_components_80pc_ev": 109,
         "num_principal_components_90pc_ev": 183,
         "cumulative_ev": [
@@ -22289,6 +22333,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 70,
         "num_principal_components_80pc_ev": 109,
         "num_principal_components_90pc_ev": 183,
         "cumulative_ev": [
@@ -22795,6 +22840,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 70,
         "num_principal_components_80pc_ev": 109,
         "num_principal_components_90pc_ev": 183,
         "cumulative_ev": [
@@ -23301,6 +23347,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 70,
         "num_principal_components_80pc_ev": 109,
         "num_principal_components_90pc_ev": 183,
         "cumulative_ev": [
@@ -23807,6 +23854,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 70,
         "num_principal_components_80pc_ev": 109,
         "num_principal_components_90pc_ev": 183,
         "cumulative_ev": [
@@ -24313,6 +24361,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 70,
         "num_principal_components_80pc_ev": 109,
         "num_principal_components_90pc_ev": 183,
         "cumulative_ev": [
@@ -24819,6 +24868,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 70,
         "num_principal_components_80pc_ev": 109,
         "num_principal_components_90pc_ev": 183,
         "cumulative_ev": [
@@ -25325,6 +25375,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 70,
         "num_principal_components_80pc_ev": 109,
         "num_principal_components_90pc_ev": 183,
         "cumulative_ev": [
@@ -25831,6 +25882,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 70,
         "num_principal_components_80pc_ev": 109,
         "num_principal_components_90pc_ev": 183,
         "cumulative_ev": [
@@ -26337,6 +26389,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 70,
         "num_principal_components_80pc_ev": 109,
         "num_principal_components_90pc_ev": 183,
         "cumulative_ev": [
@@ -26843,6 +26896,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 70,
         "num_principal_components_80pc_ev": 109,
         "num_principal_components_90pc_ev": 183,
         "cumulative_ev": [
@@ -27349,6 +27403,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 70,
         "num_principal_components_80pc_ev": 109,
         "num_principal_components_90pc_ev": 183,
         "cumulative_ev": [
@@ -27855,6 +27910,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 70,
         "num_principal_components_80pc_ev": 109,
         "num_principal_components_90pc_ev": 183,
         "cumulative_ev": [
@@ -28361,6 +28417,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 70,
         "num_principal_components_80pc_ev": 109,
         "num_principal_components_90pc_ev": 183,
         "cumulative_ev": [
@@ -28867,6 +28924,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 70,
         "num_principal_components_80pc_ev": 109,
         "num_principal_components_90pc_ev": 183,
         "cumulative_ev": [
@@ -29373,6 +29431,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 70,
         "num_principal_components_80pc_ev": 109,
         "num_principal_components_90pc_ev": 183,
         "cumulative_ev": [
@@ -29879,6 +29938,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 70,
         "num_principal_components_80pc_ev": 109,
         "num_principal_components_90pc_ev": 183,
         "cumulative_ev": [
@@ -30390,10 +30450,11 @@
     "mouse_id": "m01_d2",
     "model": "simclr",
     "layer": "layer4",
-    "original_dimensions": 1380,
+    "original_dimensions": 512,
     "subsampled_dimensions": 500,
     "subsamples": [
       {
+        "num_principal_components_70pc_ev": 62,
         "num_principal_components_80pc_ev": 102,
         "num_principal_components_90pc_ev": 179,
         "cumulative_ev": [
@@ -30900,6 +30961,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 62,
         "num_principal_components_80pc_ev": 102,
         "num_principal_components_90pc_ev": 179,
         "cumulative_ev": [
@@ -31406,6 +31468,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 62,
         "num_principal_components_80pc_ev": 102,
         "num_principal_components_90pc_ev": 179,
         "cumulative_ev": [
@@ -31912,6 +31975,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 62,
         "num_principal_components_80pc_ev": 102,
         "num_principal_components_90pc_ev": 179,
         "cumulative_ev": [
@@ -32418,6 +32482,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 62,
         "num_principal_components_80pc_ev": 102,
         "num_principal_components_90pc_ev": 179,
         "cumulative_ev": [
@@ -32924,6 +32989,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 62,
         "num_principal_components_80pc_ev": 102,
         "num_principal_components_90pc_ev": 179,
         "cumulative_ev": [
@@ -33430,6 +33496,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 62,
         "num_principal_components_80pc_ev": 102,
         "num_principal_components_90pc_ev": 179,
         "cumulative_ev": [
@@ -33936,6 +34003,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 62,
         "num_principal_components_80pc_ev": 102,
         "num_principal_components_90pc_ev": 179,
         "cumulative_ev": [
@@ -34442,6 +34510,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 62,
         "num_principal_components_80pc_ev": 102,
         "num_principal_components_90pc_ev": 179,
         "cumulative_ev": [
@@ -34948,6 +35017,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 62,
         "num_principal_components_80pc_ev": 102,
         "num_principal_components_90pc_ev": 179,
         "cumulative_ev": [
@@ -35454,6 +35524,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 62,
         "num_principal_components_80pc_ev": 102,
         "num_principal_components_90pc_ev": 179,
         "cumulative_ev": [
@@ -35960,6 +36031,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 62,
         "num_principal_components_80pc_ev": 102,
         "num_principal_components_90pc_ev": 179,
         "cumulative_ev": [
@@ -36466,6 +36538,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 62,
         "num_principal_components_80pc_ev": 102,
         "num_principal_components_90pc_ev": 179,
         "cumulative_ev": [
@@ -36972,6 +37045,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 62,
         "num_principal_components_80pc_ev": 102,
         "num_principal_components_90pc_ev": 179,
         "cumulative_ev": [
@@ -37478,6 +37552,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 62,
         "num_principal_components_80pc_ev": 102,
         "num_principal_components_90pc_ev": 179,
         "cumulative_ev": [
@@ -37984,6 +38059,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 62,
         "num_principal_components_80pc_ev": 102,
         "num_principal_components_90pc_ev": 179,
         "cumulative_ev": [
@@ -38490,6 +38566,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 62,
         "num_principal_components_80pc_ev": 102,
         "num_principal_components_90pc_ev": 179,
         "cumulative_ev": [
@@ -38996,6 +39073,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 62,
         "num_principal_components_80pc_ev": 102,
         "num_principal_components_90pc_ev": 179,
         "cumulative_ev": [
@@ -39502,6 +39580,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 62,
         "num_principal_components_80pc_ev": 102,
         "num_principal_components_90pc_ev": 179,
         "cumulative_ev": [
@@ -40008,6 +40087,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 62,
         "num_principal_components_80pc_ev": 102,
         "num_principal_components_90pc_ev": 179,
         "cumulative_ev": [
@@ -40519,10 +40599,11 @@
     "mouse_id": "m01_d2",
     "model": "simclr",
     "layer": "fc",
-    "original_dimensions": 1380,
+    "original_dimensions": 512,
     "subsampled_dimensions": 500,
     "subsamples": [
       {
+        "num_principal_components_70pc_ev": 31,
         "num_principal_components_80pc_ev": 51,
         "num_principal_components_90pc_ev": 116,
         "cumulative_ev": [
@@ -41029,6 +41110,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 31,
         "num_principal_components_80pc_ev": 51,
         "num_principal_components_90pc_ev": 116,
         "cumulative_ev": [
@@ -41535,6 +41617,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 31,
         "num_principal_components_80pc_ev": 51,
         "num_principal_components_90pc_ev": 116,
         "cumulative_ev": [
@@ -42041,6 +42124,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 31,
         "num_principal_components_80pc_ev": 51,
         "num_principal_components_90pc_ev": 116,
         "cumulative_ev": [
@@ -42547,6 +42631,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 31,
         "num_principal_components_80pc_ev": 51,
         "num_principal_components_90pc_ev": 116,
         "cumulative_ev": [
@@ -43053,6 +43138,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 31,
         "num_principal_components_80pc_ev": 51,
         "num_principal_components_90pc_ev": 116,
         "cumulative_ev": [
@@ -43559,6 +43645,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 31,
         "num_principal_components_80pc_ev": 51,
         "num_principal_components_90pc_ev": 116,
         "cumulative_ev": [
@@ -44065,6 +44152,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 31,
         "num_principal_components_80pc_ev": 51,
         "num_principal_components_90pc_ev": 116,
         "cumulative_ev": [
@@ -44571,6 +44659,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 31,
         "num_principal_components_80pc_ev": 51,
         "num_principal_components_90pc_ev": 116,
         "cumulative_ev": [
@@ -45077,6 +45166,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 31,
         "num_principal_components_80pc_ev": 51,
         "num_principal_components_90pc_ev": 116,
         "cumulative_ev": [
@@ -45583,6 +45673,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 31,
         "num_principal_components_80pc_ev": 51,
         "num_principal_components_90pc_ev": 116,
         "cumulative_ev": [
@@ -46089,6 +46180,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 31,
         "num_principal_components_80pc_ev": 51,
         "num_principal_components_90pc_ev": 116,
         "cumulative_ev": [
@@ -46595,6 +46687,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 31,
         "num_principal_components_80pc_ev": 51,
         "num_principal_components_90pc_ev": 116,
         "cumulative_ev": [
@@ -47101,6 +47194,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 31,
         "num_principal_components_80pc_ev": 51,
         "num_principal_components_90pc_ev": 116,
         "cumulative_ev": [
@@ -47607,6 +47701,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 31,
         "num_principal_components_80pc_ev": 51,
         "num_principal_components_90pc_ev": 116,
         "cumulative_ev": [
@@ -48113,6 +48208,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 31,
         "num_principal_components_80pc_ev": 51,
         "num_principal_components_90pc_ev": 116,
         "cumulative_ev": [
@@ -48619,6 +48715,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 31,
         "num_principal_components_80pc_ev": 51,
         "num_principal_components_90pc_ev": 116,
         "cumulative_ev": [
@@ -49125,6 +49222,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 31,
         "num_principal_components_80pc_ev": 51,
         "num_principal_components_90pc_ev": 116,
         "cumulative_ev": [
@@ -49631,6 +49729,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 31,
         "num_principal_components_80pc_ev": 51,
         "num_principal_components_90pc_ev": 116,
         "cumulative_ev": [
@@ -50137,6 +50236,7 @@
         ]
       },
       {
+        "num_principal_components_70pc_ev": 31,
         "num_principal_components_80pc_ev": 51,
         "num_principal_components_90pc_ev": 116,
         "cumulative_ev": [
