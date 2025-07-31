@@ -2,7 +2,7 @@
   "mouse_id": "m02_d3",
   "model": "neural",
   "layer": "neural",
-  "original_dimensions": 500,
+  "original_dimensions": 512,
   "subsampled_dimensions": 500,
   "subsamples": [
     {

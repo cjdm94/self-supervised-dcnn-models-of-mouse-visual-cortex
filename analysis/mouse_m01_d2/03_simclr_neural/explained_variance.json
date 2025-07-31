@@ -3,7 +3,7 @@
     "mouse_id": "m01_d2",
     "model": "simclr",
     "layer": "layer1",
-    "original_dimensions": 64,
+    "original_dimensions": 36864,
     "subsampled_dimensions": 500,
     "subsamples": [
       {
@@ -10152,7 +10152,7 @@
     "mouse_id": "m01_d2",
     "model": "simclr",
     "layer": "layer2",
-    "original_dimensions": 128,
+    "original_dimensions": 18432,
     "subsampled_dimensions": 500,
     "subsamples": [
       {
@@ -20301,7 +20301,7 @@
     "mouse_id": "m01_d2",
     "model": "simclr",
     "layer": "layer3",
-    "original_dimensions": 256,
+    "original_dimensions": 9216,
     "subsampled_dimensions": 500,
     "subsamples": [
       {
@@ -30450,7 +30450,7 @@
     "mouse_id": "m01_d2",
     "model": "simclr",
     "layer": "layer4",
-    "original_dimensions": 512,
+    "original_dimensions": 4608,
     "subsampled_dimensions": 500,
     "subsamples": [
       {

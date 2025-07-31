@@ -2,7 +2,7 @@
   "mouse_id": "m02_d3",
   "model": "neural",
   "layer": "neural",
-  "original_dimensions": 500,
+  "original_dimensions": 512,
   "num_principal_components_68pc_ev": 140,
   "num_principal_components_80pc_ev": 210,
   "num_principal_components_90pc_ev": 299,
