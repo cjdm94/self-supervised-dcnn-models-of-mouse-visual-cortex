@@ -9,11 +9,11 @@ gabor_filter_colours = {
 }
 
 simclr_colours = {
-    'layer1': '#f1eef6',
-    'layer2': '#bdc9e1',
-    'layer3': '#74a9cf',
-    'layer4': '#2b8cbe',
-    'fc': '#045a8d',
+    'layer1': '#eff3ff',
+    'layer2': '#bdd7e7',
+    'layer3': '#6baed6',
+    'layer4': '#3182bd',
+    'fc': '#08519c',
 }
 
 vgg19_colours = {
