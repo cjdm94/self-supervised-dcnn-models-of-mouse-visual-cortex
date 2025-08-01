@@ -17,11 +17,11 @@ simclr_colours = {
 }
 
 vgg19_colours = {
-    'conv2_2': '#fef0d9',
-    'conv3_4': '#fdcc8a',
-    'conv4_4': '#fc8d59',
-    'conv5_4': '#e34a33',
-    'fc2': '#b30000',
+    'conv2_2': '#fee5d9',
+    'conv3_4': '#fcae91',
+    'conv4_4': '#fb6a4a',
+    'conv5_4': '#de2d26',
+    'fc2': '#a50f15',
 }
 
 neural_colour = "#068235"
