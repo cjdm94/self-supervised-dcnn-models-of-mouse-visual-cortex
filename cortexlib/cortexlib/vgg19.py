@@ -185,7 +185,8 @@ class PreTrainedVGG19Model:
             ridge_model.coef_, dtype=torch.float32, device=self.device).unsqueeze(0)
         synthetic_image = torch.randn(
             1, 1, 224, 224, device=self.device, requires_grad=True)
-        optimizer = torch.optim.Adam([synthetic_image], lr=lr)
+        optimizer = torch.optim.Adam(
+            [synthetic_image], lr=lr, weight_decay=1e-6)
 
         for _ in range(iterations):
             optimizer.zero_grad()
