@@ -9,7 +9,8 @@
     "alpha": 1.394,
     "alpha_no_pc1": 1.418,
     "spearman_correlation": 0.055,
-    "silhouette_score": null
+    "silhouette_score": null,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "vgg19_neural",
@@ -21,7 +22,8 @@
     "alpha": 1.394,
     "alpha_no_pc1": 1.418,
     "spearman_correlation": 0.116,
-    "silhouette_score": -0.099
+    "silhouette_score": -0.099,
+    "silhouette_score_stringer": -0.122
   },
   {
     "model_target": "vgg19_neural",
@@ -33,7 +35,8 @@
     "alpha": 1.394,
     "alpha_no_pc1": 1.418,
     "spearman_correlation": 0.114,
-    "silhouette_score": -0.094
+    "silhouette_score": -0.094,
+    "silhouette_score_stringer": -0.117
   },
   {
     "model_target": "vgg19_neural",
@@ -45,7 +48,8 @@
     "alpha": 1.394,
     "alpha_no_pc1": 1.418,
     "spearman_correlation": 0.113,
-    "silhouette_score": -0.087
+    "silhouette_score": -0.087,
+    "silhouette_score_stringer": -0.13
   },
   {
     "model_target": "vgg19_neural",
@@ -57,7 +61,8 @@
     "alpha": 1.394,
     "alpha_no_pc1": 1.418,
     "spearman_correlation": 0.112,
-    "silhouette_score": -0.091
+    "silhouette_score": -0.091,
+    "silhouette_score_stringer": -0.135
   },
   {
     "model_target": "vgg19_neural",
@@ -69,7 +74,8 @@
     "alpha": 1.524,
     "alpha_no_pc1": 1.542,
     "spearman_correlation": 0.059,
-    "silhouette_score": null
+    "silhouette_score": null,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "vgg19_neural",
@@ -81,7 +87,8 @@
     "alpha": 1.524,
     "alpha_no_pc1": 1.542,
     "spearman_correlation": 0.118,
-    "silhouette_score": -0.071
+    "silhouette_score": -0.071,
+    "silhouette_score_stringer": -0.128
   },
   {
     "model_target": "vgg19_neural",
@@ -93,7 +100,8 @@
     "alpha": 1.524,
     "alpha_no_pc1": 1.542,
     "spearman_correlation": 0.119,
-    "silhouette_score": -0.063
+    "silhouette_score": -0.063,
+    "silhouette_score_stringer": -0.13
   },
   {
     "model_target": "vgg19_neural",
@@ -105,7 +113,8 @@
     "alpha": 1.524,
     "alpha_no_pc1": 1.542,
     "spearman_correlation": 0.12,
-    "silhouette_score": -0.062
+    "silhouette_score": -0.062,
+    "silhouette_score_stringer": -0.128
   },
   {
     "model_target": "vgg19_neural",
@@ -117,7 +126,8 @@
     "alpha": 1.524,
     "alpha_no_pc1": 1.542,
     "spearman_correlation": 0.12,
-    "silhouette_score": -0.056
+    "silhouette_score": -0.056,
+    "silhouette_score_stringer": -0.124
   },
   {
     "model_target": "vgg19_neural",
@@ -129,7 +139,8 @@
     "alpha": 1.627,
     "alpha_no_pc1": 1.664,
     "spearman_correlation": 0.024,
-    "silhouette_score": null
+    "silhouette_score": null,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "vgg19_neural",
@@ -141,7 +152,8 @@
     "alpha": 1.627,
     "alpha_no_pc1": 1.664,
     "spearman_correlation": 0.092,
-    "silhouette_score": 0.002
+    "silhouette_score": 0.002,
+    "silhouette_score_stringer": -0.113
   },
   {
     "model_target": "vgg19_neural",
@@ -153,7 +165,8 @@
     "alpha": 1.627,
     "alpha_no_pc1": 1.664,
     "spearman_correlation": 0.095,
-    "silhouette_score": 0.004
+    "silhouette_score": 0.004,
+    "silhouette_score_stringer": -0.117
   },
   {
     "model_target": "vgg19_neural",
@@ -165,7 +178,8 @@
     "alpha": 1.627,
     "alpha_no_pc1": 1.664,
     "spearman_correlation": 0.097,
-    "silhouette_score": 0.006
+    "silhouette_score": 0.006,
+    "silhouette_score_stringer": -0.108
   },
   {
     "model_target": "vgg19_neural",
@@ -177,7 +191,8 @@
     "alpha": 1.627,
     "alpha_no_pc1": 1.664,
     "spearman_correlation": 0.097,
-    "silhouette_score": 0.0
+    "silhouette_score": 0.0,
+    "silhouette_score_stringer": -0.112
   },
   {
     "model_target": "vgg19_neural",
@@ -189,7 +204,8 @@
     "alpha": 1.677,
     "alpha_no_pc1": 1.709,
     "spearman_correlation": 0.034,
-    "silhouette_score": null
+    "silhouette_score": null,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "vgg19_neural",
@@ -201,7 +217,8 @@
     "alpha": 1.677,
     "alpha_no_pc1": 1.709,
     "spearman_correlation": 0.074,
-    "silhouette_score": 0.27
+    "silhouette_score": 0.27,
+    "silhouette_score_stringer": -0.11
   },
   {
     "model_target": "vgg19_neural",
@@ -213,7 +230,8 @@
     "alpha": 1.677,
     "alpha_no_pc1": 1.709,
     "spearman_correlation": 0.075,
-    "silhouette_score": 0.297
+    "silhouette_score": 0.297,
+    "silhouette_score_stringer": -0.11
   },
   {
     "model_target": "vgg19_neural",
@@ -225,7 +243,8 @@
     "alpha": 1.677,
     "alpha_no_pc1": 1.709,
     "spearman_correlation": 0.075,
-    "silhouette_score": 0.264
+    "silhouette_score": 0.264,
+    "silhouette_score_stringer": -0.106
   },
   {
     "model_target": "vgg19_neural",
@@ -237,7 +256,8 @@
     "alpha": 1.677,
     "alpha_no_pc1": 1.709,
     "spearman_correlation": 0.074,
-    "silhouette_score": 0.252
+    "silhouette_score": 0.252,
+    "silhouette_score_stringer": -0.11
   },
   {
     "model_target": "vgg19_neural",
@@ -249,7 +269,8 @@
     "alpha": 1.593,
     "alpha_no_pc1": 1.602,
     "spearman_correlation": 0.033,
-    "silhouette_score": null
+    "silhouette_score": null,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "vgg19_neural",
@@ -261,7 +282,8 @@
     "alpha": 1.593,
     "alpha_no_pc1": 1.602,
     "spearman_correlation": 0.058,
-    "silhouette_score": 0.478
+    "silhouette_score": 0.478,
+    "silhouette_score_stringer": -0.103
   },
   {
     "model_target": "vgg19_neural",
@@ -273,7 +295,8 @@
     "alpha": 1.593,
     "alpha_no_pc1": 1.602,
     "spearman_correlation": 0.061,
-    "silhouette_score": 0.482
+    "silhouette_score": 0.482,
+    "silhouette_score_stringer": -0.102
   },
   {
     "model_target": "vgg19_neural",
@@ -285,7 +308,8 @@
     "alpha": 1.593,
     "alpha_no_pc1": 1.602,
     "spearman_correlation": 0.061,
-    "silhouette_score": 0.461
+    "silhouette_score": 0.461,
+    "silhouette_score_stringer": -0.104
   },
   {
     "model_target": "vgg19_neural",
@@ -297,6 +321,7 @@
     "alpha": 1.593,
     "alpha_no_pc1": 1.602,
     "spearman_correlation": 0.061,
-    "silhouette_score": 0.447
+    "silhouette_score": 0.447,
+    "silhouette_score_stringer": -0.099
   }
 ]

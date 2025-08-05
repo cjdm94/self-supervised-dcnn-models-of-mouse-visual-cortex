@@ -9,7 +9,8 @@
     "alpha": 3.891,
     "alpha_no_pc1": 4.271,
     "spearman_correlation": 0.135,
-    "silhouette_score": null
+    "silhouette_score": null,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -21,7 +22,8 @@
     "alpha": 3.891,
     "alpha_no_pc1": 4.271,
     "spearman_correlation": 0.26,
-    "silhouette_score": -0.089
+    "silhouette_score": -0.089,
+    "silhouette_score_stringer": -0.096
   },
   {
     "model_target": "simclr_neural",
@@ -33,7 +35,8 @@
     "alpha": 3.891,
     "alpha_no_pc1": 4.271,
     "spearman_correlation": 0.256,
-    "silhouette_score": -0.113
+    "silhouette_score": -0.113,
+    "silhouette_score_stringer": -0.095
   },
   {
     "model_target": "simclr_neural",
@@ -45,7 +48,8 @@
     "alpha": 3.891,
     "alpha_no_pc1": 4.271,
     "spearman_correlation": 0.239,
-    "silhouette_score": -0.089
+    "silhouette_score": -0.089,
+    "silhouette_score_stringer": -0.096
   },
   {
     "model_target": "simclr_neural",
@@ -57,7 +61,8 @@
     "alpha": 3.891,
     "alpha_no_pc1": 4.271,
     "spearman_correlation": 0.225,
-    "silhouette_score": -0.114
+    "silhouette_score": -0.114,
+    "silhouette_score_stringer": -0.097
   },
   {
     "model_target": "simclr_neural",
@@ -69,7 +74,8 @@
     "alpha": 3.891,
     "alpha_no_pc1": 4.271,
     "spearman_correlation": 0.213,
-    "silhouette_score": -0.103
+    "silhouette_score": -0.103,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -81,7 +87,8 @@
     "alpha": 3.891,
     "alpha_no_pc1": 4.271,
     "spearman_correlation": 0.208,
-    "silhouette_score": -0.104
+    "silhouette_score": -0.104,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -93,7 +100,8 @@
     "alpha": 3.891,
     "alpha_no_pc1": 4.271,
     "spearman_correlation": 0.206,
-    "silhouette_score": -0.104
+    "silhouette_score": -0.104,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -105,7 +113,8 @@
     "alpha": 3.891,
     "alpha_no_pc1": 4.271,
     "spearman_correlation": 0.206,
-    "silhouette_score": -0.11
+    "silhouette_score": -0.11,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -117,7 +126,8 @@
     "alpha": 3.487,
     "alpha_no_pc1": 3.872,
     "spearman_correlation": 0.207,
-    "silhouette_score": null
+    "silhouette_score": null,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -129,7 +139,8 @@
     "alpha": 3.487,
     "alpha_no_pc1": 3.872,
     "spearman_correlation": 0.258,
-    "silhouette_score": -0.096
+    "silhouette_score": -0.096,
+    "silhouette_score_stringer": -0.068
   },
   {
     "model_target": "simclr_neural",
@@ -141,7 +152,8 @@
     "alpha": 3.487,
     "alpha_no_pc1": 3.872,
     "spearman_correlation": 0.258,
-    "silhouette_score": -0.09
+    "silhouette_score": -0.09,
+    "silhouette_score_stringer": -0.076
   },
   {
     "model_target": "simclr_neural",
@@ -153,7 +165,8 @@
     "alpha": 3.487,
     "alpha_no_pc1": 3.872,
     "spearman_correlation": 0.244,
-    "silhouette_score": -0.091
+    "silhouette_score": -0.091,
+    "silhouette_score_stringer": -0.073
   },
   {
     "model_target": "simclr_neural",
@@ -165,7 +178,8 @@
     "alpha": 3.487,
     "alpha_no_pc1": 3.872,
     "spearman_correlation": 0.233,
-    "silhouette_score": -0.08
+    "silhouette_score": -0.08,
+    "silhouette_score_stringer": -0.076
   },
   {
     "model_target": "simclr_neural",
@@ -177,7 +191,8 @@
     "alpha": 3.487,
     "alpha_no_pc1": 3.872,
     "spearman_correlation": 0.227,
-    "silhouette_score": -0.103
+    "silhouette_score": -0.103,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -189,7 +204,8 @@
     "alpha": 3.487,
     "alpha_no_pc1": 3.872,
     "spearman_correlation": 0.225,
-    "silhouette_score": -0.1
+    "silhouette_score": -0.1,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -201,7 +217,8 @@
     "alpha": 3.487,
     "alpha_no_pc1": 3.872,
     "spearman_correlation": 0.225,
-    "silhouette_score": -0.11
+    "silhouette_score": -0.11,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -213,7 +230,8 @@
     "alpha": 3.487,
     "alpha_no_pc1": 3.872,
     "spearman_correlation": 0.225,
-    "silhouette_score": -0.13
+    "silhouette_score": -0.13,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -225,7 +243,8 @@
     "alpha": 1.911,
     "alpha_no_pc1": 1.917,
     "spearman_correlation": 0.249,
-    "silhouette_score": null
+    "silhouette_score": null,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -237,7 +256,8 @@
     "alpha": 1.911,
     "alpha_no_pc1": 1.917,
     "spearman_correlation": 0.244,
-    "silhouette_score": -0.016
+    "silhouette_score": -0.016,
+    "silhouette_score_stringer": -0.095
   },
   {
     "model_target": "simclr_neural",
@@ -249,7 +269,8 @@
     "alpha": 1.911,
     "alpha_no_pc1": 1.917,
     "spearman_correlation": 0.245,
-    "silhouette_score": -0.028
+    "silhouette_score": -0.028,
+    "silhouette_score_stringer": -0.082
   },
   {
     "model_target": "simclr_neural",
@@ -261,7 +282,8 @@
     "alpha": 1.911,
     "alpha_no_pc1": 1.917,
     "spearman_correlation": 0.248,
-    "silhouette_score": -0.02
+    "silhouette_score": -0.02,
+    "silhouette_score_stringer": -0.071
   },
   {
     "model_target": "simclr_neural",
@@ -273,7 +295,8 @@
     "alpha": 1.911,
     "alpha_no_pc1": 1.917,
     "spearman_correlation": 0.245,
-    "silhouette_score": -0.005
+    "silhouette_score": -0.005,
+    "silhouette_score_stringer": -0.081
   },
   {
     "model_target": "simclr_neural",
@@ -285,7 +308,8 @@
     "alpha": 1.911,
     "alpha_no_pc1": 1.917,
     "spearman_correlation": 0.245,
-    "silhouette_score": -0.014
+    "silhouette_score": -0.014,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -297,7 +321,8 @@
     "alpha": 1.911,
     "alpha_no_pc1": 1.917,
     "spearman_correlation": 0.245,
-    "silhouette_score": -0.006
+    "silhouette_score": -0.006,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -309,7 +334,8 @@
     "alpha": 1.911,
     "alpha_no_pc1": 1.917,
     "spearman_correlation": 0.245,
-    "silhouette_score": -0.02
+    "silhouette_score": -0.02,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -321,7 +347,8 @@
     "alpha": 1.911,
     "alpha_no_pc1": 1.917,
     "spearman_correlation": 0.246,
-    "silhouette_score": -0.018
+    "silhouette_score": -0.018,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -333,7 +360,8 @@
     "alpha": 1.887,
     "alpha_no_pc1": 1.894,
     "spearman_correlation": 0.188,
-    "silhouette_score": null
+    "silhouette_score": null,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -345,7 +373,8 @@
     "alpha": 1.887,
     "alpha_no_pc1": 1.894,
     "spearman_correlation": 0.2,
-    "silhouette_score": 0.059
+    "silhouette_score": 0.059,
+    "silhouette_score_stringer": -0.086
   },
   {
     "model_target": "simclr_neural",
@@ -357,7 +386,8 @@
     "alpha": 1.887,
     "alpha_no_pc1": 1.894,
     "spearman_correlation": 0.196,
-    "silhouette_score": 0.085
+    "silhouette_score": 0.085,
+    "silhouette_score_stringer": -0.066
   },
   {
     "model_target": "simclr_neural",
@@ -369,7 +399,8 @@
     "alpha": 1.887,
     "alpha_no_pc1": 1.894,
     "spearman_correlation": 0.193,
-    "silhouette_score": 0.086
+    "silhouette_score": 0.086,
+    "silhouette_score_stringer": -0.087
   },
   {
     "model_target": "simclr_neural",
@@ -381,7 +412,8 @@
     "alpha": 1.887,
     "alpha_no_pc1": 1.894,
     "spearman_correlation": 0.193,
-    "silhouette_score": 0.085
+    "silhouette_score": 0.085,
+    "silhouette_score_stringer": -0.071
   },
   {
     "model_target": "simclr_neural",
@@ -393,7 +425,8 @@
     "alpha": 1.887,
     "alpha_no_pc1": 1.894,
     "spearman_correlation": 0.193,
-    "silhouette_score": 0.077
+    "silhouette_score": 0.077,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -405,7 +438,8 @@
     "alpha": 1.887,
     "alpha_no_pc1": 1.894,
     "spearman_correlation": 0.193,
-    "silhouette_score": 0.07
+    "silhouette_score": 0.07,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -417,7 +451,8 @@
     "alpha": 1.887,
     "alpha_no_pc1": 1.894,
     "spearman_correlation": 0.193,
-    "silhouette_score": 0.067
+    "silhouette_score": 0.067,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -429,7 +464,8 @@
     "alpha": 1.887,
     "alpha_no_pc1": 1.894,
     "spearman_correlation": 0.193,
-    "silhouette_score": 0.074
+    "silhouette_score": 0.074,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -441,7 +477,8 @@
     "alpha": 1.702,
     "alpha_no_pc1": 1.711,
     "spearman_correlation": 0.211,
-    "silhouette_score": null
+    "silhouette_score": null,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -453,7 +490,8 @@
     "alpha": 1.702,
     "alpha_no_pc1": 1.711,
     "spearman_correlation": 0.205,
-    "silhouette_score": 0.092
+    "silhouette_score": 0.092,
+    "silhouette_score_stringer": -0.077
   },
   {
     "model_target": "simclr_neural",
@@ -465,7 +503,8 @@
     "alpha": 1.702,
     "alpha_no_pc1": 1.711,
     "spearman_correlation": 0.21,
-    "silhouette_score": 0.092
+    "silhouette_score": 0.092,
+    "silhouette_score_stringer": -0.071
   },
   {
     "model_target": "simclr_neural",
@@ -477,7 +516,8 @@
     "alpha": 1.702,
     "alpha_no_pc1": 1.711,
     "spearman_correlation": 0.213,
-    "silhouette_score": 0.102
+    "silhouette_score": 0.102,
+    "silhouette_score_stringer": -0.066
   },
   {
     "model_target": "simclr_neural",
@@ -489,7 +529,8 @@
     "alpha": 1.702,
     "alpha_no_pc1": 1.711,
     "spearman_correlation": 0.214,
-    "silhouette_score": 0.108
+    "silhouette_score": 0.108,
+    "silhouette_score_stringer": -0.065
   },
   {
     "model_target": "simclr_neural",
@@ -501,7 +542,8 @@
     "alpha": 1.702,
     "alpha_no_pc1": 1.711,
     "spearman_correlation": 0.214,
-    "silhouette_score": 0.107
+    "silhouette_score": 0.107,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -513,7 +555,8 @@
     "alpha": 1.702,
     "alpha_no_pc1": 1.711,
     "spearman_correlation": 0.214,
-    "silhouette_score": 0.105
+    "silhouette_score": 0.105,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -525,7 +568,8 @@
     "alpha": 1.702,
     "alpha_no_pc1": 1.711,
     "spearman_correlation": 0.214,
-    "silhouette_score": 0.11
+    "silhouette_score": 0.11,
+    "silhouette_score_stringer": null
   },
   {
     "model_target": "simclr_neural",
@@ -537,6 +581,7 @@
     "alpha": 1.702,
     "alpha_no_pc1": 1.711,
     "spearman_correlation": 0.214,
-    "silhouette_score": 0.084
+    "silhouette_score": 0.084,
+    "silhouette_score_stringer": null
   }
 ]

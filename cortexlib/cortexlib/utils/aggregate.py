@@ -19,16 +19,26 @@ def aggregate_results():
     with open("./semanticity.json") as f:
         semanticity_data = json.load(f)
 
+    with open("./semanticity_stringer.json") as f:
+        semanticity_stringer_data = json.load(f)
+
     alpha_df = pd.DataFrame(alpha_data)
     fev_df = pd.DataFrame(fev_data)
     rsa_df = pd.DataFrame(rsa_data)
     semanticity_df = pd.DataFrame(semanticity_data)
+    semanticity_stringer_df = (
+        pd.DataFrame(semanticity_stringer_data)
+        .rename(columns={"silhouette_score": "silhouette_score_stringer"})
+        .drop(columns=["model"])
+    )
 
     # Merge all metrics on layer and n_pcs
     merged_df = fev_df.merge(alpha_df, on="layer", how="left")
     merged_df = merged_df.merge(rsa_df, on=["layer", "n_pcs"], how="left")
     merged_df = merged_df.merge(
         semanticity_df, on=["layer", "n_pcs"], how="left")
+    merged_df = merged_df.merge(
+        semanticity_stringer_df, on=["layer", "n_pcs"], how="left")
 
     # Round values
     merged_df = merged_df.round({
@@ -38,6 +48,7 @@ def aggregate_results():
         "test_r2": 3,
         "spearman_correlation": 3,
         "silhouette_score": 3,
+        "silhouette_score_stringer": 3,
     })
 
     # Convert NaN to None for JSON serialisation
@@ -46,6 +57,9 @@ def aggregate_results():
 
     # Add the mouse_id to every record (useful for aggregation across multiple mice)
     mouse_id = futils.get_mouse_id()
+    if "mouse_id" in merged_df.columns:
+        merged_df.drop(columns=["mouse_id"], inplace=True)
+
     merged_df.insert(0, "mouse_id", mouse_id)
 
     # Add the model-target to every record (useful for aggregation across multiple models)
