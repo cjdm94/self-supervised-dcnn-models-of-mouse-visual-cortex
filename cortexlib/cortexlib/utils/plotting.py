@@ -99,13 +99,20 @@ def plot_mean_fev(avg_metrics, individual_metrics, remove_gabor=False):
 
 
 def plot_fev_vs_metric_scatter(df, colours, metric_key, metric_title):
-    plt.figure(figsize=(6, 5), constrained_layout=True)
+    import matplotlib.pyplot as plt
+    from matplotlib.gridspec import GridSpec
+    from matplotlib.ticker import FormatStrFormatter
+
+    fig = plt.figure(figsize=(8, 8))  # physical size of full figure
+    gs = GridSpec(1, 1, figure=fig, left=0.2, right=0.8,
+                  top=0.8, bottom=0.2)  # tightly control margins
+    ax = fig.add_subplot(gs[0])
+
     for _, row in df.iterrows():
         color = colours.get(row["layer"], "black")
-        plt.errorbar(
+        ax.errorbar(
             x=row[metric_key],
             y=row["mean_fev"],
-            # xerr=row["sem_spearman_correlation_plot"],
             yerr=row["sem_mean_fev_plot"],
             fmt='o',
             markersize=10,
@@ -115,7 +122,7 @@ def plot_fev_vs_metric_scatter(df, colours, metric_key, metric_title):
             markeredgecolor='black',
             markeredgewidth=0.6
         )
-        plt.annotate(
+        ax.annotate(
             row["layer"],
             xy=(row[metric_key], row["mean_fev"]),
             xytext=(10, 0),
@@ -123,13 +130,12 @@ def plot_fev_vs_metric_scatter(df, colours, metric_key, metric_title):
             fontsize=11,
             va='center',
             ha='left',
-            # fontweight='bold',
         )
 
-    plt.xlabel(metric_title, labelpad=10)
-    plt.ylabel("Mean FEV ± SEM", labelpad=10)
-    # plt.grid(True)
-    plt.tight_layout()
-    # x_min, x_max = df_simclr["spearman_correlation"].min(), df_simclr["spearman_correlation"].max()
-    # plt.xlim(x_min - 0.02, x_max + 0.05)
-    return plt
+    ax.set_xlabel(metric_title, labelpad=10)
+    ax.set_ylabel("Mean FEV ± SEM", labelpad=10)
+    ax.set_box_aspect(1)  # square plot area
+    ax.xaxis.set_major_formatter(FormatStrFormatter('%.2f'))
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
+
+    return fig
