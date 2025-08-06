@@ -96,3 +96,40 @@ def plot_mean_fev(avg_metrics, individual_metrics, remove_gabor=False):
     )
     plt.tight_layout()
     return plt
+
+
+def plot_fev_vs_metric_scatter(df, colours, metric_key, metric_title):
+    plt.figure(figsize=(6, 5), constrained_layout=True)
+    for _, row in df.iterrows():
+        color = colours.get(row["layer"], "black")
+        plt.errorbar(
+            x=row[metric_key],
+            y=row["mean_fev"],
+            # xerr=row["sem_spearman_correlation_plot"],
+            yerr=row["sem_mean_fev_plot"],
+            fmt='o',
+            markersize=10,
+            capsize=3,
+            ecolor='gray',
+            color=color,
+            markeredgecolor='black',
+            markeredgewidth=0.6
+        )
+        plt.annotate(
+            row["layer"],
+            xy=(row[metric_key], row["mean_fev"]),
+            xytext=(10, 0),
+            textcoords='offset points',
+            fontsize=11,
+            va='center',
+            ha='left',
+            # fontweight='bold',
+        )
+
+    plt.xlabel(metric_title, labelpad=10)
+    plt.ylabel("Mean FEV ± SEM", labelpad=10)
+    # plt.grid(True)
+    plt.tight_layout()
+    # x_min, x_max = df_simclr["spearman_correlation"].min(), df_simclr["spearman_correlation"].max()
+    # plt.xlim(x_min - 0.02, x_max + 0.05)
+    return plt
