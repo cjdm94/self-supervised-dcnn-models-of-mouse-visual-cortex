@@ -20,7 +20,7 @@ vgg19_colours = {
     'conv2_2': '#fee5d9',
     'conv3_4': '#fcae91',
     'conv4_4': '#fb6a4a',
-    'conv5_4': '#de2d26',
+    'conv5_4': "#11dc3d",
     'fc2': '#a50f15',
 }
 
