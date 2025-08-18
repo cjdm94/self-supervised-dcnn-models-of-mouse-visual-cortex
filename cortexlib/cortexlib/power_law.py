@@ -59,6 +59,16 @@ class PowerLawAlphaEstimator:
             ks = np.arange(kmin, kmax + 1, dtype=int)
 
         y = np.asarray(eigs, dtype=float)
+
+        # --- noise-floor guard: *for VGG-19 features only* ---
+        # estimate noise floor from tail
+        nf = np.median(y[-50:])
+        # keep only where variance >> noise
+        mask_signal = y > (5 * nf)
+        valid_idxs = np.where(mask_signal)[0] + 1  # 1-indexed ranks
+        ks = np.intersect1d(ks, valid_idxs)      # restrict to signal ranks
+        # ----------------------------
+
         vals = y[ks - 1]  # ranks are 1-indexed
 
         # guard against non-positive due to numerical noise
