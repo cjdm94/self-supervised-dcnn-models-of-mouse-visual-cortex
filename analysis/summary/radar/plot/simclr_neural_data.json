@@ -14,7 +14,7 @@
     },
     {
       "axis": "Dimensionality",
-      "value": 1.0
+      "value": 0.0
     }
   ],
   [
@@ -32,7 +32,7 @@
     },
     {
       "axis": "Dimensionality",
-      "value": 0.83152259486695
+      "value": 0.20215633423180596
     }
   ],
   [
@@ -50,7 +50,7 @@
     },
     {
       "axis": "Dimensionality",
-      "value": 0.088962368131003
+      "value": 0.3962264150943396
     }
   ],
   [
@@ -68,7 +68,7 @@
     },
     {
       "axis": "Dimensionality",
-      "value": 0.08471106912297277
+      "value": 0.5498652291105122
     }
   ],
   [
@@ -86,7 +86,7 @@
     },
     {
       "axis": "Dimensionality",
-      "value": 0.0
+      "value": 1.0
     }
   ]
 ]
