@@ -1,5 +1,9 @@
 {
-  "alpha": 2.4586738966013657,
-  "alpha_no_pc1": 2.51003347853116,
-  "mouse_id": "m01_d2"
+  "mouse_id": "m01_d2",
+  "alpha_all_neurons": 0.7792025430706669,
+  "r2_all_neurons": 0.6942335625387547,
+  "n_all_neurons": 17842,
+  "alpha_filtered_neurons": 1.3053762518036585,
+  "r2_filtered_neurons": 0.9313905100131437,
+  "n_filtered_neurons": 500
 }
