@@ -273,11 +273,6 @@ class NeuralResponsePredictor:
         model = self._fit_regression_model(
             x_train, x_test, y_train, y_test)
 
-        print("Shape x_train:", x_train.shape)
-        print("Shape x_test:", x_test.shape)
-        print("Shape y_train:", y_train.shape)
-        print("Shape y_test:", y_test.shape)
-
         # use the test indexes: fev cares *only about neural responses to the test images*
         # used for the regression model, from which y_test and test_pred were derived
         neural_responses = neural_responses[test_idx, :, :]
