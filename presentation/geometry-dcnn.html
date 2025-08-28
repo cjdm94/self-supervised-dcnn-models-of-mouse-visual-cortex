@@ -1,0 +1,470 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>3D (many points + initial lines + upper triangle distance matrix)</title>
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    #plot { width: 70%; height: 100%; float: left; position: relative; }
+    #matrix { margin-left: -600px; margin-top: -150px; width: 30%; height: 100%; float: left; display: flex; align-items: center; justify-content: center; display: none; font-family: Arial, Helvetica, sans-serif; }
+
+    .img-tip {
+      position: fixed; display: none; pointer-events: none;
+      background: #fff; padding: 4px;
+      border: 1px solid rgba(0,0,0,.15); border-radius: 6px;
+      box-shadow: 0 6px 18px rgba(0,0,0,.15); z-index: 9999;
+    }
+    .img-tip img { display: block; max-width: 220px; max-height: 160px; }
+    .img-tip .cap { margin-top: 4px; font: 12px/1.2 system-ui, -apple-system, Segoe UI, Arial; }
+    .hoverlayer { display: none !important; }
+
+    @keyframes floatToMatrix {
+      from { transform: translate(0, 0); opacity: 1; }
+      to { opacity: 1; }
+    }
+    .float-number {
+      position: absolute;
+      font-size: 16px;
+      font-family: system-ui, -apple-system, Segoe UI, Arial;
+      pointer-events: none;
+      z-index: 1000;
+    }
+    table {
+      border-collapse: collapse;
+      font-size: 16px;
+      background-color: #f9f9f9;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #eee;
+    }
+    .lower-triangle {
+      background-color: #d3d3d3;
+    }
+  </style>
+</head>
+<body>
+  <div id="plot"></div>
+  <div id="matrix"></div>
+
+  <div id="imgTip" class="img-tip" aria-hidden="true">
+    <img id="tipImg" alt="">
+    <div id="tipCap" class="cap"></div>
+  </div>
+
+<script>
+const RANGE = [0, 10];
+
+let pts = [
+  {label: "stimulus 1", x: 1, y: 2, z: 8, img: "stimuli/bird.png",  color:"#0072B2"},
+  {label: "stimulus 2", x: 4, y: 6, z: 3, img: "stimuli/mouse.png", color:"#0072B2"},
+  {label: "stimulus 3", x: 3, y: 9, z: 5, img: "stimuli/snake.png", color:"#0072B2"},
+  {label: "stimulus 4", x: 6, y: 2, z: 7, img: "stimuli/fungi.png", color:"#0072B2"},
+  {label: "...", x: 0, y: 0, z: 0, img: "", color: "#0072B2"} // Placeholder for "..."
+];
+
+pts.forEach(p => { if (p.img) { const im = new Image(); im.src = p.img; } });
+
+const layout = {
+  scene: {
+    xaxis: { range: RANGE, showgrid: false, showticklabels: false, ticks: "", color: "rgba(0,0,0,0)" },
+    yaxis: { range: RANGE, showgrid: false, showticklabels: true,  ticks: "", color: "rgba(0,0,0,0)" },
+    zaxis: { range: RANGE, showgrid: false, showticklabels: true,  ticks: "", color: "rgba(0,0,0,0)" },
+    showlegend: false,
+    aspectmode: "cube",
+    dragmode: "turntable",
+  },
+  margin: { l:0, r:0, t:100, b:0 },
+  showlegend: false,
+  width: 500*2,   // shrink width
+  height: 400*2,  // shrink height
+};
+const config = { responsive: true, displaylogo: false, scrollZoom: true };
+
+function axesLines(color="#222") {
+  const [a,b]=RANGE;
+  return {
+    type: "scatter3d", mode: "lines",
+    x: [a,b,null, a,a,null, a,a],
+    y: [a,a,null, a,b,null, a,a],
+    z: [a,a,null, a,a,null, a,b],
+    line: { width: 4, color },
+    hoverinfo: "skip",
+  };
+}
+function labelTrace(text, x, y, z) {
+  return { type:"scatter3d", mode:"text", x:[x], y:[y], z:[z], text:[text],
+           textfont:{ size:20, color:"#222" }, hoverinfo:"skip" };
+}
+function gridPlaneXY(step=2, z=RANGE[0], color="rgba(0,0,0,.25)") {
+  const [a,b]=RANGE; const xs=[], ys=[], zs=[];
+  for (let x=a+step; x<=b-step; x+=step) { xs.push(x,x,null); ys.push(a,b,null); zs.push(z,z,null); }
+  for (let y=a+step; y<=b-step; y+=step) { xs.push(a,b,null); ys.push(y,y,null); zs.push(z,z,null); }
+  return { type:"scatter3d", mode:"lines", x:xs, y:ys, z:zs, line:{width:1,color}, opacity:0.9, hoverinfo:"skip" };
+}
+function gridPlaneYZ(step=2, x=RANGE[0], color="rgba(0,0,0,.15)") {
+  const [a,b]=RANGE; const xs=[], ys=[], zs=[];
+  for (let y=a+step; y<=b-step; y+=step) { xs.push(x,x,null); ys.push(y,y,null); zs.push(a,b,null); }
+  for (let z=a+step; z<=b-step; z+=step) { xs.push(x,x,null); ys.push(a,b,null); zs.push(z,z,null); }
+  return { type:"scatter3d", mode:"lines", x:xs, y:ys, z:zs, line:{width:1,color}, opacity:0.9, hoverinfo:"skip" };
+}
+function gridPlaneZX(step=2, y=RANGE[0], color="rgba(0,0,0,.15)") {
+  const [a,b]=RANGE; const xs=[], ys=[], zs = [];
+  for (let z=a+step; z<=b-step; z+=step) { xs.push(a,b,null); ys.push(y,y,null); zs.push(z,z,null); }
+  for (let x=a+step; x<=b-step; x+=step) { xs.push(x,x,null); ys.push(y,y,null); zs.push(a,b,null); }
+  return { type:"scatter3d", mode:"lines", x:xs, y:ys, z:zs, line:{width:1,color}, opacity:0.9, hoverinfo:"skip" };
+}
+function pointTrace(p) {
+  const base = {
+    type: "scatter3d", mode: "markers",
+    x: [p.x], y: [p.y], z: [p.z],
+    marker: { size: p.label && p.label !== "..." ? 5 : 3, color: p.color },
+    visible: false
+  };
+  if (p.label && p.label !== "...") {
+    base.customdata = [{ label: p.label, img: p.img || "" }];
+    base.hovertemplate = "%{customdata.label}<extra></extra>";
+  } else {
+    base.hoverinfo = "skip";
+  }
+  return base;
+}
+function segmentTrace(pA, pB, { color="#8A2BE2", width=4, dash="solid" } = {}) {
+  return { type:"scatter3d", mode:"lines",
+           x:[pA.x,pB.x], y:[pA.y,pB.y], z:[pA.z,pB.z],
+           line:{ color, width, dash }, hoverinfo:"skip" };
+}
+function euclid3D(a,b){ const dx=a.x-b.x, dy=a.y-b.y, dz=a.z-b.z; return Math.sqrt(dx*dx+dy*dy+dz*dz); }
+
+async function waitForScene(gd){
+  const has = () => gd._fullLayout && gd._fullLayout._subplots &&
+                    Array.isArray(gd._fullLayout._subplots.gl3d) &&
+                    gd._fullLayout._subplots.gl3d.length > 0;
+  if (has()) return;
+  await new Promise(res => gd.once("plotly_afterplot", res));
+}
+function getSceneId(gd){
+  const s = (gd._fullLayout._subplots && gd._fullLayout._subplots.gl3d) || [];
+  return s[0] || "scene";
+}
+
+async function main(){
+  const data = [];
+  const gd = await Plotly.newPlot("plot", data, layout, config);
+
+  const tip = document.getElementById("imgTip");
+  const tipImg = document.getElementById("tipImg");
+  const tipCap = document.getElementById("tipCap");
+  const OFFSET_X = 12, OFFSET_Y = 12;
+  let lastMouse = { x: 0, y: 0 };
+  gd.addEventListener("mousemove", e => { lastMouse = { x: e.clientX, y: e.clientY }; });
+  function showTip(ev){
+    const p = ev.points && ev.points[0];
+    if (!p || !p.customdata) return;
+    const rect = gd.getBoundingClientRect();
+    const x = rect.left + (p.xpx ?? lastMouse.x) + OFFSET_X;
+    const y = rect.top  + (p.ypx ?? lastMouse.y) + OFFSET_Y;
+    if (p.customdata.img) {
+      tipImg.src = p.customdata.img;
+      tipImg.style.display = 'block';
+    } else {
+      tipImg.style.display = 'none';
+    }
+    tipCap.textContent = p.customdata.label;
+    tip.style.left = Math.min(x, window.innerWidth - 240) + "px";
+    tip.style.top  = Math.min(y, window.innerHeight - 180) + "px";
+    tip.style.display = "block";
+    tip.setAttribute("aria-hidden","false");
+  }
+  function hideTip(){
+    tip.style.display = "none";
+    tip.setAttribute("aria-hidden","true");
+    tipImg.removeAttribute("src");
+    tipImg.style.display = 'block';
+  }
+  gd.on("plotly_hover", showTip);
+  gd.on("plotly_unhover", hideTip);
+
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+  // Create the initial distance matrix table (6x6 with lower triangle blocked, no "..." in cells)
+  const matrixDiv = document.getElementById('matrix');
+  const table = document.createElement('table');
+  const headerRow = table.insertRow();
+  headerRow.insertCell();
+  pts.forEach(p => {
+    const th = headerRow.insertCell();
+    th.innerHTML = p.label;
+    th.style.backgroundColor = '#eee';
+  });
+  const lastHeader = headerRow.insertCell();
+  lastHeader.innerHTML = "stimulus 1500";
+  lastHeader.style.backgroundColor = '#eee';
+
+  // Create rows for stimuli 1-4 and "..."
+  pts.forEach((rowP, i) => {
+    const row = table.insertRow();
+    const th = row.insertCell();
+    th.innerHTML = rowP.label;
+    th.style.backgroundColor = '#eee';
+    pts.forEach((colP, j) => {
+      const td = row.insertCell();
+      td.id = `cell_${i}_${j}`;
+      if (i === j) {
+        td.innerHTML = '0';
+        td.style.color = '#444';
+      } else if (i > j) {
+        td.className = 'lower-triangle';
+      }
+    });
+    const lastCell = row.insertCell();
+    lastCell.id = `cell_${i}_5`;
+    if (i > 4) lastCell.className = 'lower-triangle';
+  });
+
+  // Add "stimulus 1500" row
+  const lastRow = table.insertRow();
+  const lastTh = lastRow.insertCell();
+  lastTh.innerHTML = "stimulus 1500";
+  lastTh.style.backgroundColor = '#eee';
+  for (let c = 0; c < pts.length; c++) {
+    const cell = lastRow.insertCell();
+    cell.id = `cell_5_${c}`;
+    cell.className = 'lower-triangle';
+  }
+  const lastLastCell = lastRow.insertCell();
+  lastLastCell.id = `cell_5_5`;
+  lastLastCell.innerHTML = "0";
+  lastLastCell.style.color = '#444';
+
+  matrixDiv.appendChild(table);
+
+  await sleep(1200);
+
+  // STEP 1: axes + labels
+  await Plotly.addTraces(gd, [axesLines()]);
+  const [a,b] = RANGE;
+  await sleep(800); await Plotly.addTraces(gd, [labelTrace("unit 1", a, b, a)]);
+  await sleep(800); await Plotly.addTraces(gd, [labelTrace("unit 2", a, a, b)]);
+  await sleep(800); await Plotly.addTraces(gd, [labelTrace("unit n", b, a, a)]);
+
+  // STEP 2: grid planes
+  await Plotly.addTraces(gd, [
+    gridPlaneXY(2, RANGE[0]),
+    gridPlaneYZ(2, RANGE[0]),
+    gridPlaneZX(2, RANGE[0])
+  ]);
+
+  // Axis numbers/ticks
+  await Plotly.relayout(gd, {
+    "scene.xaxis.title.text": "",
+    "scene.yaxis.title.text": "",
+    "scene.zaxis.title.text": "",
+    "scene.xaxis.showticklabels": true,
+    "scene.yaxis.showticklabels": true,
+    "scene.zaxis.showticklabels": true,
+    "scene.xaxis.tick0": 0, "scene.xaxis.dtick": 2,
+    "scene.yaxis.tick0": 0, "scene.yaxis.dtick": 2,
+    "scene.zaxis.tick0": 0, "scene.zaxis.dtick": 2,
+    "scene.xaxis.ticks": "outside",
+    "scene.yaxis.ticks": "outside",
+    "scene.zaxis.ticks": "outside",
+    "scene.xaxis.tickfont.size": 10,
+    "scene.yaxis.tickfont.size": 10,
+    "scene.zaxis.tickfont.size": 10,
+    "scene.xaxis.title.standoff": 0,
+    "scene.yaxis.title.standoff": 0,
+    "scene.zaxis.title.standoff": 0,
+    "scene.xaxis.color": "#333",
+    "scene.yaxis.color": "#333",
+    "scene.zaxis.color": "#333"
+  });
+
+  await sleep(1200);
+
+  // STEP 3: add all four points
+  await Plotly.addTraces(gd, [pointTrace(pts[0])]);
+  await Plotly.restyle(gd, { visible: true }, [gd.data.length-1]);
+  await sleep(5000);
+  await Plotly.addTraces(gd, [pointTrace(pts[1])]);
+  await Plotly.restyle(gd, { visible: true }, [gd.data.length-1]);
+  await sleep(5000);
+  await Plotly.addTraces(gd, [pointTrace(pts[2])]);
+  await Plotly.restyle(gd, { visible: true }, [gd.data.length-1]);
+  await sleep(5000);
+  await Plotly.addTraces(gd, [pointTrace(pts[3])]);
+  await Plotly.restyle(gd, { visible: true }, [gd.data.length-1]);
+  await sleep(5000);
+
+  // STEP 4: draw lines and animate distances for initial pairs (upper triangle only, no 3D labels)
+  async function animateNumber(pA, pB, distance, color, cellIds, useMidpoint = true) {
+    await waitForScene(gd);
+    const sceneId = getSceneId(gd);
+    const scene = gd._fullLayout[sceneId];
+    let startX, startY;
+    const plotRect = gd.getBoundingClientRect();
+
+    if (useMidpoint && scene && scene._scene) {
+      const mx = (pA.x + pB.x) / 2;
+      const my = (pA.y + pB.y) / 2;
+      const mz = (pA.z + pB.z) / 2;
+
+      try {
+        const gl = scene._scene.glplot;
+        const viewMatrix = gl.view;
+        const projMatrix = gl.proj;
+
+        const normX = (mx - RANGE[0]) / (RANGE[1] - RANGE[0]) * 2 - 1;
+        const normY = (my - RANGE[0]) / (RANGE[1] - RANGE[0]) * 2 - 1;
+        const normZ = (mz - RANGE[0]) / (RANGE[1] - RANGE[0]) * 2 - 1;
+
+        const vec4 = window.Plotly.Lib.glMatrix.vec4;
+        let pos = vec4.fromValues(normX, normY, normZ, 1);
+        pos = vec4.transformMat4(vec4.create(), pos, viewMatrix);
+        pos = vec4.transformMat4(vec4.create(), pos, projMatrix);
+
+        const x = (pos[0] / pos[3] + 1) / 2 * plotRect.width;
+        const y = (1 - pos[1] / pos[3]) / 2 * plotRect.height;
+
+        startX = plotRect.left + x;
+        startY = plotRect.top + y;
+      } catch (e) {
+        console.warn("Coordinate conversion failed, using plot center as fallback", e);
+        startX = plotRect.left + plotRect.width / 2;
+        startY = plotRect.top + plotRect.height / 2;
+      }
+    } else {
+      startX = plotRect.left + plotRect.width / 2;
+      startY = plotRect.top + plotRect.height / 2;
+    }
+
+    cellIds.forEach(cellId => {
+      const cell = document.getElementById(cellId);
+      if (!cell) return;
+      const cellRect = cell.getBoundingClientRect();
+      const endX = cellRect.left + cellRect.width / 2;
+      const endY = cellRect.top + cellRect.height / 2;
+
+      const number = document.createElement('div');
+      number.className = 'float-number';
+      number.innerHTML = distance;
+      number.style.color = color;
+      number.style.left = `${startX}px`;
+      number.style.top = `${startY}px`;
+      document.body.appendChild(number);
+
+      number.animate([
+        { transform: `translate(0, 0)`, opacity: 1 },
+        { transform: `translate(${endX - startX}px, ${endY - startY}px)`, opacity: 1 }
+      ], {
+        duration: 1000,
+        easing: 'ease-in-out',
+        fill: 'forwards'
+      }).onfinish = () => {
+        cell.innerHTML = distance;
+        cell.style.color = color;
+        number.remove();
+      };
+    });
+  }
+
+  // Define initial unique pairs for upper triangle (i < j)
+  const pairs = [
+    { p1: 0, p2: 1, color: "#8A2BE2", label: "d(1,2)" },
+    { p1: 0, p2: 2, color: "#009E73", label: "d(1,3)" },
+    { p1: 0, p2: 3, color: "#CC79A7", label: "d(1,4)" },
+    { p1: 1, p2: 2, color: "#F5E050", label: "d(2,3)" },
+    { p1: 1, p2: 3, color: "#0072B5", label: "d(2,4)" },
+    { p1: 2, p2: 3, color: "#D55E00", label: "d(3,4)" }
+  ];
+
+  // Process each initial pair
+  let firstLineDrawn = false;
+  for (const [index, pair] of pairs.entries()) {
+    const pA = pts[pair.p1], pB = pts[pair.p2];
+    const distance = euclid3D(pA, pB).toFixed(2);
+
+    // Draw line (no 3D label)
+    await Plotly.addTraces(gd, [segmentTrace(pA, pB, { color: pair.color, width: 4, dash: "dot" })]);
+    
+    if (!firstLineDrawn) {
+      // After the first line, make the matrix visible
+      document.getElementById('matrix').style.display = 'flex';
+      firstLineDrawn = true;
+    }
+    
+    await sleep(1200);
+
+    // Animate distance to upper triangle cell, with 3s delay after first line
+    if (index === 0) {
+      await sleep(3000); // 3s delay after first line before moving the number
+    }
+    await animateNumber(pA, pB, distance, pair.color, [`cell_${pair.p1}_${pair.p2}`]);
+    
+    if (index === 0) {
+      await sleep(1200); // Restore the 1200ms gap after the first animation
+    } else {
+      await sleep(1200);
+    }
+  }
+
+  // Add 196 random points + stimulus 1500 all at once
+  const extraPoints = [];
+  for (let k = 0; k < 196; k++) {
+    extraPoints.push({
+      x: Math.random() * 10,
+      y: Math.random() * 10,
+      z: Math.random() * 10,
+      color: "#0072B2",
+      label: "",
+      img: ""
+    });
+  }
+  const p1500 = {
+    label: "stimulus 1500",
+    x: Math.random() * 10,
+    y: Math.random() * 10,
+    z: Math.random() * 10,
+    color: "#000000",
+    img: ""
+  };
+  extraPoints.push(p1500);
+
+  const extraTraces = extraPoints.map(pointTrace);
+  await Plotly.addTraces(gd, extraTraces);
+  await Plotly.restyle(gd, { visible: true }, extraTraces.map((_, i) => gd.data.length - extraTraces.length + i));
+  await sleep(1000);
+
+  // Animate spoofed distances to "..." and stimulus 1500 simultaneously (upper triangle)
+  const extraColors = ["#6610f2", "#6f42c1", "#e83e8c", "#fd7e14", "#17a2b8", "#6c757d", "#28a745", "#dc3545"];
+  const newPairs = [
+    { p1: 0, p2: 4, color: extraColors[4], label: "d(1,...)" },
+    { p1: 1, p2: 4, color: extraColors[5], label: "d(2,...)" },
+    { p1: 2, p2: 4, color: extraColors[6], label: "d(3,...)" },
+    { p1: 3, p2: 4, color: extraColors[7], label: "d(4,...)" },
+    { p1: 0, p2: 5, color: extraColors[0], label: "d(1,1500)" },
+    { p1: 1, p2: 5, color: extraColors[1], label: "d(2,1500)" },
+    { p1: 2, p2: 5, color: extraColors[2], label: "d(3,1500)" },
+    { p1: 3, p2: 5, color: extraColors[3], label: "d(4,1500)" },
+    { p1: 4, p2: 5, color: extraColors[4], label: "d(...,1500)" }
+  ];
+
+  // Collect all animations to run simultaneously
+  const animations = [];
+  for (const pair of newPairs) {
+    const pA = pts[pair.p1], pB = pair.p2 === 5 ? p1500 : pts[pair.p2];
+    const distance = (Math.random() * 6 + 2).toFixed(2); // Spoofed distance between 2 and 8
+    animations.push(animateNumber(pA, pB, distance, pair.color, [`cell_${pair.p1}_${pair.p2}`], false));
+  }
+  await Promise.all(animations);
+}
+main();
+</script>
+</body>
+</html>

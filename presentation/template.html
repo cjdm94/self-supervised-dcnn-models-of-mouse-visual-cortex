@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>3D points — hover image tooltip</title>
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    html, body { height: 100%; margin: 0; }
+    #plot { width: 100%; height: 100%; }
+
+    /* Image tooltip (floating near the point/cursor) */
+    .img-tip {
+      position: fixed;           /* position via screen coords */
+      display: none;
+      pointer-events: none;      /* don't block plot interactions */
+      background: #fff;
+      padding: 4px;
+      border: 1px solid rgba(0,0,0,0.15);
+      border-radius: 6px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      z-index: 9999;
+    }
+    .img-tip img {
+      display: block;
+      max-width: 260px;          /* tweak size */
+      max-height: 180px;
+    }
+    .img-tip .cap {
+      margin-top: 4px;
+      font: 12px/1.2 system-ui, -apple-system, Segoe UI, Arial;
+      color: #222;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <div id="plot"></div>
+  <div id="imgTip" class="img-tip" role="img" aria-hidden="true">
+    <img id="tipImg" alt="">
+    <div id="tipCap" class="cap"></div>
+  </div>
+
+<script>
+  const pts = [
+  {label: "stimulus 1", x: 3, y: 4, z: 6, img: "stimuli/bird.png"},
+  {label: "stimulus 2", x: 6, y: 7, z: 3, img: "stimuli/fungi.png"},
+  {label: "stimulus 3", x: 7, y: 2, z: 8, img: "stimuli/mouse.png"},
+  {label: "stimulus n", x: 4, y: 3, z: 4, img: "stimuli/snake.png"},
+];
+
+  pts.forEach(p => { const im = new Image(); im.src = p.img; });
+
+  const trace = {
+    type: "scatter3d",
+    mode: "markers",
+    x: pts.map(p => p.x),
+    y: pts.map(p => p.y),
+    z: pts.map(p => p.z),
+    customdata: pts.map(p => ({label: p.label, img: p.img})),
+    hovertemplate: "%{customdata.label}<extra></extra>",
+    marker: { size: 6 }
+  };
+
+//   const layout = {
+//     scene: { xaxis: {title: "neuron 1"}, yaxis: {title: "neuron 2"}, zaxis: {title: "neuron n"}, aspectmode: "cube" },
+//     margin: { l:0, r:0, t:0, b:0 }
+//   };
+
+  const layout = {
+  scene: {
+    xaxis: { title: "neuron 1", range: [0, 10] },
+    yaxis: { title: "neuron 2", range: [0, 10] },
+    zaxis: { title: "neuron 3", range: [0, 10] },
+    zaxis: { title: "neuron n", range: [0, 10] },
+    aspectmode: "cube"   // keeps equal scaling
+  },
+  margin: { l: 0, r: 0, t: 0, b: 0 }
+};
+
+  const config = { responsive: true, displaylogo: false, scrollZoom: true };
+
+  Plotly.newPlot("plot", [trace], layout, config).then(gd => {
+    const tip = document.getElementById("imgTip");
+    const tipImg = document.getElementById("tipImg");
+    const tipCap = document.getElementById("tipCap");
+    const OFFSET_X = 14, OFFSET_Y = 14;
+
+    let lastMouse = { x: 0, y: 0 };
+    // Track last mouse position (for cases when Plotly doesn't provide ev.event)
+    gd.addEventListener("mousemove", e => { lastMouse = { x: e.clientX, y: e.clientY }; });
+
+    function positionTipFromPixels(xpx, ypx) {
+      // xpx/ypx are relative to the plot div’s top-left corner
+      const rect = gd.getBoundingClientRect();
+      const x = rect.left + xpx + OFFSET_X;
+      const y = rect.top  + ypx + OFFSET_Y;
+      const vw = window.innerWidth, vh = window.innerHeight;
+      tip.style.left = Math.min(x, vw - 280) + "px";
+      tip.style.top  = Math.min(y, vh - 200) + "px";
+    }
+
+    function positionTipFromEvent(e) {
+      const x = (e.clientX ?? lastMouse.x) + OFFSET_X;
+      const y = (e.clientY ?? lastMouse.y) + OFFSET_Y;
+      const vw = window.innerWidth, vh = window.innerHeight;
+      tip.style.left = Math.min(x, vw - 280) + "px";
+      tip.style.top  = Math.min(y, vh - 200) + "px";
+    }
+
+    function showTip(ev) {
+      const p = ev.points && ev.points[0];
+      if (!p || !p.customdata) return;
+      const { label, img } = p.customdata;
+
+      // Prefer Plotly’s pixel coords; fall back to DOM event or last mouse
+      if (Number.isFinite(ev.xpx) && Number.isFinite(ev.ypx)) {
+        positionTipFromPixels(ev.xpx, ev.ypx);
+      } else if (ev.event) {
+        positionTipFromEvent(ev.event);
+      } else {
+        positionTipFromEvent(lastMouse);
+      }
+
+      tipImg.src = img;
+      tipCap.textContent = label;
+      tip.style.display = "block";
+      tip.setAttribute("aria-hidden", "false");
+    }
+
+    function moveTip(e) {
+      if (tip.style.display !== "block") return;
+      positionTipFromEvent(e);
+    }
+
+    function hideTip() {
+      tip.style.display = "none";
+      tip.setAttribute("aria-hidden", "true");
+      tipImg.removeAttribute("src");
+    }
+
+    gd.on("plotly_hover", showTip);
+    gd.on("plotly_unhover", hideTip);
+    gd.addEventListener("mousemove", moveTip);
+    gd.addEventListener("mouseleave", hideTip);
+  });
+</script>
+
+</body>
+</html>
