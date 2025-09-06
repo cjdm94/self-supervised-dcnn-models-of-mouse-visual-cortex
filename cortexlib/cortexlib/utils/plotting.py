@@ -37,8 +37,8 @@ def plot_mean_fev(avg_metrics, individual_metrics, remove_gabor=False):
     # Clean labels and sort
     ordered_labels = [
         'small', 'medium', 'large',
+        'conv2_2', 'conv3_4', 'conv4_4', 'conv5_4', 'fc2',
         'layer1', 'layer2', 'layer3', 'layer4', 'fc',
-        'conv2_2', 'conv3_4', 'conv4_4', 'conv5_4', 'fc2'
     ]
     for df in [avg_metrics, individual_metrics]:
         df["layer"] = df["layer"].str.replace(r"^gabor_", "", regex=True)
@@ -49,9 +49,9 @@ def plot_mean_fev(avg_metrics, individual_metrics, remove_gabor=False):
 
     # Colour mapping by model
     model_colour = {
-        'simclr': simclr_colours['layer4'],
+        'gabor': gabor_filter_colours['gabor_large'],
         'vgg19': vgg19_colours['conv5_4'],
-        'gabor': gabor_filter_colours['gabor_large']
+        'simclr': simclr_colours['layer4'],
     }
 
     avg_metrics["colour"] = avg_metrics["model_target"].str.lower().map(
@@ -94,6 +94,93 @@ def plot_mean_fev(avg_metrics, individual_metrics, remove_gabor=False):
                  for model, color in model_colour.items()],
         title="Model"
     )
+    plt.tight_layout()
+    return plt
+
+
+def plot_mean_fev_highlight_best(avg_metrics, individual_metrics, remove_gabor=False):
+    """
+    Plot mean FEV with error bars.
+    Parameters:
+    - avg_metrics: DataFrame with metrics for each layer of each model, averaged across mice
+    - individual_metrics: DataFrame with individual mouse metrics for each layer of each model
+    """
+    # Clean labels and sort
+    ordered_labels = [
+        'small', 'medium', 'large',
+        'conv2_2', 'conv3_4', 'conv4_4', 'conv5_4', 'fc2',
+        'layer1', 'layer2', 'layer3', 'layer4', 'fc',
+    ]
+    for df in [avg_metrics, individual_metrics]:
+        df["layer"] = df["layer"].str.replace(r"^gabor_", "", regex=True)
+        df["layer"] = pd.Categorical(
+            df["layer"], categories=ordered_labels, ordered=True)
+
+    avg_metrics = avg_metrics.sort_values('layer')
+
+    # --- Color rules ---------------------------------------------------------
+    def get_colour(model_target: str, layer: str):
+        m = model_target.lower()
+        if "gabor" in m:
+            return gabor_filter_colours['gabor_small']
+        elif "vgg19" in m:
+            return vgg19_colours['conv3_4']
+        elif "simclr" in m:
+            # override for simclr layer1, layer4, fc
+            if layer in ("layer1", "layer4", "fc"):
+                return simclr_colours['layer2']
+            else:
+                # fall back to your usual simclr base (was layer4 in your original)
+                return simclr_colours['layer4']
+        else:
+            return "gray"  # safe fallback
+
+    # Apply colors to bars
+    avg_metrics["colour"] = [
+        get_colour(mt, lyr) for mt, lyr in zip(avg_metrics["model_target"], avg_metrics["layer"].astype(str))
+    ]
+
+    if remove_gabor:
+        # Remove Gabor from plot for both avg and individual
+        mask = ~avg_metrics["model_target"].str.contains("gabor", case=False)
+        avg_metrics = avg_metrics[mask]
+        individual_metrics = individual_metrics[~individual_metrics["model_target"].str.contains(
+            "gabor", case=False)]
+
+    # Plot
+    plt.figure(figsize=(6, 5))
+
+    # Error bars (bars)
+    plt.bar(
+        avg_metrics['layer'],
+        avg_metrics['mean_fev'],
+        yerr=avg_metrics['sem_fev'],
+        capsize=5,
+        color=avg_metrics['colour']
+    )
+
+    # Individual dots (match bar colors)
+    for _, row in individual_metrics.iterrows():
+        lyr = str(row["layer"])
+        col = get_colour(row["model_target"], lyr)
+        plt.scatter(
+            lyr, row["mean_fev"],
+            color=col, edgecolor='black', s=30, alpha=0.8, zorder=3
+        )
+
+    # Axis and legend
+    plt.xlabel("Model layer", labelpad=10)
+    plt.ylabel("Mean FEV", labelpad=10)
+    plt.xticks(rotation=45, ha='right')
+
+    # Legend: one entry per model (uses representative colors)
+    legend_handles = [
+        Patch(facecolor=gabor_filter_colours['gabor_small'], label="Gabor"),
+        Patch(facecolor=vgg19_colours['conv3_4'], label="VGG19"),
+        Patch(facecolor=simclr_colours['layer4'], label="SimCLR"),
+    ]
+    plt.legend(handles=legend_handles, title="Model")
+
     plt.tight_layout()
     return plt
 
